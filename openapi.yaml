@@ -1,105 +1,210 @@
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore
+  title: MERS
   license:
     name: MIT
 servers:
-  - url: http://petstore.swagger.io/v1
+  - url: http://localhost:3000/v1
 paths:
-  /pets:
-    get:
-      summary: List all pets
-      operationId: listPets
+  /subjects:
+    post:
+      summary: Creation of subject information
+      operationId: subjects
       tags:
-        - pets
+        - subjects
+      requestBody:
+        $ref: "#/components/requestBodies/subjects"
+      responses:
+        '200':
+          description: Successful creation of subject information
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /emotions:
+    post:
+      summary: Creating an emotional assessment
+      operationId: emotions
+      tags:
+        - emotions
+      requestBody:
+        $ref: "#/components/requestBodies/emotions"
+      responses:
+        '200':
+          description: Success in creating an emotional assessment
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /singleimages:
+    get:
+      summary: Get display single image
+      operationId: singleimages
+      tags:
+        - singleimages
       parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
+        - name: media_id
+          in: path 
+          required: true
           schema:
             type: integer
-            maximum: 100
-            format: int32
+            format: uint64
       responses:
         '200':
-          description: A paged array of pets
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
+          description: Successful acquisition of display single image
           content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/Pets"
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/singleimages"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    post:
-      summary: Create a pet
-      operationId: createPets
-      tags:
-        - pets
-      responses:
-        '201':
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /pets/{petId}:
+  /multipleimages:
     get:
-      summary: Info for a specific pet
-      operationId: showPetById
+      summary: Get display multiple image
+      operationId: multipleimages
       tags:
-        - pets
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          description: The id of the pet to retrieve
-          schema:
-            type: string
+        - multipleimages
+      requestBody:
+        $ref: "#/components/requestBodies/multipleimages"
       responses:
         '200':
-          description: Expected response to a valid request
+          description: Successful acquisition of display multiple image
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/multipleimages"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+
 components:
+  requestBodies:
+    subjects:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Participant_id:
+                type: integer
+                format: uint64
+              Age:
+                type: integer
+                format: uint64
+              Gender:
+                type: string
+              Handedness:
+                type: string
+              Vision:
+                type: string
+              Vision_Aid:
+                type: string
+              Education:
+                type: string
+              Alcohol_consumption:
+                type: string
+              Coffee_consumption:
+                type: string
+              Black/Green_tea_consumption:
+                type: string
+              Tobacco_consumption:
+                type: string
+              Other_drug/medication_consumption:
+                type: string
+              Other_drug_consumption:
+                type: string
+              Attention/Neurological/Psychiatric_syndroms:
+                type: string
+              Hours_of_sleep_last_night:
+                type: number
+                format: float
+              Normal_hours_of_sleep:
+                type: number
+                format: float
+              Level_of_Alertness:
+                type: string
+              Consent_to_distribute_physiological_recordings:
+                type: boolean
+              Consent_to_publish_audio-visual_recordings:
+                type: boolean
+              Head_circumference:
+                type: number
+                format: float
+              Distance_Nasion-Inion:
+                type: number
+                format: float
+              Distance_left-right_jaw_hinge:
+                type: number
+                format: float
+    emotions:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              valence:
+                type: number
+                format: float
+              arousal:
+                type: number
+                format: float
+              liking:
+                type: number
+                format: float
+              dominance:
+                type: number
+                format: float
+              famility:
+                type: number
+                format: float
+    multipleimages:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
   schemas:
-    Pet:
+    singleimages:
       type: object
-      required:
-        - id
-        - name
       properties:
-        id:
+        media_id:
+          type: integer
+          format: uint64
+        type: 
+          type: string
+        filename:
+          type: string
+        rating_times:
           type: integer
           format: int64
-        name:
-          type: string
-        tag:
-          type: string
-    Pets:
+    multipleimages:
       type: array
-      maxItems: 100
       items:
-        $ref: "#/components/schemas/Pet"
+        type: object
+        properties:
+          media_id:
+            type: integer
+            format: uint64
+          type: 
+            type: string
+          filename:
+            type: string
+          rating_times:
+            type: integer
+            format: int64     
     Error:
       type: object
       required:
