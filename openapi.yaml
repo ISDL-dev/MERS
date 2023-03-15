@@ -7,11 +7,37 @@ info:
 servers:
 - url: http://localhost:3000/v1
 paths:
+  /images:
+    get:
+      summary: Get display single image
+      operationId: getImages
+      tags:
+        - images
+      parameters:
+        - name: id
+          in: path 
+          required: true
+          schema:
+            type: integer
+            format: uint64
+      responses:
+        '200':
+          description: Successful acquisition of display single image
+          content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/Image"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /movies:
     get:
       summary: get a display movie
       tags:
-      - movies
+        - movies
       operationId: getMovie
       parameters:
       - name: id
@@ -28,6 +54,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Movie'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /targets:
     get:
       summary: get some rated targets
@@ -58,95 +91,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Targets'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /trials:
     post:
       summary: create a trial result
-      description: create a trial result containing a set of a subject info and rating results      
+      description: create a trial result containing a set of a subject info and rating results
       requestBody:
         description: trial result
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Trial'
+        $ref: '#/components/requestBodies/Trial'
       responses:
         '201':
           description: successful to create a trial result
-  /subjects:
-    post:
-      summary: Creation of subject information
-      operationId: subjects
-      tags:
-        - subjects
-      requestBody:
-        $ref: "#/components/requestBodies/subjects"
-      responses:
-        '200':
-          description: Successful creation of subject information
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /emotions:
-    post:
-      summary: Creating an emotional assessment
-      operationId: emotions
-      tags:
-        - emotions
-      requestBody:
-        $ref: "#/components/requestBodies/emotions"
-      responses:
-        '200':
-          description: Success in creating an emotional assessment
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /singleimages:
-    get:
-      summary: Get display single image
-      operationId: singleimages
-      tags:
-        - singleimages
-      parameters:
-        - name: media_id
-          in: path 
-          required: true
-          schema:
-            type: integer
-            format: uint64
-      responses:
-        '200':
-          description: Successful acquisition of display single image
-          content:
-              application/json:    
-                schema:
-                  $ref: "#/components/schemas/singleimages"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /multipleimages:
-    get:
-      summary: Get display multiple image
-      operationId: multipleimages
-      tags:
-        - multipleimages
-      requestBody:
-        $ref: "#/components/requestBodies/multipleimages"
-      responses:
-        '200':
-          description: Successful acquisition of display multiple image
-          content:
-              application/json:    
-                schema:
-                  $ref: "#/components/schemas/multipleimages"
         default:
           description: unexpected error
           content:
@@ -156,93 +118,99 @@ paths:
 
 components:
   requestBodies:
-    subjects:
+    Trial:
       content:
         application/json:
           schema:
             type: object
             properties:
-              Participant_id:
-                type: integer
-                format: uint64
-              Age:
-                type: integer
-                format: uint64
-              Gender:
+              datetime:
                 type: string
-              Handedness:
-                type: string
-              Vision:
-                type: string
-              Vision_Aid:
-                type: string
-              Education:
-                type: string
-              Alcohol_consumption:
-                type: string
-              Coffee_consumption:
-                type: string
-              Black/Green_tea_consumption:
-                type: string
-              Tobacco_consumption:
-                type: string
-              Other_drug/medication_consumption:
-                type: string
-              Other_drug_consumption:
-                type: string
-              Attention/Neurological/Psychiatric_syndroms:
-                type: string
-              Hours_of_sleep_last_night:
-                type: number
-                format: float
-              Normal_hours_of_sleep:
-                type: number
-                format: float
-              Level_of_Alertness:
-                type: string
-              Consent_to_distribute_physiological_recordings:
-                type: boolean
-              Consent_to_publish_audio-visual_recordings:
-                type: boolean
-              Head_circumference:
-                type: number
-                format: float
-              Distance_Nasion-Inion:
-                type: number
-                format: float
-              Distance_left-right_jaw_hinge:
-                type: number
-                format: float
-    emotions:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              valence:
-                type: number
-                format: float
-              arousal:
-                type: number
-                format: float
-              liking:
-                type: number
-                format: float
-              dominance:
-                type: number
-                format: float
-              famility:
-                type: number
-                format: float
-    multipleimages:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: string
+                format: date-time
+              subject:
+                type: object
+                properties:
+                  Participant_id:
+                    type: integer
+                    format: uint64
+                  Age:
+                    type: integer
+                    format: uint64
+                  Gender:
+                    type: string
+                  Handedness:
+                    type: string
+                  Vision:
+                    type: string
+                  Vision_Aid:
+                    type: string
+                  Education:
+                    type: string
+                  Alcohol_consumption:
+                    type: string
+                  coffee_consumption:
+                    type: string
+                  tea_consumption:
+                    type: string
+                  tobacco_consumption:
+                    type: string
+                  drug_consumption:
+                    type: string
+                  syndroms:
+                    type: string
+                  Hours_of_sleep_last_night:
+                    type: number
+                    format: float
+                  Normal_hours_of_sleep:
+                    type: number
+                    format: float
+                  Level_of_Alertness:
+                    type: string
+                  distribute_physiological_recordings:
+                    type: boolean
+                  publish_audio_visual_recordings:
+                    type: boolean
+                  head_circumference:
+                    type: number
+                    format: float
+                  Distance_Nasion-Inion:
+                    type: number
+                    format: float
+                  Distance_left-right_jaw_hinge:
+                    type: number
+                    format: float
+              ratings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    media_id:
+                      type: integer
+                      format: uint32
+                    emotions:
+                      type: object
+                      properties:
+                        valence:
+                          type: number
+                          format: float
+                        arousal:
+                          type: number
+                          format: float
+                        liking:
+                          type: number
+                          format: float
+                        dominance:
+                          type: number
+                          format: float
+                        famility:
+                          type: number
+                          format: float
+            required:
+              - date
+              - subject
+              - ratings
   schemas:
-    singleimages:
+    Image:
       type: object
       properties:
         media_id:
@@ -255,21 +223,6 @@ components:
         rating_times:
           type: integer
           format: int64
-    multipleimages:
-      type: array
-      items:
-        type: object
-        properties:
-          media_id:
-            type: integer
-            format: uint64
-          type: 
-            type: string
-          filename:
-            type: string
-          rating_times:
-            type: integer
-            format: int64     
     Movie:
       type: object
       properties:
@@ -292,44 +245,6 @@ components:
             type: array
             items:
               type: string
-    Trial:
-      type: object
-      properties:
-        datetime:
-          type: string
-          format: date-time
-        subject:
-          type: object
-        ratings:
-          type: array
-          items:
-            type: object
-            properties:
-              media_id:
-                type: integer
-              emotions:
-                type: object
-                properties:
-                  valence:
-                    type: number
-                    format: float
-                  arousal:
-                    type: number
-                    format: float
-                  liking:
-                    type: number
-                    format: float
-                  dominance:
-                    type: number
-                    format: float
-                  famility:
-                    type: number
-                    format: float
-      required:
-        - date
-        - subject
-        - medias
-        - emotions
     Error:
       type: object
       properties:

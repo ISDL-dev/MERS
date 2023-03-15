@@ -1,0 +1,8 @@
+services:
+  backend:
+    container_name: api-server
+    build: ./backend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/go/src/backend
