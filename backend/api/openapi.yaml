@@ -130,23 +130,23 @@ components:
               subject:
                 type: object
                 properties:
-                  Participant_id:
+                  participant_id:
                     type: integer
                     format: uint64
-                  Age:
+                  age:
                     type: integer
                     format: uint64
-                  Gender:
+                  gender:
                     type: string
-                  Handedness:
+                  handedness:
                     type: string
-                  Vision:
+                  vision:
                     type: string
-                  Vision_Aid:
+                  vision_Aid:
                     type: string
-                  Education:
+                  education:
                     type: string
-                  Alcohol_consumption:
+                  alcohol_consumption:
                     type: string
                   coffee_consumption:
                     type: string
@@ -158,13 +158,13 @@ components:
                     type: string
                   syndroms:
                     type: string
-                  Hours_of_sleep_last_night:
+                  hours_of_sleep_last_night:
                     type: number
                     format: float
-                  Normal_hours_of_sleep:
+                  normal_hours_of_sleep:
                     type: number
                     format: float
-                  Level_of_Alertness:
+                  level_of_Alertness:
                     type: string
                   distribute_physiological_recordings:
                     type: boolean
@@ -173,10 +173,10 @@ components:
                   head_circumference:
                     type: number
                     format: float
-                  Distance_Nasion-Inion:
+                  distance_nasion-Inion:
                     type: number
                     format: float
-                  Distance_left-right_jaw_hinge:
+                  distance_left-right_jaw_hinge:
                     type: number
                     format: float
               ratings:
