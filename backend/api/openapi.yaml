@@ -164,7 +164,7 @@ components:
                   normal_hours_of_sleep:
                     type: number
                     format: float
-                  level_of_Alertness:
+                  level_of_alertness:
                     type: string
                   distribute_physiological_recordings:
                     type: boolean
@@ -173,10 +173,10 @@ components:
                   head_circumference:
                     type: number
                     format: float
-                  distance_nasion-Inion:
+                  distance_nasion-inion:
                     type: number
                     format: float
-                  distance_left-right_jaw_hinge:
+                  distance_left_right_jaw_hinge:
                     type: number
                     format: float
               ratings:
