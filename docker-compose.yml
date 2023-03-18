@@ -6,8 +6,14 @@ services:
       - NODE_ENV=development
     tty: true
     stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - '3000:3000'
-    
+    volumes:
+      - ./frontend:/usr/src/app
+  backend:
+    build: ./backend
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/go/src/backend

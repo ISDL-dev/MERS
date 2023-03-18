@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+internal/routers.go
+internal/schema/model__trials_post_request.go
+internal/schema/model__trials_post_request_ratings_inner.go
+internal/schema/model__trials_post_request_ratings_inner_emotions.go
+internal/schema/model__trials_post_request_subject.go
+internal/schema/model_error.go
+internal/schema/model_image.go
+internal/schema/model_movie.go
+internal/schema/model_targets_inner.go
