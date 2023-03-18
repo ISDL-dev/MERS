@@ -1,6 +1,7 @@
 version: '3'
 services: 
   frontend:
+    container_name: mers-frontend
     build: ./frontend
     environment:
       - NODE_ENV=development
@@ -10,10 +11,10 @@ services:
       - '3000:3000'
     volumes:
       - ./frontend:/usr/src/app
+    command: sh -c 'yarn install && yarn start'
   backend:
+    container_name: api-server
     build: ./backend
-    tty: true
     ports:
-      - 8080:8080
-    volumes:
-      - ./backend:/go/src/backend
+      - 3000:3000
+    tty: true
