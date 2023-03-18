@@ -1,0 +1,5 @@
+.openapi-generator
+api
+openapi-custom-generator
+tools
+.openapi-generator-ignore
