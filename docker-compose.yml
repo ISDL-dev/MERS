@@ -1,6 +1,7 @@
 version: '3'
 services: 
   frontend:
+    container_name: mers-frontend
     build: ./frontend
     environment:
       - NODE_ENV=development
@@ -8,6 +9,7 @@ services:
     stdin_open: true
     volumes:
       - ./frontend:/usr/src/app
+    command: sh -c 'yarn install && yarn start'
     ports:
       - '3000:3000'
     
