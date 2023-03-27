@@ -10,7 +10,7 @@ paths:
   /images:
     get:
       summary: Get display single image
-      operationId: getImages
+      operationId: get-images
       tags:
         - images
       parameters:
@@ -38,7 +38,7 @@ paths:
       summary: get a display movie
       tags:
         - movies
-      operationId: getMovie
+      operationId: get-movie
       parameters:
       - name: id
         in: path
@@ -66,7 +66,7 @@ paths:
       summary: get some rated targets
       tags:
       - targets
-      operationId: getTargets
+      operationId: get-targets
       parameters:
       - name: type
         in: path
@@ -101,6 +101,9 @@ paths:
   /trials:
     post:
       summary: create a trial result
+      tags:
+        - trials
+      operationId: post-trials
       description: create a trial result containing a set of a subject info and rating results
       requestBody:
         description: trial result
