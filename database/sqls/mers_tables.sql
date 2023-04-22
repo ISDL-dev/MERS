@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Subjects(
+CREATE TABLE IF NOT EXISTS subjects(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
     age INT UNSIGNED NOT NULL,
     gender VARCHAR(64) NOT NULL,
@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS Subjects(
     distance_left_right_jaw_hinge FLOAT NOT NULL
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS Medias(
+CREATE TABLE IF NOT EXISTS medias(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     type VARCHAR(64) NOT NULL,
     filename VARCHAR(64) NOT NULL
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS Emotions(
-    participant_id INT UNSIGNED,
+CREATE TABLE IF NOT EXISTS emotions(
+    trial_id INT UNSIGNED,
     media_id INT UNSIGNED,
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     valence FLOAT NOT NULL,
@@ -37,28 +37,27 @@ CREATE TABLE IF NOT EXISTS Emotions(
     liking FLOAT NOT NULL,
     dominance FLOAT NOT NULL,
     famility FLOAT NOT NULL,
-    FOREIGN KEY (participant_id) REFERENCES Subjects(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (media_id) REFERENCES Medias(id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (trial_id) REFERENCES subjects(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (media_id) REFERENCES medias(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS Signals(
-    participant_id INT UNSIGNED,
+CREATE TABLE IF NOT EXISTS signals(
+    trial_id INT UNSIGNED,
     media_id INT UNSIGNED,
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     filename VARCHAR(64) NOT NULL,
     pre_trial_started_at DATETIME NOT NULL,
-    pre_trial_ended_at DATETIME NOT NULL,
     trial_started_at DATETIME NOT NULL,
     trial_ended_at DATETIME NOT NULL,
-    FOREIGN KEY (participant_id) REFERENCES Subjects(id),
-    FOREIGN KEY (media_id) REFERENCES Medias(id)
+    FOREIGN KEY (trial_id) REFERENCES subjects(id),
+    FOREIGN KEY (media_id) REFERENCES medias(id)
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS trials(
-    participant_id INT UNSIGNED,
+    trial_id INT UNSIGNED,
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date DATETIME NOT NULL,
     location VARCHAR(64) NOT NULL,
-    FOREIGN KEY (participant_id) REFERENCES Subjects(id)
+    FOREIGN KEY (trial_id) REFERENCES subjects(id)
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
