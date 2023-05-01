@@ -5,16 +5,11 @@ import (
 	"github.com/hoka-isdl/MERS/backend/internal/schema"
 )
 
-func CreateSubjectsTables(subject openapi.TrialsPostRequestSubject) {
-	Opendb()
-	defer db.Close()
-
+func CreateSubjectsRecords(subject openapi.TrialsPostRequestSubject) {
 	insert, err := db.Prepare("INSERT INTO Subjects(age,gender,handedness,vision,vision_aid,education,alcohol_consumption,"+
 		"coffee_consumption,tea_consumption,tobacco_consumption,drug_consumption,syndroms,hours_of_sleep_last_night,normal_hours_of_sleep,"+
 		"level_of_alertness,distribute_physiological_recordings,publish_audio_visual_recordings,head_circumference,distance_nasion_inion,distance_left_right_jaw_hinge) "+
 		"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -26,12 +21,8 @@ func CreateSubjectsTables(subject openapi.TrialsPostRequestSubject) {
 		subject.HeadCircumference,subject.DistanceNasionInion,subject.DistanceLeftRightJawHinge)
 }
 
-func CreateEmotionsTables(subject openapi.TrialsPostRequestSubject, rating []openapi.TrialsPostRequestRatingsInner) {
-	Opendb()
-	defer db.Close()
-
+func CreateEmotionsRecords(subject openapi.TrialsPostRequestSubject, rating []openapi.TrialsPostRequestRatingsInner) {
 	insert, err := db.Prepare("INSERT INTO Emotions(participant_id,media_id,valence,arousal,liking,dominance,famility) VALUES(?, ?, ?, ?, ?, ?, ?)")
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -43,13 +34,8 @@ func CreateEmotionsTables(subject openapi.TrialsPostRequestSubject, rating []ope
 	}
 }
 
-func CreateMediasTables(){
-	Opendb()
-	defer db.Close()
-
+func CreateMediasRecords(){
 	insert, err := db.Prepare("INSERT INTO Medias(type,filename) VALUES(?, ?)")
-
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}

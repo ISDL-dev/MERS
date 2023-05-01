@@ -8,6 +8,7 @@ import (
 
 
 func SetRoutes(router *gin.Engine) {
+	//TODO:CORS設定を反映
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
 			"http://localhost:4000",
@@ -17,6 +18,8 @@ func SetRoutes(router *gin.Engine) {
         AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type"},
         AllowCredentials: true,
 	}))
+	
 	router.GET("/ping", controller.PingHandlerFunc)
 	router.POST("/trials", controller.PostTrialsHandlerFunc)
+	router.GET("/medias", controller.GetMediasHandlerFunc)
 }

@@ -11,11 +11,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/hoka-isdl/MERS/backend/internal"
+	"github.com/hoka-isdl/MERS/backend/internal/repository"
 )
 
 const (
 	timeout = time.Second * 5
 )
+
+func init(){
+	repository.OpenDB()
+}
 
 func main() {
 	router := gin.Default()
