@@ -15,10 +15,9 @@ func PostTrialsHandlerFunc(ctx *gin.Context) {
 		return
 	}
 
-	repository.CreateMediasRecords()//Mediasテーブルに仮の情報を挿入
+	// repository.CreateMediasRecords()//Mediasテーブルに仮の情報を挿入.Mediasテーブルが作成でき次第削除予定
 	repository.CreateSubjectsRecords(trials.Subject)
 	repository.CreateEmotionsRecords(trials.Subject,trials.Ratings)
-	repository.CloseDB()//DBの切断
 
 	ctx.JSON(200, gin.H{
 		"message": "success",
