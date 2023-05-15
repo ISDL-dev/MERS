@@ -1,0 +1,38 @@
+{
+    "datetime": "2022-03-30T14:11:00.000Z",
+    "subject":{
+        "participant_id":1,
+        "age":1,
+        "gender":"men",
+        "handedness":"Right",
+        "vision":"Normal",
+        "vision_aid":"None",
+        "education":"MA or MSc or Ir",
+        "alcohol_consumption":"Never",
+        "coffee_consumption":"Today, Never",
+        "tea_consumption":"Never",
+        "tobacco_consumption":"Today, Regularly",
+        "drug_consumption":"Never",
+        "syndroms":"Migraine",
+        "hours_of_sleep_last_night":7.0,
+        "normal_hours_of_sleep":7.0,
+        "level_of_Alertness":"Medium",
+        "distribute_physiological_recordings":true,
+        "publish_audio-visual_recordings":true,
+        "head_circumference":7.0,
+        "distance_Nasion-Inion":7.0,
+        "distance_left-right_jaw_hinge":7.0
+    },
+    "ratings":[
+        {
+            "media_id":3,
+            "emotions":{
+                "valence":1.1,
+                "arousal":2.4,
+                "liking":3.0,
+                "dominance":4.0,
+                "famility":5.0
+            }
+        }
+    ]
+  }
