@@ -2,9 +2,11 @@ package repository
 
 import (
 	"log"
+
+	"github.com/hoka-isdl/MERS/backend/internal/schema"
 )
 
-func CreateSubjectsRecords(subject openapi.TrialsPostRequestSubject) {
+func CreateSubjectsRecords(subject schema.PostTrialsRequestSubject) {
 	insert, err := db.Prepare("INSERT INTO Subjects(age,gender,handedness,vision,vision_aid,education,alcohol_consumption," +
 		"coffee_consumption,tea_consumption,tobacco_consumption,drug_consumption,syndroms,hours_of_sleep_last_night,normal_hours_of_sleep," +
 		"level_of_alertness,distribute_physiological_recordings,publish_audio_visual_recordings,head_circumference,distance_nasion_inion,distance_left_right_jaw_hinge) " +
@@ -20,7 +22,7 @@ func CreateSubjectsRecords(subject openapi.TrialsPostRequestSubject) {
 		subject.HeadCircumference, subject.DistanceNasionInion, subject.DistanceLeftRightJawHinge)
 }
 
-func CreateEmotionsRecords(subject openapi.TrialsPostRequestSubject, rating []openapi.TrialsPostRequestRatingsInner) {
+func CreateEmotionsRecords(subject schema.PostTrialsRequestSubject, rating []schema.PostTrialsRequestRatingsInner) {
 	insert, err := db.Prepare("INSERT INTO Emotions(participant_id,media_id,valence,arousal,liking,dominance,famility) VALUES(?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		log.Fatal(err.Error())
