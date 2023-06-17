@@ -9,10 +9,10 @@
 
 package schema
 
-type Error struct {
+type ListMoviesInner struct {
 
-	Code int32 `json:"code"`
+	MovieId int32 `json:"movie_id,omitempty"`
 
-	Message string `json:"message"`
+	GoogleDriveId string `json:"google_drive_id,omitempty"`
 }
 

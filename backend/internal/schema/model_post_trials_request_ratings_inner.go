@@ -9,10 +9,10 @@
 
 package schema
 
-type Error struct {
+type PostTrialsRequestRatingsInner struct {
 
-	Code int32 `json:"code"`
+	MediaId int32 `json:"media_id,omitempty"`
 
-	Message string `json:"message"`
+	Emotions PostTrialsRequestRatingsInnerEmotions `json:"emotions,omitempty"`
 }
 

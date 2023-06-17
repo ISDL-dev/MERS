@@ -9,10 +9,16 @@
 
 package schema
 
-type Error struct {
+import (
+	"time"
+)
 
-	Code int32 `json:"code"`
+type PostTrialsRequest struct {
 
-	Message string `json:"message"`
+	Datetime time.Time `json:"datetime,omitempty"`
+
+	Subject PostTrialsRequestSubject `json:"subject"`
+
+	Ratings []PostTrialsRequestRatingsInner `json:"ratings"`
 }
 
