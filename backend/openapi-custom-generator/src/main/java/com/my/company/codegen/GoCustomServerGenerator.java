@@ -172,7 +172,7 @@
          if (additionalProperties.containsKey(CodegenConstants.PACKAGE_NAME)) {
              setPackageName((String) additionalProperties.get(CodegenConstants.PACKAGE_NAME));
          } else {
-             setPackageName("openapi");
+             setPackageName("schema");
              additionalProperties.put(CodegenConstants.PACKAGE_NAME, packageName);
          }
  

@@ -3,4 +3,3 @@ internal/schema/model_post_trials_request.go
 internal/schema/model_post_trials_request_ratings_inner.go
 internal/schema/model_post_trials_request_ratings_inner_emotions.go
 internal/schema/model_post_trials_request_subject.go
-internal/schema/model_targets_inner.go
