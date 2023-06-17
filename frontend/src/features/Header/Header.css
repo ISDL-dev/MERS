@@ -1,0 +1,52 @@
+.nav {
+    /* 背景色設定 */
+    background-color: #666;
+}
+
+.nav ul {
+    /* 表示幅を90%に */
+    width: 90%;
+    /* フレックスボックス化 */
+    display: flex;
+    /* 先頭のポチをなくす */
+    list-style: none;
+    /* 余白の自動調整 （上下の余白は0、左右は自動調整）*/
+    margin: 0 auto;
+    /* 高さを50pxに指定 */
+    height: 50px;
+}
+
+.nav a {
+    /* アンダーライン削除 */
+    text-decoration: none;
+    /* 文字色設定 */
+    color: #fff;
+    /* 内側余白を上右下左の順で設定 */
+    padding: 10px 20px 10px 0px;
+    /*ブロックにする */
+    display: block;
+    /* 文字を大き目に設定 */
+    font-size: large;
+}
+
+.nav a:hover {
+    /* マウスオーバーした時の文字色を設定 */
+    color: #aaa;
+}
+
+/*スマホ対応*/
+@media screen and (max-width: 640px) {
+    .nav {
+        background-color: #0183a0;
+        height: 150px;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .nav li {
+        border-bottom: solid 1px #fff;
+    }
+}
