@@ -172,7 +172,7 @@
          if (additionalProperties.containsKey(CodegenConstants.PACKAGE_NAME)) {
              setPackageName((String) additionalProperties.get(CodegenConstants.PACKAGE_NAME));
          } else {
-             setPackageName("openapi");
+             setPackageName("schema");
              additionalProperties.put(CodegenConstants.PACKAGE_NAME, packageName);
          }
  
@@ -253,7 +253,7 @@
           * entire object tree available.  If the input file has a suffix of `.mustache
           * it will be processed by the template engine.  Otherwise, it will be copied
           */
-         supportingFiles.add(new SupportingFile("routers.mustache", sourceFolder, "routers.go"));
+        //  supportingFiles.add(new SupportingFile("routers.mustache", sourceFolder, "routers.go"));
      }
  
      @Override
