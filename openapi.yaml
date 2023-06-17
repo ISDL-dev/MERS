@@ -19,7 +19,7 @@ paths:
           content:
               application/json:    
                 schema:
-                  $ref: "#/components/schemas/ListGoogleDriveIDs"
+                  $ref: "#/components/schemas/ListImages"
         default:
           description: unexpected error
           content:
@@ -38,7 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListGoogleDriveIDs"
+                $ref: "#/components/schemas/ListMovies"
         default:
           description: unexpected error
           content:
@@ -136,7 +136,7 @@ components:
                   properties:
                     media_id:
                       type: integer
-                      format: uint32
+                      format: uint64
                     emotions:
                       type: object
                       properties:
@@ -160,10 +160,26 @@ components:
               - subject
               - ratings
   schemas:
-    ListGoogleDriveIDs:
+    ListImages:
       type: array
       items:
-        type: string
+        type: object
+        properties:
+          image_id:
+            type: integer
+            format: uint64
+          google_drive_id:
+            type: string
+    ListMovies:
+      type: array
+      items:
+        type: object
+        properties:
+          movie_id:
+            type: integer
+            format: uint64
+          google_drive_id:
+            type: string
     Error:
       type: object
       properties:
