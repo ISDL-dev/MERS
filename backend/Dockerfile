@@ -9,6 +9,6 @@ ADD . /go/src/backend
 
 RUN go mod download
 
-RUN go build -o /go/bin/air github.com/cosmtrek/air
+RUN go get -u github.com/cosmtrek/air && go build -o /go/bin/air github.com/cosmtrek/air
 
 CMD ["air", "-c", ".air.toml"]
