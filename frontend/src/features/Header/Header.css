@@ -1,6 +1,10 @@
 .nav {
     /* 背景色設定 */
     background-color: #666;
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    z-index: 1;
 }
 
 .nav ul {
@@ -32,21 +36,4 @@
 .nav a:hover {
     /* マウスオーバーした時の文字色を設定 */
     color: #aaa;
-}
-
-/*スマホ対応*/
-@media screen and (max-width: 640px) {
-    .nav {
-        background-color: #0183a0;
-        height: 150px;
-    }
-
-    .nav ul {
-        flex-direction: column;
-        padding: 0;
-    }
-
-    .nav li {
-        border-bottom: solid 1px #fff;
-    }
 }
