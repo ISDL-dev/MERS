@@ -26,33 +26,40 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
- * @interface Image
+ * @interface ListImagesInner
  */
-export interface Image {
+export interface ListImagesInner {
     /**
      * 
      * @type {number}
-     * @memberof Image
+     * @memberof ListImagesInner
      */
-    'media_id'?: number;
+    'image_id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof Image
+     * @memberof ListImagesInner
      */
-    'type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Image
-     */
-    'filename'?: string;
+    'google_drive_id'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ListMoviesInner
+ */
+export interface ListMoviesInner {
     /**
      * 
      * @type {number}
-     * @memberof Image
+     * @memberof ListMoviesInner
      */
-    'rating_times'?: number;
+    'movie_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMoviesInner
+     */
+    'google_drive_id'?: string;
 }
 /**
  * 
@@ -72,25 +79,6 @@ export interface ModelError {
      * @memberof ModelError
      */
     'message': string;
-}
-/**
- * 
- * @export
- * @interface Movie
- */
-export interface Movie {
-    /**
-     * 
-     * @type {number}
-     * @memberof Movie
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Movie
-     */
-    'url': string;
 }
 /**
  * 
@@ -214,7 +202,7 @@ export interface PostTrialsRequestSubject {
      * @type {string}
      * @memberof PostTrialsRequestSubject
      */
-    'vision_Aid'?: string;
+    'vision_aid'?: string;
     /**
      * 
      * @type {string}
@@ -298,32 +286,13 @@ export interface PostTrialsRequestSubject {
      * @type {number}
      * @memberof PostTrialsRequestSubject
      */
-    'distance_nasion-inion'?: number;
+    'distance_nasion_inion'?: number;
     /**
      * 
      * @type {number}
      * @memberof PostTrialsRequestSubject
      */
     'distance_left_right_jaw_hinge'?: number;
-}
-/**
- * 
- * @export
- * @interface TargetsInner
- */
-export interface TargetsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof TargetsInner
-     */
-    'type'?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof TargetsInner
-     */
-    'ids'?: Array<string>;
 }
 
 /**
@@ -334,16 +303,12 @@ export const ImagesApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @summary Get display single image
-         * @param {number} id 
+         * @summary Randomly get Google Drive IDs for images
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getImages: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getImages', 'id', id)
-            const localVarPath = `/images`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        getImageIds: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/images`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -378,13 +343,12 @@ export const ImagesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get display single image
-         * @param {number} id 
+         * @summary Randomly get Google Drive IDs for images
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getImages(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Image>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getImages(id, options);
+        async getImageIds(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListImagesInner>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getImageIds(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -399,13 +363,12 @@ export const ImagesApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @summary Get display single image
-         * @param {number} id 
+         * @summary Randomly get Google Drive IDs for images
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getImages(id: number, options?: any): AxiosPromise<Image> {
-            return localVarFp.getImages(id, options).then((request) => request(axios, basePath));
+        getImageIds(options?: any): AxiosPromise<Array<ListImagesInner>> {
+            return localVarFp.getImageIds(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -419,14 +382,13 @@ export const ImagesApiFactory = function (configuration?: Configuration, basePat
 export class ImagesApi extends BaseAPI {
     /**
      * 
-     * @summary Get display single image
-     * @param {number} id 
+     * @summary Randomly get Google Drive IDs for images
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImagesApi
      */
-    public getImages(id: number, options?: AxiosRequestConfig) {
-        return ImagesApiFp(this.configuration).getImages(id, options).then((request) => request(this.axios, this.basePath));
+    public getImageIds(options?: AxiosRequestConfig) {
+        return ImagesApiFp(this.configuration).getImageIds(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -439,16 +401,12 @@ export const MoviesApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @summary get a display movie
-         * @param {number} id Movie ID
+         * @summary Randomly get Google Drive IDs for movies
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMovie: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getMovie', 'id', id)
-            const localVarPath = `/movies`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        getMovieIds: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/movies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -483,13 +441,12 @@ export const MoviesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary get a display movie
-         * @param {number} id Movie ID
+         * @summary Randomly get Google Drive IDs for movies
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMovie(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Movie>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMovie(id, options);
+        async getMovieIds(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListMoviesInner>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMovieIds(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -504,13 +461,12 @@ export const MoviesApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @summary get a display movie
-         * @param {number} id Movie ID
+         * @summary Randomly get Google Drive IDs for movies
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMovie(id: number, options?: any): AxiosPromise<Movie> {
-            return localVarFp.getMovie(id, options).then((request) => request(axios, basePath));
+        getMovieIds(options?: any): AxiosPromise<Array<ListMoviesInner>> {
+            return localVarFp.getMovieIds(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -524,126 +480,13 @@ export const MoviesApiFactory = function (configuration?: Configuration, basePat
 export class MoviesApi extends BaseAPI {
     /**
      * 
-     * @summary get a display movie
-     * @param {number} id Movie ID
+     * @summary Randomly get Google Drive IDs for movies
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MoviesApi
      */
-    public getMovie(id: number, options?: AxiosRequestConfig) {
-        return MoviesApiFp(this.configuration).getMovie(id, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * TargetsApi - axios parameter creator
- * @export
- */
-export const TargetsApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary get some rated targets
-         * @param {string} type media type
-         * @param {number} num how many rated targets to get
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getTargets: async (type: string, num: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'type' is not null or undefined
-            assertParamExists('getTargets', 'type', type)
-            // verify required parameter 'num' is not null or undefined
-            assertParamExists('getTargets', 'num', num)
-            const localVarPath = `/targets`
-                .replace(`{${"type"}}`, encodeURIComponent(String(type)))
-                .replace(`{${"num"}}`, encodeURIComponent(String(num)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * TargetsApi - functional programming interface
- * @export
- */
-export const TargetsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = TargetsApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary get some rated targets
-         * @param {string} type media type
-         * @param {number} num how many rated targets to get
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getTargets(type: string, num: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TargetsInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTargets(type, num, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * TargetsApi - factory interface
- * @export
- */
-export const TargetsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = TargetsApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary get some rated targets
-         * @param {string} type media type
-         * @param {number} num how many rated targets to get
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getTargets(type: string, num: number, options?: any): AxiosPromise<Array<TargetsInner>> {
-            return localVarFp.getTargets(type, num, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * TargetsApi - object-oriented interface
- * @export
- * @class TargetsApi
- * @extends {BaseAPI}
- */
-export class TargetsApi extends BaseAPI {
-    /**
-     * 
-     * @summary get some rated targets
-     * @param {string} type media type
-     * @param {number} num how many rated targets to get
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetsApi
-     */
-    public getTargets(type: string, num: number, options?: AxiosRequestConfig) {
-        return TargetsApiFp(this.configuration).getTargets(type, num, options).then((request) => request(this.axios, this.basePath));
+    public getMovieIds(options?: AxiosRequestConfig) {
+        return MoviesApiFp(this.configuration).getMovieIds(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

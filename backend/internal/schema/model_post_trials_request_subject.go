@@ -21,7 +21,7 @@ type PostTrialsRequestSubject struct {
 
 	Vision string `json:"vision,omitempty"`
 
-	VisionAid string `json:"vision_Aid,omitempty"`
+	VisionAid string `json:"vision_aid,omitempty"`
 
 	Education string `json:"education,omitempty"`
 
@@ -49,7 +49,7 @@ type PostTrialsRequestSubject struct {
 
 	HeadCircumference float32 `json:"head_circumference,omitempty"`
 
-	DistanceNasionInion float32 `json:"distance_nasion-inion,omitempty"`
+	DistanceNasionInion float32 `json:"distance_nasion_inion,omitempty"`
 
 	DistanceLeftRightJawHinge float32 `json:"distance_left_right_jaw_hinge,omitempty"`
 }
