@@ -1,22 +1,25 @@
-import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from '@chakra-ui/react'
+
 import Header from "./features/Header";
 import Footer from "./features/Footer";
-import Rating from "./routes/Rating";
-import SubjectInfo from "./routes/SubjectInfo";
+import Rating from "./routes/MediaRating";
+import Questionnare from "./routes/Questionnare";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/rating' element={<Rating />}/>
-          <Route path='/subject_info' element={<SubjectInfo />}/>
-        </Routes>
-      </BrowserRouter>
-      <Footer/>
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <Header/>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/rating' element={<Rating />}/>
+            <Route path='/questionnare' element={<Questionnare />}/>
+          </Routes>
+        </BrowserRouter>
+        <Footer/>
+      </div>
+    </ChakraProvider>
   );
 }
 

@@ -1,0 +1,15 @@
+.questionnare_box {
+    width: 70vw;
+    border-radius: 20px;
+    border: 2px solid rgb(160, 157, 157);
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 90px;
+}
+
+.questionnare_box button {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 80px;
+}
