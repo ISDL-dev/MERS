@@ -92,7 +92,7 @@ components:
                     type: string
                   vision:
                     type: string
-                  vision_Aid:
+                  vision_aid:
                     type: string
                   education:
                     type: string
@@ -123,7 +123,7 @@ components:
                   head_circumference:
                     type: number
                     format: float
-                  distance_nasion-inion:
+                  distance_nasion_inion:
                     type: number
                     format: float
                   distance_left_right_jaw_hinge:
