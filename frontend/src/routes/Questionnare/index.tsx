@@ -54,50 +54,31 @@ function Questionnare() {
             distance_left_right_jaw_hinge: distanceLeftRightJawHinge
         }
         console.log(subject)
-        navigate('/experiment', {state: subject})
+        navigate('/rating', {state: subject})
     }
 
     return(
         <div className="questionnare_box">
             <FormDescription/>
             <SubjectForm 
-                age={3} 
                 setAge={setAge}
-                handedness={handedness}
                 setHandedness={setHandedness}
-                gender={gender}
                 setGender={setGender}
-                visionAid={visionAid}
                 setVisionAid={setVisionAid}
-                education={education}
                 setEducation={setEducation}
-                alcoholConsumption={alcoholConsumption}
                 setAlcoholConsumption={setAlcoholConsumption}
-                coffeeConsumption={coffeeConsumption}
                 setCoffeeConsumption={setCoffeeConsumption}
-                teaConsumption={teaConsumption}
                 setTeaConsumption={setTeaConsumption}
-                tobaccoConsumption={tobaccoConsumption}
                 setTobaccoConsumption={setTobaccoConsumption}
-                drugConsumption={drugConsumption}
                 setDrugConsumption={setDrugConsumption}
-                syndroms={syndroms}
                 setSyndroms={setSyndroms}
-                hoursOfSleepLastNight={hoursOfSleepLastNight}
                 setHoursOfSleepLastNight={setHoursOfSleepLastNight}
-                normalHoursOfSleep={normalHoursOfSleep}
                 setNormalHoursOfSleep={setNormalHoursOfSleep}
-                levelOfAlertness={levelOfAlertness}
                 setLevelOfAlertness={setLevelOfAlertness}
-                distributePhysiologicalRecordings={distributePhysiologicalRecordings}
                 setDistributePhysiologicalRecordings={setDistributePhysiologicalRecordings}
-                publishAudioVisualRecordings={publishAudioVisualRecordings}
                 setPublishAudioVisualRecordings={setPublishAudioVisualRecordings}
-                headCircumference={headCircumference}
                 setHeadCircumference={setHeadCircumference}
-                distanceNasionInion={distanceNasionInion}
                 setDistanceNasionInion={setNasionInion}
-                distanceLeftRightJawHinge={distanceLeftRightJawHinge}
                 setDistanceLeftRightJawHinge={setDistanceLeftRightJawHinge}
             />
             <Button 

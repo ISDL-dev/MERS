@@ -6,107 +6,68 @@ import {
 } from '@chakra-ui/react'
 
 import "./SubjectForm.css"
-import { PostTrialsRequestSubject } from '../../schema'
 
-class MyPostTrialsRequestSubject implements PostTrialsRequestSubject {
-    age: number;
+class MyPostTrialsRequestSubject {
     setAge: (newAge: number) => void
-    gender: string;
     setGender: (newGender: string) => void
-    handedness: string;
     setHandedness: (newHandedness: string) => void
-    visionAid: string;
     setVisionAid: (newVisionAid: string) => void
-    education: string;
     setEducation: (newEducation: string) => void
-    alcoholConsumption: string;
     setAlcoholConsumption: (newAlcoholConsumption: string) => void
-    coffeeConsumption: string;
     setCoffeeConsumption: (newCoffeeConsumption: string) => void
-    teaConsumption: string;
     setTeaConsumption: (newTeaConsumption: string) => void
-    tobaccoConsumption: string;
     setTobaccoConsumption: (newTobaccoConsumption: string) => void
-    drugConsumption: string;
     setDrugConsumption: (newDrugConsumption: string) => void
-    syndroms: string;
     setSyndroms: (newSyndroms: string) => void
-    hoursOfSleepLastNight: number;
     setHoursOfSleepLastNight: (newHoursOfSleepLastNight: number) => void
-    normalHoursOfSleep: number;
     setNormalHoursOfSleep: (newNormalHoursOfSleep: number) => void
-    levelOfAlertness: string;
     setLevelOfAlertness: (newLevelOfAlertness: string) => void
-    distributePhysiologicalRecordings: boolean;
     setDistributePhysiologicalRecordings: (newDistributePhysiologicalRecordings: boolean) => void
-    publishAudioVisualRecordings: boolean;
     setPublishAudioVisualRecordings: (newPublishAudioVisualRecordings: boolean) => void
-    headCircumference: number;
     setHeadCircumference: (newHeadCircumference: number) => void
-    distanceNasionInion: number;
     setDistanceNasionInion: (newDistanceNasionInion: number) => void
-    distanceLeftRightJawHinge: number;
     setDistanceLeftRightJawHinge: (newDistanceLeftRightJawHinge: number) => void
 
     constructor(
-        age: number,
-        gender: string,
-        handedness: string,
-        visionAid: string,
-        educaton: string,
-        alcoholConsumption: string,
-        coffeeConsumption: string,
-        teaConsumption: string,
-        tobaccoConsumption: string,
-        drugConsumption: string,
-        syndroms: string,
-        hoursOfSleepLastNight: number,
-        normalHoursOfSleep: number,
-        levelOfAlertness: string,
-        distributePhysiologicalRecordings: boolean,
-        publishAudioVisualRecordings: boolean,
-        headCircumference: number,
-        distance_nasion_inion: number,
-        distanceLeftRightJawHinge: number
+        setAge: (newAge: number) => void,
+        setGender: (newGender: string) => void,
+        setHandedness: (newHandedness: string) => void,
+        setVisionAid: (newVisionAid: string) => void,
+        setEducation: (newEducation: string) => void,
+        setAlcoholConsumption: (newAlcoholConsumption: string) => void,
+        setCoffeeConsumption: (newCoffeeConsumption: string) => void,
+        setTeaConsumption: (newTeaConsumption: string) => void,
+        setTobaccoConsumption: (newTobaccoConsumption: string) => void,
+        setDrugConsumption: (newDrugConsumption: string) => void,
+        setSyndroms: (newSyndroms: string) => void,
+        setHoursOfSleepLastNight: (newHoursOfSleepLastNight: number) => void,
+        setNormalHoursOfSleep: (newNormalHoursOfSleep: number) => void,
+        setLevelOfAlertness: (newLevelOfAlertness: string) => void,
+        setDistributePhysiologicalRecordings: (newDistributePhysiologicalRecordings: boolean) => void,
+        setPublishAudioVisualRecordings: (newPublishAudioVisualRecordings: boolean) => void,
+        setHeadCircumference: (newHeadCircumference: number) => void,
+        setDistanceNasionInion: (newDistanceNasionInion: number) => void,
+        setDistanceLeftRightJawHinge: (newDistanceLeftRightJawHinge: number) => void
     ) {
-        this.age = age
-        this.setAge = (newAge) => {this.age = newAge}
-        this.gender = gender
-        this.setGender =(newGender) => {this.gender = newGender}
-        this.handedness = handedness
-        this.setHandedness = (newHandedness) => {this.handedness = newHandedness}
-        this.visionAid = visionAid
-        this.setVisionAid = (newVisionAid) => {this.visionAid = newVisionAid}
-        this.education = educaton
-        this.setEducation = (newEducation) => {this.education = newEducation}
-        this.alcoholConsumption = alcoholConsumption
-        this.setAlcoholConsumption = (newAlcoholConsumption) => {this.alcoholConsumption = newAlcoholConsumption}
-        this.coffeeConsumption = coffeeConsumption
-        this.setCoffeeConsumption = (newCoffeeConsumption) => {this.coffeeConsumption = newCoffeeConsumption}
-        this.teaConsumption = teaConsumption
-        this.setTeaConsumption = (newTeaConsumption) => {this.teaConsumption = newTeaConsumption}
-        this.tobaccoConsumption = tobaccoConsumption
-        this.setTobaccoConsumption = (newTobaccoConsumption) => {this.tobaccoConsumption = newTobaccoConsumption}
-        this.drugConsumption = drugConsumption
-        this.setDrugConsumption = (newDrugConsumption) => {this.drugConsumption = newDrugConsumption}
-        this.syndroms = syndroms
-        this.setSyndroms = (newSyndroms) => {this.syndroms = newSyndroms}
-        this.hoursOfSleepLastNight = hoursOfSleepLastNight
-        this.setHoursOfSleepLastNight = (newHoursOfSleepLastNight) => {this.hoursOfSleepLastNight = newHoursOfSleepLastNight}
-        this.normalHoursOfSleep = normalHoursOfSleep
-        this.setNormalHoursOfSleep = (newNormalHoursOfSleep) => {this.normalHoursOfSleep = newNormalHoursOfSleep}
-        this.levelOfAlertness = levelOfAlertness
-        this.setLevelOfAlertness = (newLevelOfAlertness) => {this.levelOfAlertness = newLevelOfAlertness}
-        this.distributePhysiologicalRecordings = distributePhysiologicalRecordings
-        this.setDistributePhysiologicalRecordings = (newDistributePhysiologicalRecordings) => {this.distributePhysiologicalRecordings = newDistributePhysiologicalRecordings}
-        this.publishAudioVisualRecordings = publishAudioVisualRecordings
-        this.setPublishAudioVisualRecordings = (newPublishAudioVisualRecordings) => {this.publishAudioVisualRecordings = newPublishAudioVisualRecordings}
-        this.headCircumference = headCircumference
-        this.setHeadCircumference = (newHeadCircumference) => {this.headCircumference = newHeadCircumference}
-        this.distanceNasionInion = distance_nasion_inion
-        this.setDistanceNasionInion = (newDistanceNasionInion) => {this.distanceNasionInion = newDistanceNasionInion}
-        this.distanceLeftRightJawHinge = distanceLeftRightJawHinge
-        this.setDistanceLeftRightJawHinge = (newDistanceLeftRightJawHinge) => {this.distanceLeftRightJawHinge = newDistanceLeftRightJawHinge}
+        this.setAge = setAge
+        this.setGender = setGender
+        this.setHandedness = setHandedness
+        this.setVisionAid = setVisionAid
+        this.setEducation = setEducation
+        this.setAlcoholConsumption = setAlcoholConsumption
+        this.setCoffeeConsumption = setCoffeeConsumption
+        this.setTeaConsumption = setTeaConsumption
+        this.setTobaccoConsumption = setTobaccoConsumption
+        this.setDrugConsumption = setDrugConsumption
+        this.setSyndroms = setSyndroms
+        this.setHoursOfSleepLastNight = setHoursOfSleepLastNight
+        this.setNormalHoursOfSleep = setNormalHoursOfSleep
+        this.setLevelOfAlertness = setLevelOfAlertness
+        this.setDistributePhysiologicalRecordings = setDistributePhysiologicalRecordings
+        this.setPublishAudioVisualRecordings = setPublishAudioVisualRecordings
+        this.setHeadCircumference = setHeadCircumference
+        this.setDistanceNasionInion = setDistanceNasionInion
+        this.setDistanceLeftRightJawHinge = setDistanceLeftRightJawHinge
     }
 }
 
