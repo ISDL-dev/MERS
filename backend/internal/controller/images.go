@@ -7,11 +7,11 @@ import (
 )
 
 func GetImagesHandlerFunc(ctx *gin.Context) {
-	var imageslist []schema.ListImagesInner
-	imageslist = repository.GetImages()
+	var imagesList []schema.ListImagesInner
+	imagesList = repository.GetImages()
 
 	ctx.JSON(200, gin.H{
-		"content": imageslist,
+		"content": imagesList,
 	})
 
 }
