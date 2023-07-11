@@ -23,7 +23,7 @@ func CreateSubjectsRecords(subject schema.PostTrialsRequestSubject) {
 }
 
 func CreateEmotionsRecords(subject schema.PostTrialsRequestSubject, rating []schema.PostTrialsRequestRatingsInner) {
-	insert, err := db.Prepare("INSERT INTO Emotions(participant_id,media_id,valence,arousal,liking,dominance,famility) VALUES(?, ?, ?, ?, ?, ?, ?)")
+	insert, err := db.Prepare("INSERT INTO Emotions(trial_id,image_id,valence,arousal,liking,dominance,famility) VALUES(?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
