@@ -3,7 +3,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import Header from "./features/Header";
 import Footer from "./features/Footer";
-import Rating from "./routes/MediaRating";
 import Questionnare from "./routes/Questionnare";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
         <Header/>
         <BrowserRouter>
           <Routes>
-            <Route path='/rating' element={<Rating />}/>
             <Route path='/questionnare' element={<Questionnare />}/>
           </Routes>
         </BrowserRouter>
