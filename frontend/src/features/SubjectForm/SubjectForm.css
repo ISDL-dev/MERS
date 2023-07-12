@@ -1,0 +1,13 @@
+.form {
+    left: 50%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.item {
+    margin: 25px;
+}
+
+.item p {
+    margin-bottom: 5px;
+}
