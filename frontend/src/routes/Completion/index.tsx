@@ -9,9 +9,9 @@ function Completion() {
     }
     return (
         <div className="Completion_box">
-            <Box h='1200px' justifyContent='center' alignItems='center'>
+            <Box h='700px' justifyContent='center' alignItems='center'>
                 <Center h='100%'>
-                    <Text textAlign="center" fontSize='6xl'>これで被験者実験を終了します。<br />お疲れ様でした。</Text>
+                    <Text textAlign="center" fontSize='4xl'>これで被験者実験を終了します。<br />お疲れ様でした。</Text>
                 </Center> 
             </Box>
 
