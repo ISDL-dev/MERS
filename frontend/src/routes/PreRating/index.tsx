@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function PreRating() {
     const navigate = useNavigate()
-    const [time, setTime] = useState(10);
+    const [time, setTime] = useState(3);
     
     useEffect(() => {
         setTimeout(() => {
@@ -18,9 +18,9 @@ function PreRating() {
     });
     return (
         <div>
-            <Box h='1200px' justifyContent='center' alignItems='center'>
+            <Box h='700px' justifyContent='center' alignItems='center'>
                 <Center h='100%'>
-                    <Text textAlign="center" fontSize='6xl'>{time}秒後に実験を開始します。</Text>
+                    <Text textAlign="center" fontSize='4xl'>{time}秒後に実験を開始します。</Text>
                 </Center> 
             </Box>
         </div>
