@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Header from "./features/Header";
 import Footer from "./features/Footer";
 import Questionnare from "./routes/Questionnare";
+import PreRating from "./routes/PreRating";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/questionnare' element={<Questionnare />}/>
+            <Route path='/prerating' element={<PreRating />}/>
           </Routes>
         </BrowserRouter>
         <Footer/>
