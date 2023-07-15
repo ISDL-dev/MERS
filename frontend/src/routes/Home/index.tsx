@@ -12,7 +12,7 @@ function Home() {
             <Box h='700px' justifyContent='center' alignItems='center'>
                 <Center h='100%'>
                     <Text textAlign="center" fontSize='5xl' color="white">MERS　</Text>
-                    <Text textAlign="center" fontSize='3xl' color="white"> - Media Emotion Rating System</Text>
+                    <Text textAlign="center" fontSize='3xl' color="white"> - Media Emotion Rating System -</Text>
                 </Center> 
             </Box>
 
