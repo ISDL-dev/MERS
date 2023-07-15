@@ -1,0 +1,8 @@
+.media_rating_box {
+    margin-top: 60px;
+}
+
+.media_rating_box button {
+    left: 50%;
+    transform: translate(-50%, 10%);
+}

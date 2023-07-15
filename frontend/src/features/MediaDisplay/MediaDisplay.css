@@ -1,0 +1,9 @@
+.outer-box {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.media {
+  height: 100%;
+}

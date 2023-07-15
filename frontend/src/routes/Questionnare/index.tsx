@@ -7,7 +7,7 @@ import FormDescription from "../../features/FormDescription";
 import SubjectForm from "../../features/SubjectForm"
 import "./Questionnare.css"
 
-function Questionnare() {
+function QuestionnarePage() {
     const navigate = useNavigate()
 
     const [age, setAge] = useState(18)
@@ -86,11 +86,9 @@ function Questionnare() {
                 variant={'outline'} 
                 colorScheme='green' 
                 size='lg'
-            >
-                上記の内容で回答する
-            </Button>
+            >上記の内容で回答する</Button>
         </div>
     )
 }
 
-export default Questionnare
+export default QuestionnarePage
