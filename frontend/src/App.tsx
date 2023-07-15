@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Header from "./features/Header";
 import Footer from "./features/Footer";
 import Questionnare from "./routes/Questionnare";
+import Home from "./routes/Home";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Header/>
         <BrowserRouter>
           <Routes>
+          <Route path='/' element={<Home />}/>
             <Route path='/questionnare' element={<Questionnare />}/>
           </Routes>
         </BrowserRouter>
