@@ -1,8 +1,6 @@
-.media_rating_box {
-    margin-top: 60px;
-}
-
-.media_rating_box button {
-    left: 50%;
-    transform: translate(-50%, 10%);
+.rating_box {
+    width: 80vw;
+    height: 80vh;
+    margin: 0 auto;
+    margin-top: 70px;
 }

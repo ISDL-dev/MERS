@@ -91,48 +91,44 @@ function RatingPage(props: RatingPageProps) {
     }, []);
     
     return (
-        <div className='media_rating_box'>
-            <Grid
-                className='form'
-                h='85vh'
-                w='85vw'
-                templateRows='repeat(1, 1fr)'
-                templateColumns='repeat(2, 1fr)'
-                gap={6}
-            >
-                <GridItem rowSpan={10} colSpan={2}>
-                    <MediaDisplay
-                        type={props.mediaType}
-                        src={mediaSrc}
-                    />
-                </GridItem>
+        <Grid
+            className='rating_box'
+            templateRows='repeat(1, 1fr)'
+            templateColumns='repeat(2, 1fr)'
+            gap={6}
+        >
+            <GridItem rowSpan={10} colSpan={2}>
+                <MediaDisplay
+                    type={props.mediaType}
+                    src={mediaSrc}
+                />
+            </GridItem>
 
-                <GridItem rowSpan={1} colSpan={2} >
-                    <RatingSlider
-                        setRateValue={setValence}
-                        sliderValue={sliderValueTop}
-                        setSliderValue={setSliderValueTop}
-                        min={rateMin}
-                        max={rateMax}
-                        label='Valence - 感情の快・不快'
-                        minLabel='ネガティブ'
-                        maxLabel='ポジティブ'
-                    />
-                </GridItem>
-                <GridItem rowSpan={1} colSpan={2} >
-                    <RatingSlider 
-                        setRateValue={setArousal}
-                        sliderValue={sliderValueBottom}
-                        setSliderValue={setSliderValueBottom}
-                        min={rateMin}
-                        max={rateMax}
-                        label='Arousal - 感情の強さ'
-                        minLabel='落ち着いている'
-                        maxLabel='激しい'
-                    />
-                </GridItem>
-            </Grid>
-        </div>
+            <GridItem rowSpan={1} colSpan={2} >
+                <RatingSlider
+                    setRateValue={setValence}
+                    sliderValue={sliderValueTop}
+                    setSliderValue={setSliderValueTop}
+                    min={rateMin}
+                    max={rateMax}
+                    label='Valence - 感情の快・不快'
+                    minLabel='ネガティブ'
+                    maxLabel='ポジティブ'
+                />
+            </GridItem>
+            <GridItem rowSpan={1} colSpan={2} >
+                <RatingSlider 
+                    setRateValue={setArousal}
+                    sliderValue={sliderValueBottom}
+                    setSliderValue={setSliderValueBottom}
+                    min={rateMin}
+                    max={rateMax}
+                    label='Arousal - 感情の強さ'
+                    minLabel='落ち着いている'
+                    maxLabel='激しい'
+                />
+            </GridItem>
+        </Grid>
     );
 }
 
