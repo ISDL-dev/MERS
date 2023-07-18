@@ -25,30 +25,37 @@ const mediaNum = 3;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
-    const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
     const [mediaSrc, setMediaSrc] = useState('');
+    const mediaIndexRef = useRef<number>(0);
     const listImages = useRef<ListImagesInner[]>();
+    const valenceRef = useRef<number>(rateDefault);
+    const arousalRef = useRef<number>(rateDefault);
+
     const forward = () => {
         if (listImages.current !== undefined) {
-            const mediaID = listImages.current[currentMediaIndex].image_id;
+            const mediaIndex = mediaIndexRef.current;
+            const mediaID = listImages.current[mediaIndex].image_id;
             if (mediaID !== undefined) {
+                const valence = valenceRef.current;
+                const arousal = arousalRef.current;
                 const mediaRate: MediaRate = {mediaID, valence, arousal};
                 ratingResult.push(mediaRate);
                 console.log(ratingResult);
             }
-            const doneToRateAllTargets = currentMediaIndex+1 === mediaNum;
+            const doneToRateAllTargets = mediaIndex+1 === mediaNum;
             if (doneToRateAllTargets) {
                 navigate('/completion', {state: {'subject':subject, 'rating_result':ratingResult}});
                 return;
             }
 
-            const googleDriveID = listImages.current[currentMediaIndex+1].google_drive_id;
+            const googleDriveID = listImages.current[mediaIndex+1].google_drive_id;
             const mediaSrc = 'http://drive.google.com/uc?export=view&id='+googleDriveID;
             setMediaSrc(mediaSrc);
 
             setSliderValueTop(50);
             setSliderValueBottom(50);
-            setCurrentMediaIndex(currentMediaIndex+1);
+
+            mediaIndexRef.current = mediaIndex + 1;
         }
     }
 
@@ -57,9 +64,8 @@ function RatingPage(props: RatingPageProps) {
     const subject = location.state;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
-    const [valence, setValence] = useState(rateDefault);
-    const [arousal, setArousal] = useState(rateDefault);
 
+    // TODO: dependenciesにvalence, arousalがあることでバー操作時に更新が止まらない（=カウントのリセットがおこる）
     useEffect(() => {
         const intervalId = setInterval(() => {
             forward();
@@ -67,7 +73,7 @@ function RatingPage(props: RatingPageProps) {
         return () => {
             clearInterval(intervalId);
         };
-    }, [currentMediaIndex, valence, arousal]);
+    }, []);
 
     useEffect(() => {
         // TODO: リクエスト時のエラーハンドリング（現状、listImagesが空になって実行時エラーが発生する）
@@ -83,7 +89,8 @@ function RatingPage(props: RatingPageProps) {
                 {'image_id': 2, 'google_drive_id': '1AkGM7sgDIeL_54n43XpeC8OmhJvhl9Ym'},
                 {'image_id': 3, 'google_drive_id': '1pmJq300SwE6AIUOmJwqZ5VsWrxKh0XgC'},
             ];
-            const googleDriveID = listImages.current[currentMediaIndex].google_drive_id;
+            const mediaIndex = mediaIndexRef.current;
+            const googleDriveID = listImages.current[mediaIndex].google_drive_id;
             const mediaSrc = 'http://drive.google.com/uc?export=view&id='+googleDriveID;
             setMediaSrc(mediaSrc);
             console.log(e);
@@ -106,7 +113,7 @@ function RatingPage(props: RatingPageProps) {
 
             <GridItem rowSpan={1} colSpan={2} >
                 <RatingSlider
-                    setRateValue={setValence}
+                    rateValueRef={valenceRef}
                     sliderValue={sliderValueTop}
                     setSliderValue={setSliderValueTop}
                     min={rateMin}
@@ -118,7 +125,7 @@ function RatingPage(props: RatingPageProps) {
             </GridItem>
             <GridItem rowSpan={1} colSpan={2} >
                 <RatingSlider 
-                    setRateValue={setArousal}
+                    rateValueRef={arousalRef}
                     sliderValue={sliderValueBottom}
                     setSliderValue={setSliderValueBottom}
                     min={rateMin}

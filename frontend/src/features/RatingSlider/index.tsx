@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 
 interface RatingSliderProps {
-  setRateValue: Function
+  rateValueRef: React.MutableRefObject<number>
   sliderValue: number
   setSliderValue: Function
   min: number
@@ -34,10 +34,10 @@ function RatingSlider(props: RatingSliderProps) {
         value={props.sliderValue}
         onChange={
           (v) => {
-            props.setSliderValue(v)
-            const lenScale = props.max - props.min
-            let ratedVar = lenScale * v / 100
-            props.setRateValue(ratedVar+1)
+            props.setSliderValue(v);
+            const lenScale = props.max - props.min;
+            let ratedVar = lenScale * v / 100;
+            props.rateValueRef.current = ratedVar;
           }
         }
         onMouseEnter={() => setShowTooltip(true)}
