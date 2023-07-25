@@ -1,17 +1,26 @@
 package controller
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 	"github.com/hoka-isdl/MERS/backend/internal/repository"
-	"github.com/hoka-isdl/MERS/backend/internal/schema"
 )
 
 func GetImagesHandlerFunc(ctx *gin.Context) {
-	var imagesList []schema.ListImagesInner
-	imagesList = repository.GetImages()
+	var images_num int
 
-	ctx.JSON(200, gin.H{
-		"content": imagesList,
-	})
+	images_num, _ = strconv.Atoi(ctx.Param("images_num"))
+	imagesList, err := repository.RandGetImages(images_num)
 
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+	} else {
+		ctx.JSON(http.StatusOK, gin.H{
+			"content": imagesList,
+		})
+	}
 }
