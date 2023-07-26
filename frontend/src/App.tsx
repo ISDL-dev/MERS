@@ -19,7 +19,7 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/questionnare' element={<QuestionnarePage />}/>
             <Route path='/prerating' element={<PreRating />}/>
-            <Route path='/media_rating' element={<RatingPage mediaType="image"/>}/>
+            <Route path='/rating' element={<RatingPage mediaType="image"/>}/>
             <Route path='/completion' element={<Completion />}/>
           </Routes>
         </BrowserRouter>
