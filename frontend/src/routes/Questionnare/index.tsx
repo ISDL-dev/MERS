@@ -54,7 +54,7 @@ function QuestionnarePage() {
             distance_left_right_jaw_hinge: distanceLeftRightJawHinge
         }
         console.log(subject)
-        navigate('/rating', {state: subject})
+        navigate('/prerating', {state: subject})
     }
 
     return(
