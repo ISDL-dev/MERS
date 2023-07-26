@@ -7,7 +7,7 @@ import FormDescription from "../../features/FormDescription";
 import SubjectForm from "../../features/SubjectForm"
 import "./Questionnare.css"
 
-function Questionnare() {
+function QuestionnarePage() {
     const navigate = useNavigate()
 
     const [age, setAge] = useState(18)
@@ -54,7 +54,7 @@ function Questionnare() {
             distance_left_right_jaw_hinge: distanceLeftRightJawHinge
         }
         console.log(subject)
-        navigate('/rating', {state: subject})
+        navigate('/prerating', {state: subject})
     }
 
     return(
@@ -86,11 +86,9 @@ function Questionnare() {
                 variant={'outline'} 
                 colorScheme='green' 
                 size='lg'
-            >
-                上記の内容で回答する
-            </Button>
+            >上記の内容で回答する</Button>
         </div>
     )
 }
 
-export default Questionnare
+export default QuestionnarePage
