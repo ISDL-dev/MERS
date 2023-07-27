@@ -7,11 +7,11 @@ import (
 	"github.com/hoka-isdl/MERS/backend/internal/schema"
 )
 
-func RandGetImages(images_num int) ([]schema.ListImagesInner, error) {
+func RandGetImages(numImages int) ([]schema.ListImagesInner, error) {
 	var images schema.ListImagesInner
 	var imagesList []schema.ListImagesInner
 
-	rows_title, err := db.Query("SELECT id, google_drive_id FROM images ORDER BY RAND() LIMIT ?", images_num)
+	rows_title, err := db.Query("SELECT id, google_drive_id FROM images ORDER BY RAND() LIMIT ?", numImages)
 	if err != nil {
 		log.Println(fmt.Errorf("getRows db.Query error err:%w", err))
 		return nil, fmt.Errorf("getRows db.Query error err:%w", err)

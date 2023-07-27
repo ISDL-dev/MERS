@@ -9,10 +9,10 @@ import (
 )
 
 func GetImagesHandlerFunc(ctx *gin.Context) {
-	var images_num int
+	var numImages int
 
-	images_num, _ = strconv.Atoi(ctx.Param("images_num"))
-	imagesList, err := repository.RandGetImages(images_num)
+	numImages, _ = strconv.Atoi(ctx.Param("numImages"))
+	imagesList, err := repository.RandGetImages(numImages)
 
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{

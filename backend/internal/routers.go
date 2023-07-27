@@ -20,5 +20,5 @@ func SetRoutes(router *gin.Engine) {
 
 	router.GET("/ping", controller.PingHandlerFunc)
 	router.POST("/trials", controller.PostTrialsHandlerFunc)
-	router.GET("/images/:images_num", controller.GetImagesHandlerFunc)
+	router.GET("/images/:numImages", controller.GetImagesHandlerFunc)
 }
