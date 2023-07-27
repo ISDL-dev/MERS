@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -13,8 +14,8 @@ func GetImagesHandlerFunc(ctx *gin.Context) {
 
 	numImages, _ = strconv.Atoi(ctx.Param("numImages"))
 	imagesList, err := repository.RandGetImages(numImages)
-
 	if err != nil {
+		log.Println(err.Error())
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
