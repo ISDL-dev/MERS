@@ -10,7 +10,7 @@ func RandGetImages(numImages int) ([]schema.ListImagesInner, error) {
 	var image schema.ListImagesInner
 	var imagesList []schema.ListImagesInner
 
-	rows_title, err := db.Query("SELECT id, google_drive_id FROM image ORDER BY RAND() LIMIT ?", numImages)
+	rows_title, err := db.Query("SELECT id, google_drive_id FROM images ORDER BY RAND() LIMIT ?", numImages)
 	if err != nil {
 		return nil, fmt.Errorf("getRows db.Query error err:%w", err)
 	}
