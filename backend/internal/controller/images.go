@@ -12,7 +12,7 @@ import (
 func GetImagesHandlerFunc(ctx *gin.Context) {
 	var numImages int
 
-	numImages, _ = strconv.Atoi(ctx.Param("numImages"))
+	numImages, _ = strconv.Atoi(ctx.Param("num_images"))
 	imagesList, err := repository.RandGetImages(numImages)
 	if err != nil {
 		log.Println(err.Error())
