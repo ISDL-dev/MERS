@@ -16,9 +16,9 @@ func GetImagesHandlerFunc(ctx *gin.Context) {
 	numImages, _ = strconv.Atoi(ctx.Param("num_images"))
 	imagesList, err := repository.RandGetImages(numImages)
 	if err != nil {
-		log.Println(fmt.Errorf("failed to get images:%w", err))
+		log.Println(fmt.Errorf("failed to send images to the client:%w", err))
 		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"error": fmt.Errorf("failed to get images:%w", err),
+			"error": fmt.Errorf("failed to send images to the client:%w", err),
 		})
 	} else {
 		ctx.JSON(http.StatusOK, gin.H{
