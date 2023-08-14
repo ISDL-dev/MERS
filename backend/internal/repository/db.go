@@ -1,8 +1,9 @@
 package repository
 
 import (
-	"log"
 	"database/sql"
+	"log"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -14,9 +15,9 @@ func init() {
 }
 
 func openDB() {
-	db_name, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/mers-db?")
+	db_name, err := sql.Open("mysql", "root:root@tcp(mers-db:3306)/mers-db?")
 	if err != nil {
-		panic(err.Error())
+		log.Fatalf("main sql.Open error err:%v", err)
 	}
 
 	db = db_name
