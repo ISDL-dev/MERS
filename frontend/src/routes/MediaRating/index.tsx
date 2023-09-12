@@ -1,10 +1,16 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
-import api from '../../api';
+import {trialsApi, imagesApi} from '../../api';
 
 import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
-import { ListImagesInner } from '../../schema'
+import { 
+    ListImagesInner, 
+    PostTrialsRequest, 
+    PostTrialsRequestSubject,
+    PostTrialsRequestRatingsInner,
+    PostTrialsRequestRatingsInnerEmotions
+} from '../../schema'
 import "./MediaRating.css"
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -19,7 +25,7 @@ interface RatingPageProps {
 }
 
 const rateSeconds = 5;
-const ratingResult: MediaRate[] = [];
+const ratingResult: PostTrialsRequestRatingsInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 3;
 
@@ -36,14 +42,27 @@ function RatingPage(props: RatingPageProps) {
             const mediaIndex = mediaIndexRef.current;
             const mediaID = listImages.current[mediaIndex].image_id;
             if (mediaID !== undefined) {
-                const valence = valenceRef.current;
-                const arousal = arousalRef.current;
-                const mediaRate: MediaRate = {mediaID, valence, arousal};
+                const emotions: PostTrialsRequestRatingsInnerEmotions = {
+                    valence: valenceRef.current,
+                    arousal: arousalRef.current,
+                    liking: 0,
+                    dominance: 0,
+                    famility: 0
+                }
+                const mediaRate: PostTrialsRequestRatingsInner = {
+                    media_id: mediaID,
+                    emotions: emotions
+                };
                 ratingResult.push(mediaRate);
                 console.log(ratingResult);
             }
             const doneToRateAllTargets = mediaIndex+1 === mediaNum;
             if (doneToRateAllTargets) {
+                const requestBody: PostTrialsRequest = {
+                    subject: subject,
+                    ratings: ratingResult
+                };
+                trialsApi.postTrials(requestBody);
                 navigate('/completion', {state: {'subject':subject, 'rating_result':ratingResult}});
                 return;
             }
@@ -61,7 +80,7 @@ function RatingPage(props: RatingPageProps) {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const subject = location.state;
+    const subject: PostTrialsRequestSubject = location.state;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
 
@@ -77,7 +96,7 @@ function RatingPage(props: RatingPageProps) {
 
     useEffect(() => {
         // TODO: リクエスト時のエラーハンドリング（現状、listImagesが空になって実行時エラーが発生する）
-        api.get('/images')
+        imagesApi.getImageIds()
         .then(response => {
             if(response.status === 200) {
                 listImages.current = response.data;
