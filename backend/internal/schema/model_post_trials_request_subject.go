@@ -11,7 +11,7 @@ package schema
 
 type PostTrialsRequestSubject struct {
 
-	ParticipantId int32 `json:"participant_id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 
 	Age int32 `json:"age,omitempty"`
 

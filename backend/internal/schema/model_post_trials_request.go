@@ -15,10 +15,18 @@ import (
 
 type PostTrialsRequest struct {
 
-	Datetime time.Time `json:"datetime,omitempty"`
+	Location string `json:"location,omitempty"`
+
+	Platform string `json:"platform,omitempty"`
+
+	PreTrialStartedAt time.Time `json:"pre_trial_started_at"`
+
+	TrialStartedAt time.Time `json:"trial_started_at"`
+
+	TrialEndedAt time.Time `json:"trial_ended_at"`
 
 	Subject PostTrialsRequestSubject `json:"subject"`
 
-	Ratings []PostTrialsRequestRatingsInner `json:"ratings"`
+	Rating PostTrialsRequestRating `json:"rating"`
 }
 

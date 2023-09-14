@@ -9,12 +9,10 @@
 
 package schema
 
-type PostTrialsRequestRatingsInner struct {
+type PostTrialsRequestRatingRateInner struct {
 
-	MediaType string `json:"media_type,omitempty"`
+	Filename string `json:"filename,omitempty"`
 
-	MediaId int32 `json:"media_id,omitempty"`
-
-	Emotions PostTrialsRequestRatingsInnerEmotions `json:"emotions,omitempty"`
+	Emotions PostTrialsRequestRatingRateInnerEmotions `json:"emotions,omitempty"`
 }
 

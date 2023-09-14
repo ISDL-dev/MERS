@@ -91,7 +91,31 @@ export interface PostTrialsRequest {
      * @type {string}
      * @memberof PostTrialsRequest
      */
-    'datetime'?: string;
+    'location'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequest
+     */
+    'platform'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequest
+     */
+    'pre_trial_started_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequest
+     */
+    'trial_started_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequest
+     */
+    'trial_ended_at': string;
     /**
      * 
      * @type {PostTrialsRequestSubject}
@@ -100,64 +124,83 @@ export interface PostTrialsRequest {
     'subject': PostTrialsRequestSubject;
     /**
      * 
-     * @type {Array<PostTrialsRequestRatingsInner>}
+     * @type {PostTrialsRequestRating}
      * @memberof PostTrialsRequest
      */
-    'ratings': Array<PostTrialsRequestRatingsInner>;
+    'rating': PostTrialsRequestRating;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestRatingsInner
+ * @interface PostTrialsRequestRating
  */
-export interface PostTrialsRequestRatingsInner {
+export interface PostTrialsRequestRating {
     /**
      * 
-     * @type {number}
-     * @memberof PostTrialsRequestRatingsInner
+     * @type {string}
+     * @memberof PostTrialsRequestRating
      */
-    'media_id'?: number;
+    'media_type'?: string;
     /**
      * 
-     * @type {PostTrialsRequestRatingsInnerEmotions}
-     * @memberof PostTrialsRequestRatingsInner
+     * @type {Array<PostTrialsRequestRatingRateInner>}
+     * @memberof PostTrialsRequestRating
      */
-    'emotions'?: PostTrialsRequestRatingsInnerEmotions;
+    'rate'?: Array<PostTrialsRequestRatingRateInner>;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestRatingsInnerEmotions
+ * @interface PostTrialsRequestRatingRateInner
  */
-export interface PostTrialsRequestRatingsInnerEmotions {
+export interface PostTrialsRequestRatingRateInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestRatingRateInner
+     */
+    'filename'?: string;
+    /**
+     * 
+     * @type {PostTrialsRequestRatingRateInnerEmotions}
+     * @memberof PostTrialsRequestRatingRateInner
+     */
+    'emotions'?: PostTrialsRequestRatingRateInnerEmotions;
+}
+/**
+ * 
+ * @export
+ * @interface PostTrialsRequestRatingRateInnerEmotions
+ */
+export interface PostTrialsRequestRatingRateInnerEmotions {
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingsInnerEmotions
+     * @memberof PostTrialsRequestRatingRateInnerEmotions
      */
     'valence'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingsInnerEmotions
+     * @memberof PostTrialsRequestRatingRateInnerEmotions
      */
     'arousal'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingsInnerEmotions
+     * @memberof PostTrialsRequestRatingRateInnerEmotions
      */
     'liking'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingsInnerEmotions
+     * @memberof PostTrialsRequestRatingRateInnerEmotions
      */
     'dominance'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingsInnerEmotions
+     * @memberof PostTrialsRequestRatingRateInnerEmotions
      */
     'famility'?: number;
 }
@@ -172,7 +215,7 @@ export interface PostTrialsRequestSubject {
      * @type {number}
      * @memberof PostTrialsRequestSubject
      */
-    'participant_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {number}
