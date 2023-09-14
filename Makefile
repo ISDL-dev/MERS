@@ -5,4 +5,5 @@ create-jar:
 .PHONY: generate
 generate:
 	cd backend && java -cp tools/openapi-generator-cli-6.3.0.jar:tools/go-custom-server-openapi-generator-1.0.0.jar \
-	org.openapitools.codegen.OpenAPIGenerator generate -g go-custom-server -i ../openapi.yaml
+	org.openapitools.codegen.OpenAPIGenerator generate -g go-custom-server -i ../openapi.yaml && \
+	cd ../frontend && npm run generate-typescript-axios

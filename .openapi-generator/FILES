@@ -1,0 +1,7 @@
+internal/schema/model_error.go
+internal/schema/model_list_images_inner.go
+internal/schema/model_list_movies_inner.go
+internal/schema/model_post_trials_request.go
+internal/schema/model_post_trials_request_ratings_inner.go
+internal/schema/model_post_trials_request_ratings_inner_emotions.go
+internal/schema/model_post_trials_request_subject.go
