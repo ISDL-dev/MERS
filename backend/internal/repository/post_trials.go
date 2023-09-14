@@ -51,3 +51,11 @@ func CreateMediasRecords() {
 
 	insert.Exec("image", "sample.jpg")
 }
+
+func FindImageIdByName(filename string) (int, error) {
+	var id int
+	if err := db.QueryRow("SELECT id FROM medias WHERE filename = ?", filename).Scan(&id); err != nil {
+		return 0, fmt.Errorf("failed to execute a query to find image id by name: %v", err)
+	}
+	return id, nil
+}

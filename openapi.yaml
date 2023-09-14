@@ -134,6 +134,8 @@ components:
                 items:
                   type: object
                   properties:
+                    media_type:
+                      type: string
                     media_id:
                       type: integer
                       format: uint64

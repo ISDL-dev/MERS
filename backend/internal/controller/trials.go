@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -19,19 +18,15 @@ func PostTrialsHandlerFunc(ctx *gin.Context) {
 		return
 	}
 
-	fmt.Println(trials)
-	// repository.CreateMediasRecords()//Mediasテーブルに仮の情報を挿入.Mediasテーブルが作成でき次第削除予定
+	// TODO: CreateTrialsRecords()を呼び出す
 	if err := repository.CreateSubjectsRecords(trials.Subject); err != nil {
 		log.Printf("Internal Server Error: failed to create a subject record: %v\n", err)
 		ctx.Status(http.StatusInternalServerError)
 		return
 	}
 
-	if err := repository.CreateEmotionsRecords(trials.Subject, trials.Ratings); err != nil {
-		log.Printf("Internal Server Error: failed to create emotion records: %v\n", err)
-		ctx.Status(http.StatusInternalServerError)
-		return
-	}
+	// TODO: CreateSignalsRecords()を呼び出す
+	// TODO: リクエストから得られるmedia_idが画像なのか動画なのかを判別する
 
 	ctx.JSON(200, gin.H{
 		"message": "success",
