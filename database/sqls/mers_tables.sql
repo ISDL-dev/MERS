@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS trials(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     location VARCHAR(64),
+    platform VARCHAR(64),
     pre_trial_started_at DATETIME NOT NULL,
     trial_started_at DATETIME NOT NULL,
     trial_ended_at DATETIME NOT NULL,
@@ -57,13 +58,13 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE,
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- trialsとimagesの関係は1対1
+-- ratingとimagesの関係は1対1
 CREATE TABLE IF NOT EXISTS images(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     filename VARCHAR(64) NOT NULL,
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- trialsとimagesの関係は1対1
+-- ratingとimagesの関係は1対1
 CREATE TABLE IF NOT EXISTS movies(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     filename VARCHAR(64) NOT NULL,
