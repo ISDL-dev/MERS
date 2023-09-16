@@ -9,10 +9,12 @@
 
 package schema
 
-type PostTrialsRequestRatingRateInner struct {
+type PostTrialsRequestRatingSetRatingInner struct {
+
+	Dataset string `json:"dataset,omitempty"`
 
 	Filename string `json:"filename,omitempty"`
 
-	Emotions PostTrialsRequestRatingRateInnerEmotions `json:"emotions,omitempty"`
+	Emotion PostTrialsRequestRatingSetRatingInnerEmotion `json:"emotion,omitempty"`
 }
 

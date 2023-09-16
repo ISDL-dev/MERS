@@ -88,254 +88,285 @@ export interface ModelError {
 export interface PostTrialsRequest {
     /**
      * 
-     * @type {string}
+     * @type {PostTrialsRequestTrialMetadata}
      * @memberof PostTrialsRequest
      */
-    'location'?: string;
+    'trial_metadata': PostTrialsRequestTrialMetadata;
     /**
      * 
-     * @type {string}
+     * @type {PostTrialsRequestSubjectMetadata}
      * @memberof PostTrialsRequest
      */
-    'platform'?: string;
+    'subject_metadata': PostTrialsRequestSubjectMetadata;
     /**
      * 
-     * @type {string}
+     * @type {PostTrialsRequestRatingSet}
      * @memberof PostTrialsRequest
      */
-    'pre_trial_started_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostTrialsRequest
-     */
-    'trial_started_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostTrialsRequest
-     */
-    'trial_ended_at': string;
-    /**
-     * 
-     * @type {PostTrialsRequestSubject}
-     * @memberof PostTrialsRequest
-     */
-    'subject': PostTrialsRequestSubject;
-    /**
-     * 
-     * @type {PostTrialsRequestRating}
-     * @memberof PostTrialsRequest
-     */
-    'rating': PostTrialsRequestRating;
+    'rating_set': PostTrialsRequestRatingSet;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestRating
+ * @interface PostTrialsRequestRatingSet
  */
-export interface PostTrialsRequestRating {
+export interface PostTrialsRequestRatingSet {
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestRating
+     * @memberof PostTrialsRequestRatingSet
      */
     'media_type'?: string;
     /**
      * 
-     * @type {Array<PostTrialsRequestRatingRateInner>}
-     * @memberof PostTrialsRequestRating
+     * @type {Array<PostTrialsRequestRatingSetRatingInner>}
+     * @memberof PostTrialsRequestRatingSet
      */
-    'rate'?: Array<PostTrialsRequestRatingRateInner>;
+    'rating'?: Array<PostTrialsRequestRatingSetRatingInner>;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestRatingRateInner
+ * @interface PostTrialsRequestRatingSetRatingInner
  */
-export interface PostTrialsRequestRatingRateInner {
+export interface PostTrialsRequestRatingSetRatingInner {
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestRatingRateInner
+     * @memberof PostTrialsRequestRatingSetRatingInner
+     */
+    'dataset'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestRatingSetRatingInner
      */
     'filename'?: string;
     /**
      * 
-     * @type {PostTrialsRequestRatingRateInnerEmotions}
-     * @memberof PostTrialsRequestRatingRateInner
+     * @type {PostTrialsRequestRatingSetRatingInnerEmotion}
+     * @memberof PostTrialsRequestRatingSetRatingInner
      */
-    'emotions'?: PostTrialsRequestRatingRateInnerEmotions;
+    'emotion'?: PostTrialsRequestRatingSetRatingInnerEmotion;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestRatingRateInnerEmotions
+ * @interface PostTrialsRequestRatingSetRatingInnerEmotion
  */
-export interface PostTrialsRequestRatingRateInnerEmotions {
+export interface PostTrialsRequestRatingSetRatingInnerEmotion {
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingRateInnerEmotions
+     * @memberof PostTrialsRequestRatingSetRatingInnerEmotion
      */
     'valence'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingRateInnerEmotions
+     * @memberof PostTrialsRequestRatingSetRatingInnerEmotion
      */
     'arousal'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingRateInnerEmotions
+     * @memberof PostTrialsRequestRatingSetRatingInnerEmotion
      */
     'liking'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingRateInnerEmotions
+     * @memberof PostTrialsRequestRatingSetRatingInnerEmotion
      */
     'dominance'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestRatingRateInnerEmotions
+     * @memberof PostTrialsRequestRatingSetRatingInnerEmotion
      */
     'famility'?: number;
 }
 /**
  * 
  * @export
- * @interface PostTrialsRequestSubject
+ * @interface PostTrialsRequestSubjectMetadata
  */
-export interface PostTrialsRequestSubject {
+export interface PostTrialsRequestSubjectMetadata {
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'id'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'age'?: number;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'gender'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'handedness'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'vision'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'vision_aid'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'education'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'alcohol_consumption'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'coffee_consumption'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'tea_consumption'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'tobacco_consumption'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'drug_consumption'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'syndroms'?: string;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'hours_of_sleep_last_night'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'normal_hours_of_sleep'?: number;
     /**
      * 
      * @type {string}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'level_of_alertness'?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'distribute_physiological_recordings'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'publish_audio_visual_recordings'?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'head_circumference'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'distance_nasion_inion'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PostTrialsRequestSubject
+     * @memberof PostTrialsRequestSubjectMetadata
      */
     'distance_left_right_jaw_hinge'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PostTrialsRequestTrialMetadata
+ */
+export interface PostTrialsRequestTrialMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'location'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'platform'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'pre_started_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'started_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'ended_at'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'rating_second_by_media'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostTrialsRequestTrialMetadata
+     */
+    'number_of_medias'?: number;
 }
 
 /**

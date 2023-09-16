@@ -9,7 +9,7 @@
 
 package schema
 
-type PostTrialsRequestSubject struct {
+type PostTrialsRequestSubjectMetadata struct {
 
 	Id int32 `json:"id,omitempty"`
 

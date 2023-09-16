@@ -9,24 +9,12 @@
 
 package schema
 
-import (
-	"time"
-)
-
 type PostTrialsRequest struct {
 
-	Location string `json:"location,omitempty"`
+	TrialMetadata PostTrialsRequestTrialMetadata `json:"trial_metadata"`
 
-	Platform string `json:"platform,omitempty"`
+	SubjectMetadata PostTrialsRequestSubjectMetadata `json:"subject_metadata"`
 
-	PreTrialStartedAt time.Time `json:"pre_trial_started_at"`
-
-	TrialStartedAt time.Time `json:"trial_started_at"`
-
-	TrialEndedAt time.Time `json:"trial_ended_at"`
-
-	Subject PostTrialsRequestSubject `json:"subject"`
-
-	Rating PostTrialsRequestRating `json:"rating"`
+	RatingSet PostTrialsRequestRatingSet `json:"rating_set"`
 }
 

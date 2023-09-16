@@ -74,20 +74,29 @@ components:
           schema:
             type: object
             properties:
-              location:
-                type: string
-              platform:
-                type: string
-              pre_trial_started_at:
-                type: string
-                format: date-time
-              trial_started_at:
-                type: string
-                format: date-time
-              trial_ended_at:
-                type: string
-                format: date-time
-              subject:
+              trial_metadata:
+                type: object
+                properties:
+                  location:
+                    type: string
+                  platform:
+                    type: string
+                  pre_started_at:
+                    type: string
+                    format: date-time
+                  started_at:
+                    type: string
+                    format: date-time
+                  ended_at:
+                    type: string
+                    format: date-time
+                  rating_second_by_media:
+                    type: integer
+                    format: uint64
+                  number_of_medias:
+                    type: integer
+                    format: uint64
+              subject_metadata:
                 type: object
                 properties:
                   id:
@@ -139,19 +148,21 @@ components:
                   distance_left_right_jaw_hinge:
                     type: number
                     format: float
-              rating:
+              rating_set:
                 type: object
                 properties:
                   media_type:
                       type: string
-                  rate:
+                  rating:
                     type: array
                     items:
                       type: object
                       properties:
+                        dataset:
+                          type: string
                         filename:
                           type: string
-                        emotions:
+                        emotion:
                           type: object
                           properties:
                             valence:
@@ -170,11 +181,9 @@ components:
                               type: number
                               format: float
             required:
-              - pre_trial_started_at
-              - trial_started_at
-              - trial_ended_at
-              - subject
-              - rating
+              - trial_metadata
+              - subject_metadata
+              - rating_set
   schemas:
     ListImages:
       type: array

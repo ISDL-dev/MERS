@@ -9,7 +9,7 @@
 
 package schema
 
-type PostTrialsRequestRatingsInnerEmotions struct {
+type PostTrialsRequestRatingSetRatingInnerEmotion struct {
 
 	Valence float32 `json:"valence,omitempty"`
 
