@@ -76,6 +76,7 @@ func PostTrialsHandlerFunc(ctx *gin.Context) {
 	default:
 		log.Printf("Bad Request: invalid media type: %v\n", trials.RatingSet.MediaType)
 		ctx.String(http.StatusBadRequest, "invalid media type")
+		return
 	}
 
 	ctx.JSON(200, gin.H{
