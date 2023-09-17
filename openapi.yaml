@@ -74,13 +74,32 @@ components:
           schema:
             type: object
             properties:
-              datetime:
-                type: string
-                format: date-time
-              subject:
+              trial_metadata:
                 type: object
                 properties:
-                  participant_id:
+                  location:
+                    type: string
+                  platform:
+                    type: string
+                  pre_started_at:
+                    type: string
+                    format: date-time
+                  started_at:
+                    type: string
+                    format: date-time
+                  ended_at:
+                    type: string
+                    format: date-time
+                  rating_second_by_media:
+                    type: integer
+                    format: uint64
+                  number_of_medias:
+                    type: integer
+                    format: uint64
+              subject_metadata:
+                type: object
+                properties:
+                  id:
                     type: integer
                     format: uint64
                   age:
@@ -129,36 +148,42 @@ components:
                   distance_left_right_jaw_hinge:
                     type: number
                     format: float
-              ratings:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    media_id:
-                      type: integer
-                      format: uint64
-                    emotions:
+              rating_set:
+                type: object
+                properties:
+                  media_type:
+                      type: string
+                  rating:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        valence:
-                          type: number
-                          format: float
-                        arousal:
-                          type: number
-                          format: float
-                        liking:
-                          type: number
-                          format: float
-                        dominance:
-                          type: number
-                          format: float
-                        famility:
-                          type: number
-                          format: float
+                        dataset:
+                          type: string
+                        filename:
+                          type: string
+                        emotion:
+                          type: object
+                          properties:
+                            valence:
+                              type: number
+                              format: float
+                            arousal:
+                              type: number
+                              format: float
+                            liking:
+                              type: number
+                              format: float
+                            dominance:
+                              type: number
+                              format: float
+                            famility:
+                              type: number
+                              format: float
             required:
-              - date
-              - subject
-              - ratings
+              - trial_metadata
+              - subject_metadata
+              - rating_set
   schemas:
     ListImages:
       type: array

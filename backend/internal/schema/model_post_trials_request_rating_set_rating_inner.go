@@ -9,12 +9,12 @@
 
 package schema
 
-type PostTrialsRequest struct {
+type PostTrialsRequestRatingSetRatingInner struct {
 
-	TrialMetadata PostTrialsRequestTrialMetadata `json:"trial_metadata"`
+	Dataset string `json:"dataset,omitempty"`
 
-	SubjectMetadata PostTrialsRequestSubjectMetadata `json:"subject_metadata"`
+	Filename string `json:"filename,omitempty"`
 
-	RatingSet PostTrialsRequestRatingSet `json:"rating_set"`
+	Emotion PostTrialsRequestRatingSetRatingInnerEmotion `json:"emotion,omitempty"`
 }
 

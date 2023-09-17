@@ -9,9 +9,9 @@
 
 package schema
 
-type PostTrialsRequestSubject struct {
+type PostTrialsRequestSubjectMetadata struct {
 
-	ParticipantId int32 `json:"participant_id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 
 	Age int32 `json:"age,omitempty"`
 
