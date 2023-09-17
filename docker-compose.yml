@@ -17,6 +17,8 @@ services:
     build: ./backend
     ports:
       - 3000:3000
+    volumes:
+      - ./backend/internal:/go/src/backend/internal
     tty: true
   database:
     image: mysql:8.0
