@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@chakra-ui/react";
 
-import { PostTrialsRequestSubject } from "../../schema";
+import { PostTrialsRequestSubjectMetadata } from "../../schema";
 import FormDescription from "../../features/FormDescription";
 import SubjectForm from "../../features/SubjectForm"
 import "./Questionnare.css"
@@ -32,10 +32,11 @@ function QuestionnarePage() {
     const [distanceLeftRightJawHinge, setDistanceLeftRightJawHinge] = useState(0)
     
     function onClickAnswer() {
-        var subject: PostTrialsRequestSubject = {
+        var subject: PostTrialsRequestSubjectMetadata = {
             age: age,
             handedness: handedness,
             gender: gender,
+            vision: vision,
             vision_aid: visionAid,
             education: education,
             alcohol_consumption: alcoholConsumption,
@@ -64,6 +65,7 @@ function QuestionnarePage() {
                 setAge={setAge}
                 setHandedness={setHandedness}
                 setGender={setGender}
+                setVision={setVision}
                 setVisionAid={setVisionAid}
                 setEducation={setEducation}
                 setAlcoholConsumption={setAlcoholConsumption}

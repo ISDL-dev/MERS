@@ -11,6 +11,7 @@ class MyPostTrialsRequestSubject {
     setAge: (newAge: number) => void
     setGender: (newGender: string) => void
     setHandedness: (newHandedness: string) => void
+    setVision: (newVision: string) => void
     setVisionAid: (newVisionAid: string) => void
     setEducation: (newEducation: string) => void
     setAlcoholConsumption: (newAlcoholConsumption: string) => void
@@ -32,6 +33,7 @@ class MyPostTrialsRequestSubject {
         setAge: (newAge: number) => void,
         setGender: (newGender: string) => void,
         setHandedness: (newHandedness: string) => void,
+        setVision: (newVision: string) => void,
         setVisionAid: (newVisionAid: string) => void,
         setEducation: (newEducation: string) => void,
         setAlcoholConsumption: (newAlcoholConsumption: string) => void,
@@ -52,6 +54,7 @@ class MyPostTrialsRequestSubject {
         this.setAge = setAge
         this.setGender = setGender
         this.setHandedness = setHandedness
+        this.setVision = setVision
         this.setVisionAid = setVisionAid
         this.setEducation = setEducation
         this.setAlcoholConsumption = setAlcoholConsumption
@@ -75,6 +78,7 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
     const onChangeAge = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeGender = (nextValue: string):void => props.setGender(nextValue)
     const onChangeHandedness = (nextValue: string):void => props.setHandedness(nextValue)
+    const onChangeVision = (nextValue: string):void => props.setVision(nextValue)
     const onChangeVisionAid = (nextValue: string):void => props.setVisionAid(nextValue)
     const onChangeEducation = (nextValue: string):void => props.setEducation(nextValue)
     const onChangeAlcoholConsumption = (nextValue: string):void => props.setAlcoholConsumption(nextValue)
@@ -148,6 +152,20 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
                 </Radio>
                 <Radio colorScheme='green' value='right_handed'>
                 右手
+                </Radio>
+            </Stack>
+        </RadioGroup>
+        </div>
+
+        <div className='item'>
+        <Text fontSize={"medium"}>あなたの利き目を入力してください。</Text>
+        <RadioGroup defaultValue='left_eye' onChange={onChangeVision}>
+            <Stack spacing={5} direction='row'>
+                <Radio colorScheme='green' value='left_eye'>
+                左目
+                </Radio>
+                <Radio colorScheme='green' value='right_eye'>
+                右目
                 </Radio>
             </Stack>
         </RadioGroup>
