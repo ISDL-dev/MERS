@@ -63,7 +63,7 @@ function RatingPage(props: RatingPageProps) {
                     ratings: ratingResult
                 };
                 trialsApi.postTrials(requestBody);
-                navigate('/completion', {state: {'subject':subject, 'rating_result':ratingResult}});
+                navigate('/completion');
                 return;
             }
 
