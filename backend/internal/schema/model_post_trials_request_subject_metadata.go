@@ -19,7 +19,7 @@ type PostTrialsRequestSubjectMetadata struct {
 
 	Handedness string `json:"handedness,omitempty"`
 
-	Vision string `json:"vision,omitempty"`
+	Vision float32 `json:"vision,omitempty"`
 
 	VisionAid string `json:"vision_aid,omitempty"`
 
@@ -42,10 +42,6 @@ type PostTrialsRequestSubjectMetadata struct {
 	NormalHoursOfSleep float32 `json:"normal_hours_of_sleep,omitempty"`
 
 	LevelOfAlertness string `json:"level_of_alertness,omitempty"`
-
-	DistributePhysiologicalRecordings bool `json:"distribute_physiological_recordings,omitempty"`
-
-	PublishAudioVisualRecordings bool `json:"publish_audio_visual_recordings,omitempty"`
 
 	HeadCircumference float32 `json:"head_circumference,omitempty"`
 

@@ -27,8 +27,6 @@ CREATE TABLE IF NOT EXISTS subjects(
     hours_of_sleep_last_night FLOAT,
     normal_hours_of_sleep FLOAT,
     level_of_alertness VARCHAR(64),
-    distribute_physiological_recordings BOOLEAN,
-    publish_audio_visual_recordings BOOLEAN,
     head_circumference FLOAT,
     distance_nasion_inion FLOAT,
     distance_left_right_jaw_hinge FLOAT,

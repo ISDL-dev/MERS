@@ -1,6 +1,13 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
-import { PostTrialsRequest, PostTrialsRequestTrialMetadata, PostTrialsRequestRatingSet, PostTrialsRequestRatingSetRatingInner, PostTrialsRequestRatingSetRatingInnerEmotion } from "../../schema";
+import { trialsApi } from '../../api';
+import { 
+    PostTrialsRequest, 
+    PostTrialsRequestTrialMetadata, 
+    PostTrialsRequestRatingSet, 
+    PostTrialsRequestRatingSetRatingInner, 
+    PostTrialsRequestRatingSetRatingInnerEmotion 
+} from "../../schema";
 import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
 import "./MediaRating.css"
@@ -14,8 +21,7 @@ interface RatingPageProps {
 const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
-const rating_second_by_media = 0;
-const rateSeconds = 5;
+const ratingSecondByMedia = 5;
 const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 3;
@@ -28,12 +34,22 @@ function RatingPage(props: RatingPageProps) {
     const arousalRef = useRef<number>(rateDefault);
     const navigate = useNavigate();
     const location = useLocation();
-    const subjectMetadata = location.state;
+    const subjectMetadata = location.state.subject;
+    const preStartedAt = location.state.pre_started_at;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
     const mediaBaseSrc = "./images/oasis/";
-    const [started_at, setStarted_at] = useState("");
-    const [ended_at, setEnded_at_at] = useState("");
+    let startedAt = "";
+
+    const date_to_time = (date: Date) => {
+        const time = date.getFullYear().toString() + "-" + 
+        date.getMonth().toString().padStart( 2, '0') + "-" + 
+        date.getDate().toString().padStart( 2, '0') + " " +
+        date.getHours().toString().padStart( 2, '0') + ":" + 
+        date.getMinutes().toString().padStart( 2, '0') + ":" +
+        date.getSeconds().toString().padStart( 2, '0');
+        return time;
+    }
 
     const forward = () => {
         if (MediaList !== undefined) { 
@@ -55,25 +71,28 @@ function RatingPage(props: RatingPageProps) {
             }
             const doneToRateAllTargets = mediaIndex+1 === mediaNum;
             if (doneToRateAllTargets) {
-                setEnded_at_at(new Date().toString())
+                const endedAt = date_to_time(new Date());
                 const trialMetadata: PostTrialsRequestTrialMetadata = {
                     location: experimentLocation,
                     platform: platform,
-                    started_at: started_at,
-                    ended_at: ended_at,
-                    rating_second_by_media: rating_second_by_media,
+                    pre_started_at: preStartedAt,
+                    started_at: startedAt,
+                    ended_at: endedAt,
+                    rating_second_by_media: ratingSecondByMedia,
                     number_of_medias: mediaNum
                 };
                 const ratingSet: PostTrialsRequestRatingSet = {
                     media_type: props.mediaType,
                     rating: ratingResult
                 };
-                const postTrialsRequest: PostTrialsRequest = {
+                const requestBody: PostTrialsRequest = {
                     trial_metadata: trialMetadata,
                     subject_metadata: subjectMetadata,
                     rating_set: ratingSet
                 }
-                navigate('/completion', {state: postTrialsRequest});
+                console.log(requestBody)
+                trialsApi.postTrials(requestBody);
+                navigate('/completion');
                 return;
             }
             setSliderValueTop(50);
@@ -91,14 +110,14 @@ function RatingPage(props: RatingPageProps) {
     useEffect(() => {
         const intervalId = setInterval(() => {
             forward();
-        }, rateSeconds * 1000);
+        }, ratingSecondByMedia * 1000);
         return () => {
             clearInterval(intervalId);
         };
     }, []);
 
     useEffect(() => {
-        setStarted_at(new Date().toString());
+        startedAt = date_to_time(new Date());
         MediaList.sort((a, b) => 0.5 - Math.random());
         const mediaIndex = mediaIndexRef.current;
         const mediaFileName = MediaList[mediaIndex];
