@@ -62,12 +62,12 @@ func CreateSubject(trialId uint, subject schema.PostTrialsRequestSubjectMetadata
 	return nil
 }
 
-func CreateSignal(trialId uint, signal model.Signal) error {
+func CreateSignal(trialId uint, channelId uint, signal model.Signal) error {
 	insert, err := db.Prepare(
 		`INSERT INTO signals(
 			trial_id,
+			channel_id,
 			trend_range,
-			channel_types,
 			calibration,
 			analyzed_signal_filename,
 			raw_signal_filename
@@ -77,8 +77,8 @@ func CreateSignal(trialId uint, signal model.Signal) error {
 	}
 	_, err = insert.Exec(
 		trialId,
+		channelId,
 		signal.TrendRange,
-		signal.ChannelTypes,
 		signal.Calibration,
 		signal.AnalyzedSignalFilename,
 		signal.RawSignalFilename,

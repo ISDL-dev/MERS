@@ -38,7 +38,10 @@ func PostTrialsHandlerFunc(ctx *gin.Context) {
 	// TODO: MaP1058と通信をしてsignalを作成する
 	// TODO: signal型はMaP1058のクライアントライブラリで定義されたものを使う
 	signal := model.Signal{}
-	if err := repository.CreateSignal(trialId, signal); err != nil {
+
+	// TODO: MaP1058からsignalを受信し、channelIdごとに信号を分割して保存する。
+	channelId := uint(1)
+	if err := repository.CreateSignal(trialId, channelId, signal); err != nil {
 		log.Printf("Internal Server Error: failed to create a signal record: %v\n", err)
 		ctx.Status(http.StatusInternalServerError)
 		return
