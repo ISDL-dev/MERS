@@ -33,15 +33,23 @@ CREATE TABLE IF NOT EXISTS subjects(
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- ratingとimagesの関係は1対1
+CREATE TABLE IF NOT EXISTS channels(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_name VARCHAR(64)
+)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 -- trialsとsignalsの関係は1対1
 CREATE TABLE IF NOT EXISTS signals(
-    trial_id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     trend_range TEXT NOT NULL,
-    channel_types VARCHAR(128) NOT NULL,
     calibration VARCHAR(128) NOT NULL,
     analyzed_signal_filename VARCHAR(128) NOT NULL,
     raw_signal_filename VARCHAR(64) NOT NULL,
-    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
+    trial_id INT UNSIGNED NOT NULL,
+    channel_id INT UNSIGNED,
+    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ratingとimagesの関係は1対1
@@ -73,3 +81,55 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- 画像挿入
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Beach1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bricks1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cardboard3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cat5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cottonswabs3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dirt1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog18.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog26.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dummy1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Explosion5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Injury4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake12.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake14.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake15.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake8.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake9.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Miserablepose3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rainbow2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Siblings1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Sidewalk6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'War6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Yarn1.jpg');
+
+-- channelの追加
+INSERT INTO channels (channel_name) VALUES ('AF3');
+INSERT INTO channels (channel_name) VALUES ('AF4');
+INSERT INTO channels (channel_name) VALUES ('Cz');
+INSERT INTO channels (channel_name) VALUES ('C5');
+INSERT INTO channels (channel_name) VALUES ('C6');
+INSERT INTO channels (channel_name) VALUES ('Oz');
+
+
