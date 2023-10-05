@@ -13,7 +13,7 @@ function QuestionnarePage() {
     const [age, setAge] = useState(20)
     const [gender, setGender] = useState("men")
     const [handedness, setHandedness] = useState("left_handed")
-    const [vision, setVision] = useState(1.0)
+    const [vision, setVision] = useState("normal")
     const [visionAid, setVisionAid] = useState("unaided")
     const [education, setEducation] = useState("high_school")
     const [alcoholConsumption, setAlcoholConsumption] = useState("regularly")

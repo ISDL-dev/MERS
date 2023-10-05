@@ -19,7 +19,7 @@ type PostTrialsRequestSubjectMetadata struct {
 
 	Handedness string `json:"handedness,omitempty"`
 
-	Vision float32 `json:"vision,omitempty"`
+	Vision string `json:"vision,omitempty"`
 
 	VisionAid string `json:"vision_aid,omitempty"`
 

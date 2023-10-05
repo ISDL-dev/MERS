@@ -218,10 +218,10 @@ export interface PostTrialsRequestSubjectMetadata {
     'handedness'?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PostTrialsRequestSubjectMetadata
      */
-    'vision'?: number;
+    'vision'?: string;
     /**
      * 
      * @type {string}

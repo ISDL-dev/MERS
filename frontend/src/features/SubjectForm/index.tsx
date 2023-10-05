@@ -11,7 +11,7 @@ class MyPostTrialsRequestSubject {
     setAge: (newAge: number) => void
     setGender: (newGender: string) => void
     setHandedness: (newHandedness: string) => void
-    setVision: (newVision: number) => void
+    setVision: (newVision: string) => void
     setVisionAid: (newVisionAid: string) => void
     setEducation: (newEducation: string) => void
     setAlcoholConsumption: (newAlcoholConsumption: string) => void
@@ -31,7 +31,7 @@ class MyPostTrialsRequestSubject {
         setAge: (newAge: number) => void,
         setGender: (newGender: string) => void,
         setHandedness: (newHandedness: string) => void,
-        setVision: (newVision: number) => void,
+        setVision: (newVision: string) => void,
         setVisionAid: (newVisionAid: string) => void,
         setEducation: (newEducation: string) => void,
         setAlcoholConsumption: (newAlcoholConsumption: string) => void,
@@ -43,8 +43,6 @@ class MyPostTrialsRequestSubject {
         setHoursOfSleepLastNight: (newHoursOfSleepLastNight: number) => void,
         setNormalHoursOfSleep: (newNormalHoursOfSleep: number) => void,
         setLevelOfAlertness: (newLevelOfAlertness: string) => void,
-        setDistributePhysiologicalRecordings: (newDistributePhysiologicalRecordings: boolean) => void,
-        setPublishAudioVisualRecordings: (newPublishAudioVisualRecordings: boolean) => void,
         setHeadCircumference: (newHeadCircumference: number) => void,
         setDistanceNasionInion: (newDistanceNasionInion: number) => void,
         setDistanceLeftRightJawHinge: (newDistanceLeftRightJawHinge: number) => void
@@ -74,7 +72,7 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
     const onChangeAge = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeGender = (nextValue: string):void => props.setGender(nextValue)
     const onChangeHandedness = (nextValue: string):void => props.setHandedness(nextValue)
-    const onChangeVision = (valueAsString: string, valueAsNumber: number):void => props.setVision(valueAsNumber)
+    const onChangeVision = (nextValue: string):void => props.setVision(nextValue)
     const onChangeVisionAid = (nextValue: string):void => props.setVisionAid(nextValue)
     const onChangeEducation = (nextValue: string):void => props.setEducation(nextValue)
     const onChangeAlcoholConsumption = (nextValue: string):void => props.setAlcoholConsumption(nextValue)
@@ -153,13 +151,19 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
 
         <div className='item'>
         <Text fontSize={"medium"}>あなたの視力を教えてください。</Text>
-        <NumberInput defaultValue={1.0}  precision={2} step={0.01} onChange={onChangeVision}>
-        <NumberInputField />
-        <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-        </NumberInputStepper>
-        </NumberInput>
+        <RadioGroup defaultValue='normal' onChange={onChangeVision}>
+            <Stack spacing={5} direction='row'>
+                <Radio colorScheme='green' value='good'>
+                目が良い
+                </Radio>
+                <Radio colorScheme='green' value='normal'>
+                普通
+                </Radio>
+                <Radio colorScheme='green' value='bad'>
+                目が悪い
+                </Radio>
+            </Stack>
+        </RadioGroup>
         </div>
 
         <div className='item'>
