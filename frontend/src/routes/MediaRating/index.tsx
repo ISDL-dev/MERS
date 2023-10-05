@@ -1,6 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { trialsApi } from '../../api';
+import axios from 'axios';
 import { 
     PostTrialsRequest, 
     PostTrialsRequestTrialMetadata, 
@@ -100,6 +101,19 @@ function RatingPage(props: RatingPageProps) {
             const mediaFileName = MediaList[mediaIndex+1];   
             const mediaSrc = mediaBaseSrc+mediaFileName;
             setMediaSrc(mediaSrc);
+
+            var params = new FormData();
+            params.append("disp_image", mediaFileName);
+            
+            axios
+            .post("http://192.168.10.127:3100/mers-image", params)
+            .then((response) => {
+                console.log(response.data)
+            })
+            .catch((error) => {
+                alert("データを送信できませんでした．");
+            });
+
             mediaIndexRef.current = mediaIndex + 1;
             valenceRef.current = rateDefault;
             arousalRef.current = rateDefault;
@@ -123,6 +137,18 @@ function RatingPage(props: RatingPageProps) {
         const mediaFileName = MediaList[mediaIndex];
         const mediaSrc = mediaBaseSrc+mediaFileName;
         setMediaSrc(mediaSrc);
+
+        var params = new FormData();
+        params.append("disp_image", mediaFileName);
+         
+        axios
+        .post("http://192.168.10.127:3100/mers-image", params)
+        .then((response) => {
+            console.log(response.data)
+        })
+        .catch((error) => {
+            alert("データを送信できませんでした．");
+        });
     }, []);
     
     return (
