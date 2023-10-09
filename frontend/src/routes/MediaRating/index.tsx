@@ -1,25 +1,28 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
-import api from '../../api';
-
+import { trialsApi } from '../../api';
+import { 
+    PostTrialsRequest, 
+    PostTrialsRequestTrialMetadata, 
+    PostTrialsRequestRatingSet, 
+    PostTrialsRequestRatingSetRatingInner, 
+    PostTrialsRequestRatingSetRatingInnerEmotion 
+} from "../../schema";
 import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
-import { ListImagesInner } from '../../schema'
 import "./MediaRating.css"
 import { useLocation, useNavigate } from 'react-router-dom'
-
-interface MediaRate {
-    mediaID: number
-    valence: number
-    arousal: number
-}
+import MediaList from "../../../src/imageFileNames.json"
 
 interface RatingPageProps {
     mediaType: string
 }
 
-const rateSeconds = 5;
-const ratingResult: MediaRate[] = [];
+const detasetName = "OASIS";
+const experimentLocation = "KC111";
+const platform = "";
+const ratingSecondByMedia = 5;
+const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 3;
 
@@ -27,74 +30,99 @@ const mediaNum = 3;
 function RatingPage(props: RatingPageProps) {
     const [mediaSrc, setMediaSrc] = useState('');
     const mediaIndexRef = useRef<number>(0);
-    const listImages = useRef<ListImagesInner[]>();
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const subjectMetadata = location.state.subject;
+    const preStartedAt = location.state.pre_started_at;
+    const [sliderValueTop, setSliderValueTop] = useState(50);
+    const [sliderValueBottom, setSliderValueBottom] = useState(50);
+    const mediaBaseSrc = "./images/oasis/";
+    let startedAt = "";
+
+    const date_to_time = (date: Date) => {
+        const time = date.getFullYear().toString() + "-" + 
+        date.getMonth().toString().padStart( 2, '0') + "-" + 
+        date.getDate().toString().padStart( 2, '0') + " " +
+        date.getHours().toString().padStart( 2, '0') + ":" + 
+        date.getMinutes().toString().padStart( 2, '0') + ":" +
+        date.getSeconds().toString().padStart( 2, '0');
+        return time;
+    }
 
     const forward = () => {
-        if (listImages.current !== undefined) {
+        if (MediaList !== undefined) { 
             const mediaIndex = mediaIndexRef.current;
-            const mediaID = listImages.current[mediaIndex].image_id;
-            if (mediaID !== undefined) {
+            const evaliationMediaFileName = MediaList[mediaIndex];           
+            if (evaliationMediaFileName !== undefined) {
                 const valence = valenceRef.current;
                 const arousal = arousalRef.current;
-                const mediaRate: MediaRate = {mediaID, valence, arousal};
-                ratingResult.push(mediaRate);
-                console.log(ratingResult);
+                const ratingSetRatingInnerEmotion: PostTrialsRequestRatingSetRatingInnerEmotion = {
+                    valence: valence,
+                    arousal: arousal
+                };
+                const ratingSetRatingInner: PostTrialsRequestRatingSetRatingInner = {
+                    dataset: detasetName, 
+                    filename: evaliationMediaFileName, 
+                    emotion: ratingSetRatingInnerEmotion
+                };
+                ratingResult.push(ratingSetRatingInner);
             }
             const doneToRateAllTargets = mediaIndex+1 === mediaNum;
             if (doneToRateAllTargets) {
-                navigate('/completion', {state: {'subject':subject, 'rating_result':ratingResult}});
+                const endedAt = date_to_time(new Date());
+                const trialMetadata: PostTrialsRequestTrialMetadata = {
+                    location: experimentLocation,
+                    platform: platform,
+                    pre_started_at: preStartedAt,
+                    started_at: startedAt,
+                    ended_at: endedAt,
+                    rating_second_by_media: ratingSecondByMedia,
+                    number_of_medias: mediaNum
+                };
+                const ratingSet: PostTrialsRequestRatingSet = {
+                    media_type: props.mediaType,
+                    rating: ratingResult
+                };
+                const requestBody: PostTrialsRequest = {
+                    trial_metadata: trialMetadata,
+                    subject_metadata: subjectMetadata,
+                    rating_set: ratingSet
+                }
+                console.log(requestBody)
+                trialsApi.postTrials(requestBody);
+                navigate('/completion');
                 return;
             }
-
-            const googleDriveID = listImages.current[mediaIndex+1].google_drive_id;
-            const mediaSrc = 'http://drive.google.com/uc?export=view&id='+googleDriveID;
-            setMediaSrc(mediaSrc);
-
             setSliderValueTop(50);
             setSliderValueBottom(50);
-
+            const mediaFileName = MediaList[mediaIndex+1];   
+            const mediaSrc = mediaBaseSrc+mediaFileName;
+            setMediaSrc(mediaSrc);
             mediaIndexRef.current = mediaIndex + 1;
+            valenceRef.current = rateDefault;
+            arousalRef.current = rateDefault;
         }
     }
-
-    const navigate = useNavigate();
-    const location = useLocation();
-    const subject = location.state;
-    const [sliderValueTop, setSliderValueTop] = useState(50);
-    const [sliderValueBottom, setSliderValueBottom] = useState(50);
 
     // TODO: dependenciesにvalence, arousalがあることでバー操作時に更新が止まらない（=カウントのリセットがおこる）
     useEffect(() => {
         const intervalId = setInterval(() => {
             forward();
-        }, rateSeconds * 1000);
+        }, ratingSecondByMedia * 1000);
         return () => {
             clearInterval(intervalId);
         };
     }, []);
 
     useEffect(() => {
-        // TODO: リクエスト時のエラーハンドリング（現状、listImagesが空になって実行時エラーが発生する）
-        api.get('/images')
-        .then(response => {
-            if(response.status === 200) {
-                listImages.current = response.data;
-            }
-        })
-        .catch(e => {
-            listImages.current = [
-                {'image_id': 1, 'google_drive_id': '1poxG2B3hkrQ0g6Y8mJAaUtVFLtGfsIc6'},
-                {'image_id': 2, 'google_drive_id': '1AkGM7sgDIeL_54n43XpeC8OmhJvhl9Ym'},
-                {'image_id': 3, 'google_drive_id': '1pmJq300SwE6AIUOmJwqZ5VsWrxKh0XgC'},
-            ];
-            const mediaIndex = mediaIndexRef.current;
-            const googleDriveID = listImages.current[mediaIndex].google_drive_id;
-            const mediaSrc = 'http://drive.google.com/uc?export=view&id='+googleDriveID;
-            setMediaSrc(mediaSrc);
-            console.log(e);
-        })
+        startedAt = date_to_time(new Date());
+        MediaList.sort((a, b) => 0.5 - Math.random());
+        const mediaIndex = mediaIndexRef.current;
+        const mediaFileName = MediaList[mediaIndex];
+        const mediaSrc = mediaBaseSrc+mediaFileName;
+        setMediaSrc(mediaSrc);
     }, []);
     
     return (

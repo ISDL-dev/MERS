@@ -83,13 +83,10 @@ components:
                     type: string
                   pre_started_at:
                     type: string
-                    format: date-time
                   started_at:
                     type: string
-                    format: date-time
                   ended_at:
                     type: string
-                    format: date-time
                   rating_second_by_media:
                     type: integer
                     format: uint64
@@ -135,10 +132,6 @@ components:
                     format: float
                   level_of_alertness:
                     type: string
-                  distribute_physiological_recordings:
-                    type: boolean
-                  publish_audio_visual_recordings:
-                    type: boolean
                   head_circumference:
                     type: number
                     format: float

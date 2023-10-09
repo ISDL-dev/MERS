@@ -11,6 +11,7 @@ class MyPostTrialsRequestSubject {
     setAge: (newAge: number) => void
     setGender: (newGender: string) => void
     setHandedness: (newHandedness: string) => void
+    setVision: (newVision: string) => void
     setVisionAid: (newVisionAid: string) => void
     setEducation: (newEducation: string) => void
     setAlcoholConsumption: (newAlcoholConsumption: string) => void
@@ -22,8 +23,6 @@ class MyPostTrialsRequestSubject {
     setHoursOfSleepLastNight: (newHoursOfSleepLastNight: number) => void
     setNormalHoursOfSleep: (newNormalHoursOfSleep: number) => void
     setLevelOfAlertness: (newLevelOfAlertness: string) => void
-    setDistributePhysiologicalRecordings: (newDistributePhysiologicalRecordings: boolean) => void
-    setPublishAudioVisualRecordings: (newPublishAudioVisualRecordings: boolean) => void
     setHeadCircumference: (newHeadCircumference: number) => void
     setDistanceNasionInion: (newDistanceNasionInion: number) => void
     setDistanceLeftRightJawHinge: (newDistanceLeftRightJawHinge: number) => void
@@ -32,6 +31,7 @@ class MyPostTrialsRequestSubject {
         setAge: (newAge: number) => void,
         setGender: (newGender: string) => void,
         setHandedness: (newHandedness: string) => void,
+        setVision: (newVision: string) => void,
         setVisionAid: (newVisionAid: string) => void,
         setEducation: (newEducation: string) => void,
         setAlcoholConsumption: (newAlcoholConsumption: string) => void,
@@ -43,8 +43,6 @@ class MyPostTrialsRequestSubject {
         setHoursOfSleepLastNight: (newHoursOfSleepLastNight: number) => void,
         setNormalHoursOfSleep: (newNormalHoursOfSleep: number) => void,
         setLevelOfAlertness: (newLevelOfAlertness: string) => void,
-        setDistributePhysiologicalRecordings: (newDistributePhysiologicalRecordings: boolean) => void,
-        setPublishAudioVisualRecordings: (newPublishAudioVisualRecordings: boolean) => void,
         setHeadCircumference: (newHeadCircumference: number) => void,
         setDistanceNasionInion: (newDistanceNasionInion: number) => void,
         setDistanceLeftRightJawHinge: (newDistanceLeftRightJawHinge: number) => void
@@ -52,6 +50,7 @@ class MyPostTrialsRequestSubject {
         this.setAge = setAge
         this.setGender = setGender
         this.setHandedness = setHandedness
+        this.setVision = setVision
         this.setVisionAid = setVisionAid
         this.setEducation = setEducation
         this.setAlcoholConsumption = setAlcoholConsumption
@@ -63,8 +62,6 @@ class MyPostTrialsRequestSubject {
         this.setHoursOfSleepLastNight = setHoursOfSleepLastNight
         this.setNormalHoursOfSleep = setNormalHoursOfSleep
         this.setLevelOfAlertness = setLevelOfAlertness
-        this.setDistributePhysiologicalRecordings = setDistributePhysiologicalRecordings
-        this.setPublishAudioVisualRecordings = setPublishAudioVisualRecordings
         this.setHeadCircumference = setHeadCircumference
         this.setDistanceNasionInion = setDistanceNasionInion
         this.setDistanceLeftRightJawHinge = setDistanceLeftRightJawHinge
@@ -75,6 +72,7 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
     const onChangeAge = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeGender = (nextValue: string):void => props.setGender(nextValue)
     const onChangeHandedness = (nextValue: string):void => props.setHandedness(nextValue)
+    const onChangeVision = (nextValue: string):void => props.setVision(nextValue)
     const onChangeVisionAid = (nextValue: string):void => props.setVisionAid(nextValue)
     const onChangeEducation = (nextValue: string):void => props.setEducation(nextValue)
     const onChangeAlcoholConsumption = (nextValue: string):void => props.setAlcoholConsumption(nextValue)
@@ -86,8 +84,6 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
     const onChangeHoursOfSleepLastNight = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeNormalHoursOfSleep = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeLevelOfAlertness = (nextValue: string):void => props.setLevelOfAlertness(nextValue)
-    const onChangeDistributePhysiologicalRecordings = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
-    const onChangePublishAudioVisualRecordings = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeHeadCircumference = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
     const onChangeDistanceLeftRightJawHinge = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
 
@@ -148,6 +144,23 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
                 </Radio>
                 <Radio colorScheme='green' value='right_handed'>
                 右手
+                </Radio>
+            </Stack>
+        </RadioGroup>
+        </div>
+
+        <div className='item'>
+        <Text fontSize={"medium"}>あなたの視力を教えてください。</Text>
+        <RadioGroup defaultValue='normal' onChange={onChangeVision}>
+            <Stack spacing={5} direction='row'>
+                <Radio colorScheme='green' value='good'>
+                目が良い
+                </Radio>
+                <Radio colorScheme='green' value='normal'>
+                普通
+                </Radio>
+                <Radio colorScheme='green' value='bad'>
+                目が悪い
                 </Radio>
             </Stack>
         </RadioGroup>
