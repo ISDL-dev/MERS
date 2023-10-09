@@ -43,10 +43,6 @@ type PostTrialsRequestSubjectMetadata struct {
 
 	LevelOfAlertness string `json:"level_of_alertness,omitempty"`
 
-	DistributePhysiologicalRecordings bool `json:"distribute_physiological_recordings,omitempty"`
-
-	PublishAudioVisualRecordings bool `json:"publish_audio_visual_recordings,omitempty"`
-
 	HeadCircumference float32 `json:"head_circumference,omitempty"`
 
 	DistanceNasionInion float32 `json:"distance_nasion_inion,omitempty"`

@@ -46,9 +46,8 @@ func CreateSubject(trialId uint, subject schema.PostTrialsRequestSubjectMetadata
 			trial_id,age,gender,handedness,vision,vision_aid,education,
 			alcohol_consumption,coffee_consumption,tea_consumption,tobacco_consumption,drug_consumption,
 			syndroms,hours_of_sleep_last_night,normal_hours_of_sleep,level_of_alertness,
-			distribute_physiological_recordings,publish_audio_visual_recordings,
 			head_circumference,distance_nasion_inion,distance_left_right_jaw_hinge
-		)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+		)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
 	if err != nil {
 		return fmt.Errorf("failed to prepare for a query to insert subject: %v", err)
 	}
@@ -56,7 +55,6 @@ func CreateSubject(trialId uint, subject schema.PostTrialsRequestSubjectMetadata
 		trialId, subject.Age, subject.Gender, subject.Handedness, subject.Vision, subject.VisionAid, subject.Education,
 		subject.AlcoholConsumption, subject.CoffeeConsumption, subject.TeaConsumption, subject.TobaccoConsumption, subject.DrugConsumption,
 		subject.Syndroms, subject.HoursOfSleepLastNight, subject.NormalHoursOfSleep, subject.LevelOfAlertness,
-		subject.DistributePhysiologicalRecordings, subject.PublishAudioVisualRecordings,
 		subject.HeadCircumference, subject.DistanceNasionInion, subject.DistanceLeftRightJawHinge)
 	if err != nil {
 		return fmt.Errorf("failed to execute a query to insert subject: %v", err)
