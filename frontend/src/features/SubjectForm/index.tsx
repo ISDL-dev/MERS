@@ -81,11 +81,12 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
     const onChangeTobaccoConsumption = (nextValue: string):void => props.setTobaccoConsumption(nextValue)
     const onChangeDrugConsumption = (event: React.ChangeEvent<HTMLInputElement>):void => props.setDrugConsumption(event.target.value)
     const onChangeSyndroms = (event: React.ChangeEvent<HTMLInputElement>):void => props.setSyndroms(event.target.value)
-    const onChangeHoursOfSleepLastNight = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
-    const onChangeNormalHoursOfSleep = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
+    const onChangeHoursOfSleepLastNight = (valueAsString: string, valueAsNumber: number):void => props.setHoursOfSleepLastNight(valueAsNumber)
+    const onChangeNormalHoursOfSleep = (valueAsString: string, valueAsNumber: number):void => props.setNormalHoursOfSleep(valueAsNumber)
     const onChangeLevelOfAlertness = (nextValue: string):void => props.setLevelOfAlertness(nextValue)
-    const onChangeHeadCircumference = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
-    const onChangeDistanceLeftRightJawHinge = (valueAsString: string, valueAsNumber: number):void => props.setAge(valueAsNumber)
+    const onChangeHeadCircumference = (valueAsString: string, valueAsNumber: number):void => props.setHeadCircumference(valueAsNumber)
+    const onChangeDistanceNasionInion = (valueAsString: string, valueAsNumber: number):void => props.setDistanceNasionInion(valueAsNumber)
+    const onChangeDistanceLeftRightJawHinge = (valueAsString: string, valueAsNumber: number):void => props.setDistanceLeftRightJawHinge(valueAsNumber)
 
     return (
         <div className='form'>
@@ -314,7 +315,7 @@ function SubjectForm(props: MyPostTrialsRequestSubject) {
 
         <div className='item'>
         <Text fontSize={"medium"}>横から測った頭部の長さを入力してください。</Text>
-        <NumberInput defaultValue={15} min={10} max={30}>
+        <NumberInput defaultValue={15} min={10} max={30} onChange={onChangeDistanceNasionInion}>
         <NumberInputField />
         <NumberInputStepper>
             <NumberIncrementStepper />

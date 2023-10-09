@@ -26,7 +26,7 @@ function QuestionnarePage() {
     const [normalHoursOfSleep, setNormalHoursOfSleep] = useState(7)
     const [levelOfAlertness, setLevelOfAlertness] = useState("never")
     const [headCircumference, setHeadCircumference] = useState(15)
-    const [distanceNasionInion, setNasionInion] = useState(15)
+    const [distanceNasionInion, setDistanceNasionInion] = useState(15)
     const [distanceLeftRightJawHinge, setDistanceLeftRightJawHinge] = useState(15)
     
     function onClickAnswer() {
@@ -74,7 +74,7 @@ function QuestionnarePage() {
                 setNormalHoursOfSleep={setNormalHoursOfSleep}
                 setLevelOfAlertness={setLevelOfAlertness}
                 setHeadCircumference={setHeadCircumference}
-                setDistanceNasionInion={setNasionInion}
+                setDistanceNasionInion={setDistanceNasionInion}
                 setDistanceLeftRightJawHinge={setDistanceLeftRightJawHinge}
             />
             <Button 
