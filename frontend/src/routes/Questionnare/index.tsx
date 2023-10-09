@@ -22,6 +22,7 @@ function QuestionnarePage() {
     const [tobaccoConsumption, setTobaccoConsumption] = useState("")
     const [drugConsumption, setDrugConsumption] = useState("")
     const [syndroms, setSyndroms] = useState("")
+<<<<<<< Updated upstream
     const [hoursOfSleepLastNight, setHoursOfSleepLastNight] = useState(0)
     const [normalHoursOfSleep, setNormalHoursOfSleep] = useState(0)
     const [levelOfAlertness, setLevelOfAlertness] = useState("")
@@ -30,6 +31,14 @@ function QuestionnarePage() {
     const [headCircumference, setHeadCircumference] = useState(0)
     const [distanceNasionInion, setNasionInion] = useState(0)
     const [distanceLeftRightJawHinge, setDistanceLeftRightJawHinge] = useState(0)
+=======
+    const [hoursOfSleepLastNight, setHoursOfSleepLastNight] = useState(7)
+    const [normalHoursOfSleep, setNormalHoursOfSleep] = useState(7)
+    const [levelOfAlertness, setLevelOfAlertness] = useState("never")
+    const [headCircumference, setHeadCircumference] = useState(15)
+    const [distanceNasionInion, setDistanceNasionInion] = useState(15)
+    const [distanceLeftRightJawHinge, setDistanceLeftRightJawHinge] = useState(15)
+>>>>>>> Stashed changes
     
     function onClickAnswer() {
         var subject: PostTrialsRequestSubject = {
@@ -78,7 +87,7 @@ function QuestionnarePage() {
                 setDistributePhysiologicalRecordings={setDistributePhysiologicalRecordings}
                 setPublishAudioVisualRecordings={setPublishAudioVisualRecordings}
                 setHeadCircumference={setHeadCircumference}
-                setDistanceNasionInion={setNasionInion}
+                setDistanceNasionInion={setDistanceNasionInion}
                 setDistanceLeftRightJawHinge={setDistanceLeftRightJawHinge}
             />
             <Button 
