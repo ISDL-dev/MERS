@@ -5,13 +5,13 @@
 title:"MERSデータベース"
 ---
 erDiagram
-    trails ||--|| subjects:"1:1"
-    trails ||--|| signals:"1:1"
+    trials ||--|| subjects:"1:1"
+    trials ||--|| signals:"1:1"
     rating ||--|| images:"1:1"
     rating ||--|| movies:"1:1"
-    trails ||--o{ rating:"1:N"
+    trials ||--o{ rating:"1:N"
 
-    trails {
+    trials {
         INT id PK
         VARCHAR location
         VARCHAR platform
