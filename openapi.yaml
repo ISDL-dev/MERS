@@ -107,8 +107,7 @@ components:
                   handedness:
                     type: string
                   vision:
-                    type: number
-                    format: float
+                    type: string
                   vision_aid:
                     type: string
                   education:
