@@ -39,7 +39,7 @@ function RatingPage(props: RatingPageProps) {
     const preStartedAt = location.state.pre_started_at;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
-    const mediaBaseSrc = "./images/oasis/";
+    const mediaBaseSrc = "./static/images/OASIS/";
     let startedAt = "";
 
     const date_to_time = (date: Date) => {
@@ -103,7 +103,7 @@ function RatingPage(props: RatingPageProps) {
             setMediaSrc(mediaSrc);
 
             var params = new FormData();
-            params.append("disp_image", mediaFileName);
+            params.append("disp_image", "Belgium.jpg");
             
             axios
             .post("http://192.168.10.127:3100/mers-image", params)
@@ -136,10 +136,12 @@ function RatingPage(props: RatingPageProps) {
         const mediaIndex = mediaIndexRef.current;
         const mediaFileName = MediaList[mediaIndex];
         const mediaSrc = mediaBaseSrc+mediaFileName;
+        console.log(mediaSrc);
         setMediaSrc(mediaSrc);
+        console.log(mediaSrc);
 
         var params = new FormData();
-        params.append("disp_image", mediaFileName);
+        params.append("disp_image", "Alpine.jpg");
          
         axios
         .post("http://192.168.10.127:3100/mers-image", params)
