@@ -290,18 +290,6 @@ export interface PostTrialsRequestSubjectMetadata {
     'level_of_alertness'?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof PostTrialsRequestSubjectMetadata
-     */
-    'distribute_physiological_recordings'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PostTrialsRequestSubjectMetadata
-     */
-    'publish_audio_visual_recordings'?: boolean;
-    /**
-     * 
      * @type {number}
      * @memberof PostTrialsRequestSubjectMetadata
      */

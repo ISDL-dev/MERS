@@ -9,21 +9,17 @@
 
 package schema
 
-import (
-	"time"
-)
-
 type PostTrialsRequestTrialMetadata struct {
 
 	Location string `json:"location,omitempty"`
 
 	Platform string `json:"platform,omitempty"`
 
-	PreStartedAt time.Time `json:"pre_started_at,omitempty"`
+	PreStartedAt string `json:"pre_started_at,omitempty"`
 
-	StartedAt time.Time `json:"started_at,omitempty"`
+	StartedAt string `json:"started_at,omitempty"`
 
-	EndedAt time.Time `json:"ended_at,omitempty"`
+	EndedAt string `json:"ended_at,omitempty"`
 
 	RatingSecondByMedia int32 `json:"rating_second_by_media,omitempty"`
 

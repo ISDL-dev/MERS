@@ -27,8 +27,6 @@ CREATE TABLE IF NOT EXISTS subjects(
     hours_of_sleep_last_night FLOAT,
     normal_hours_of_sleep FLOAT,
     level_of_alertness VARCHAR(64),
-    distribute_physiological_recordings BOOLEAN,
-    publish_audio_visual_recordings BOOLEAN,
     head_circumference FLOAT,
     distance_nasion_inion FLOAT,
     distance_left_right_jaw_hinge FLOAT,
@@ -75,3 +73,44 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Beach1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bricks1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cardboard3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cat5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cottonswabs3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dirt1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog18.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog26.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dummy1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Explosion5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Injury4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake12.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake14.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake15.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake8.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake9.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Miserablepose3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rainbow2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Siblings1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Sidewalk6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'War6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Yarn1.jpg');
