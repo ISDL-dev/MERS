@@ -74,125 +74,123 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO images (dataset, filename)
-VALUES 
-('OASIS', 'Acorns1.jpg'),
-('OASIS', 'Astronaut1.jpg'),
-('OASIS', 'Bark3.jpg'),
-('OASIS', 'Beach1.jpg'),
-('OASIS', 'Beach7.jpg'),
-('OASIS', 'Bird1.jpg'),
-('OASIS', 'Bloodyknife1.jpg'),
-('OASIS', 'Boredpose2.jpg'),
-('OASIS', 'Boredpose3.jpg'),
-('OASIS', 'Boxing2.jpg'),
-('OASIS', 'Carcash1.jpg'),
-('OASIS', 'Cardboard3.jpg'),
-('OASIS', 'Cat5.jpg'),
-('OASIS', 'Clean1.jpg'),
-('OASIS', 'Couple4.jpg'),
-('OASIS', 'Cups3.jpg'),
-('OASIS', 'Destruction10.jpg'),
-('OASIS', 'Destruction2.jpg'),
-('OASIS', 'Destruction3.jpg'),
-('OASIS', 'Dirt5.jpg'),
-('OASIS', 'Dog12.jpg'),
-('OASIS', 'Dog18.jpg'),
-('OASIS', 'Dog19.jpg'),
-('OASIS', 'Dog2.jpg'),
-('OASIS', 'Dog5.jpg'),
-('OASIS', 'Dog6.jpg'),
-('OASIS', 'Dogattack1.jpg'),
-('OASIS', 'Dogattack3.jpg'),
-('OASIS', 'Eating3.jpg'),
-('OASIS', 'Elephant1.jpg'),
-('OASIS', 'Explosion2.jpg'),
-('OASIS', 'Explosion4.jpg'),
-('OASIS', 'Father1.jpg'),
-('OASIS', 'Feces1.jpg'),
-('OASIS', 'Feces2.jpg'),
-('OASIS', 'Ferret1.jpg'),
-('OASIS', 'Fire7.jpg'),
-('OASIS', 'Fire9.jpg'),
-('OASIS', 'Fireworks1.jpg'),
-('OASIS', 'Fireworks3.jpg'),
-('OASIS', 'Fireworks7.jpg'),
-('OASIS', 'Flowers6.jpg'),
-('OASIS', 'Food3.jpg'),
-('OASIS', 'Frustratedpose1.jpg'),
-('OASIS', 'Frustratedpose3.jpg'),
-('OASIS', 'Frustratedpose7.jpg'),
-('OASIS', 'Galaxy8.jpg'),
-('OASIS', 'Garbagedump1.jpg'),
-('OASIS', 'Garbagedump2.jpg'),
-('OASIS', 'Garbagedump3.jpg'),
-('OASIS', 'Garbagedump4.jpg'),
-('OASIS', 'Garbagedump5.jpg'),
-('OASIS', 'Garbagedump6.jpg'),
-('OASIS', 'Garbagedump7.jpg'),
-('OASIS', 'Garbagedump8.jpg'),
-('OASIS', 'Grass1.jpg'),
-('OASIS', 'Grass3.jpg'),
-('OASIS', 'Grass4.jpg'),
-('OASIS', 'Grass5.jpg'),
-('OASIS', 'Grass7.jpg'),
-('OASIS', 'Hallway1.jpg'),
-('OASIS', 'Hangover1.jpg'),
-('OASIS', 'Happyface1.jpg'),
-('OASIS', 'Intensity1.jpg'),
-('OASIS', 'Jail2.jpg'),
-('OASIS', 'Jail4.jpg'),
-('OASIS', 'KKKrally2.jpg'),
-('OASIS', 'Lake12.jpg'),
-('OASIS', 'Lake14.jpg'),
-('OASIS', 'Lake15.jpg'),
-('OASIS', 'Lake16.jpg'),
-('OASIS', 'Miserablepose2.jpg'),
-('OASIS', 'Mother6.jpg'),
-('OASIS', 'Mother7.jpg'),
-('OASIS', 'Neutralface2.jpg'),
-('OASIS', 'Opossum1.jpg'),
-('OASIS', 'Ornament1.jpg'),
-('OASIS', 'Paper3.jpg'),
-('OASIS', 'Parachuting3.jpg'),
-('OASIS', 'Penguins2.jpg'),
-('OASIS', 'Pinecone1.jpg'),
-('OASIS', 'Pinecone3.jpg'),
-('OASIS', 'Present2.jpg'),
-('OASIS', 'Prison2.jpg'),
-('OASIS', 'Pumpkin1.jpg'),
-('OASIS', 'Rafting5.jpg'),
-('OASIS', 'Rainbow2.jpg'),
-('OASIS', 'Rocks1.jpg'),
-('OASIS', 'Rocks4.jpg'),
-('OASIS', 'Roofing4.jpg'),
-('OASIS', 'Scaredface3.jpg'),
-('OASIS', 'Scaryface1.jpg'),
-('OASIS', 'School6.jpg'),
-('OASIS', 'Shark4.jpg'),
-('OASIS', 'Shooting1.jpg'),
-('OASIS', 'Shot1.jpg'),
-('OASIS', 'Shot2.jpg'),
-('OASIS', 'Shot3.jpg'),
-('OASIS', 'Sidewalk6.jpg'),
-('OASIS', 'Skydiving3.jpg'),
-('OASIS', 'Skydiving5.jpg'),
-('OASIS', 'Snake1.jpg'),
-('OASIS', 'Snake2.jpg'),
-('OASIS', 'Snake6.jpg'),
-('OASIS', 'Snow1.jpg'),
-('OASIS', 'Snow2.jpg'),
-('OASIS', 'Statue1.jpg'),
-('OASIS', 'Sunset4.jpg'),
-('OASIS', 'Surgery1.jpg'),
-('OASIS', 'Thunderstorm3.jpg'),
-('OASIS', 'Toilet4.jpg'),
-('OASIS', 'Tornado1.jpg'),
-('OASIS', 'War1.jpg'),
-('OASIS', 'War6.jpg'),
-('OASIS', 'Wedding12.jpg'),
-('OASIS', 'Wedding4.jpg'),
-('OASIS', 'Windmill1.jpg'),
-('OASIS', 'Wolf2.jpg'),
-('OASIS', 'Yarn1.jpg'),
-('OASIS', 'Yarn3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Acorns1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Astronaut1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bark3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Beach1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Beach7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bird1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bloodyknife1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Boredpose2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Boredpose3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Boxing2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Carcash1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cardboard3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cat5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Clean1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Couple4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cups3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction10.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dirt5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog12.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog18.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog19.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dogattack1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dogattack3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Eating3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Elephant1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Explosion2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Explosion4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Father1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Feces1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Feces2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Ferret1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fire7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fire9.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Flowers6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Food3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Frustratedpose1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Frustratedpose3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Frustratedpose7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Galaxy8.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump8.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Hallway1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Hangover1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Happyface1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Intensity1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Jail2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Jail4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'KKKrally2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake12.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake14.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake15.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake16.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Miserablepose2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Mother6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Mother7.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Neutralface2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Opossum1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Ornament1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Paper3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Parachuting3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Penguins2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Pinecone1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Pinecone3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Present2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Prison2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Pumpkin1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rafting5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rainbow2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rocks1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rocks4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Roofing4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Scaredface3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Scaryface1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'School6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Shark4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Shooting1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Shot1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Shot2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Shot3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Sidewalk6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Skydiving3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Skydiving5.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Snake1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Snake2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Snake6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Snow1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Snow2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Statue1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Sunset4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Surgery1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Thunderstorm3.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Toilet4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Tornado1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'War1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'War6.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wedding12.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wedding4.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Windmill1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wolf2.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Yarn1.jpg');
+INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Yarn3.jpg');
