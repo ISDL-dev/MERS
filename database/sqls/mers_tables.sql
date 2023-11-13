@@ -74,43 +74,125 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Beach1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bricks1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cardboard3.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cat5.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Cottonswabs3.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Deadbodies3.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction3.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Destruction4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dirt1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog18.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog26.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dog6.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Dummy1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Explosion5.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Fireworks2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Garbagedump6.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Grass4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Injury4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake12.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake14.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake15.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake8.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Lake9.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Miserablepose3.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Rainbow2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Siblings1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Sidewalk6.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall1.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall2.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall4.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Wall5.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'War6.jpg');
-INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Yarn1.jpg');
+INSERT INTO images (dataset, filename)
+VALUES 
+('OASIS', 'Acorns 1.jpg'),
+('OASIS', 'Astronaut 1.jpg'),
+('OASIS', 'Bark 3.jpg'),
+('OASIS', 'Beach 1.jpg'),
+('OASIS', 'Beach 7.jpg'),
+('OASIS', 'Bird 1.jpg'),
+('OASIS', 'Bloody knife 1.jpg'),
+('OASIS', 'Bored pose 2.jpg'),
+('OASIS', 'Bored pose 3.jpg'),
+('OASIS', 'Boxing 2.jpg'),
+('OASIS', 'Car crash 1.jpg'),
+('OASIS', 'Cardboard 3.jpg'),
+('OASIS', 'Cat 5.jpg'),
+('OASIS', 'Clean 1.jpg'),
+('OASIS', 'Couple 4.jpg'),
+('OASIS', 'Cups 3.jpg'),
+('OASIS', 'Destruction 10.jpg'),
+('OASIS', 'Destruction 2.jpg'),
+('OASIS', 'Destruction 3.jpg'),
+('OASIS', 'Dirt 5.jpg'),
+('OASIS', 'Dog 12.jpg'),
+('OASIS', 'Dog 18.jpg'),
+('OASIS', 'Dog 19.jpg'),
+('OASIS', 'Dog 2.jpg'),
+('OASIS', 'Dog 5.jpg'),
+('OASIS', 'Dog 6.jpg'),
+('OASIS', 'Dog attack 1.jpg'),
+('OASIS', 'Dog attack 3.jpg'),
+('OASIS', 'Eating 3.jpg'),
+('OASIS', 'Elephant 1.jpg'),
+('OASIS', 'Explosion 2.jpg'),
+('OASIS', 'Explosion 4.jpg'),
+('OASIS', 'Father 1.jpg'),
+('OASIS', 'Feces 1.jpg'),
+('OASIS', 'Feces 2.jpg'),
+('OASIS', 'Ferret 1.jpg'),
+('OASIS', 'Fire 7.jpg'),
+('OASIS', 'Fire 9.jpg'),
+('OASIS', 'Fireworks 1.jpg'),
+('OASIS', 'Fireworks 3.jpg'),
+('OASIS', 'Fireworks 7.jpg'),
+('OASIS', 'Flowers 6.jpg'),
+('OASIS', 'Food 3.jpg'),
+('OASIS', 'Frustrated pose 1.jpg'),
+('OASIS', 'Frustrated pose 3.jpg'),
+('OASIS', 'Frustrated pose 7.jpg'),
+('OASIS', 'Galaxy 8.jpg'),
+('OASIS', 'Garbage dump 1.jpg'),
+('OASIS', 'Garbage dump 2.jpg'),
+('OASIS', 'Garbage dump 3.jpg'),
+('OASIS', 'Garbage dump 4.jpg'),
+('OASIS', 'Garbage dump 5.jpg'),
+('OASIS', 'Garbage dump 6.jpg'),
+('OASIS', 'Garbage dump 7.jpg'),
+('OASIS', 'Garbage dump 8.jpg'),
+('OASIS', 'Grass 1.jpg'),
+('OASIS', 'Grass 3.jpg'),
+('OASIS', 'Grass 4.jpg'),
+('OASIS', 'Grass 5.jpg'),
+('OASIS', 'Grass 7.jpg'),
+('OASIS', 'Hallway 1.jpg'),
+('OASIS', 'Hangover 1.jpg'),
+('OASIS', 'Happy face 1.jpg'),
+('OASIS', 'Intensity 1.jpg'),
+('OASIS', 'Jail 2.jpg'),
+('OASIS', 'Jail 4.jpg'),
+('OASIS', 'KKK rally 2.jpg'),
+('OASIS', 'Lake 12.jpg'),
+('OASIS', 'Lake 14.jpg'),
+('OASIS', 'Lake 15.jpg'),
+('OASIS', 'Lake 16.jpg'),
+('OASIS', 'Miserable pose 2.jpg'),
+('OASIS', 'Mother 6.jpg'),
+('OASIS', 'Mother 7.jpg'),
+('OASIS', 'Neutral face 2.jpg'),
+('OASIS', 'Opossum 1.jpg'),
+('OASIS', 'Ornament 1.jpg'),
+('OASIS', 'Paper 3.jpg'),
+('OASIS', 'Parachuting 3.jpg'),
+('OASIS', 'Penguins 2.jpg'),
+('OASIS', 'Pinecone 1.jpg'),
+('OASIS', 'Pinecone 3.jpg'),
+('OASIS', 'Present 2.jpg'),
+('OASIS', 'Prison 2.jpg'),
+('OASIS', 'Pumpkin 1.jpg'),
+('OASIS', 'Rafting 5.jpg'),
+('OASIS', 'Rainbow 2.jpg'),
+('OASIS', 'Rocks 1.jpg'),
+('OASIS', 'Rocks 4.jpg'),
+('OASIS', 'Roofing 4.jpg'),
+('OASIS', 'Scared face 3.jpg'),
+('OASIS', 'Scary face 1.jpg'),
+('OASIS', 'School 6.jpg'),
+('OASIS', 'Shark 4.jpg'),
+('OASIS', 'Shooting 1.jpg'),
+('OASIS', 'Shot 1.jpg'),
+('OASIS', 'Shot 2.jpg'),
+('OASIS', 'Shot 3.jpg'),
+('OASIS', 'Sidewalk 6.jpg'),
+('OASIS', 'Skydiving 3.jpg'),
+('OASIS', 'Skydiving 5.jpg'),
+('OASIS', 'Snake 1.jpg'),
+('OASIS', 'Snake 2.jpg'),
+('OASIS', 'Snake 6.jpg'),
+('OASIS', 'Snow 1.jpg'),
+('OASIS', 'Snow 2.jpg'),
+('OASIS', 'Statue 1.jpg'),
+('OASIS', 'Sunset 4.jpg'),
+('OASIS', 'Surgery 1.jpg'),
+('OASIS', 'Thunderstorm 3.jpg'),
+('OASIS', 'Toilet 4.jpg'),
+('OASIS', 'Tornado 1.jpg'),
+('OASIS', 'War 1.jpg'),
+('OASIS', 'War 6.jpg'),
+('OASIS', 'Wedding 12.jpg'),
+('OASIS', 'Wedding 4.jpg'),
+('OASIS', 'Windmill 1.jpg'),
+('OASIS', 'Wolf 2.jpg'),
+('OASIS', 'Yarn 1.jpg'),
+('OASIS', 'Yarn 3.jpg');
