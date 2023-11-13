@@ -22,10 +22,10 @@ interface RatingPageProps {
 const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
-const ratingSecondByMedia = 5;
+const ratingSecondByMedia = 15;
 const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
-const mediaNum = 3;
+const mediaNum = 120;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
@@ -105,14 +105,14 @@ function RatingPage(props: RatingPageProps) {
             var params = new FormData();
             params.append("disp_image", "Belgium.jpg");
             
-            axios
-            .post("http://192.168.10.127:3100/mers-image", params)
-            .then((response) => {
-                console.log(response.data)
-            })
-            .catch((error) => {
-                alert("データを送信できませんでした．");
-            });
+            // axios
+            // .post("http://192.168.10.127:3100/mers-image", params)
+            // .then((response) => {
+            //     console.log(response.data)
+            // })
+            // .catch((error) => {
+            //     alert("データを送信できませんでした．");
+            // });
 
             mediaIndexRef.current = mediaIndex + 1;
             valenceRef.current = rateDefault;
@@ -143,14 +143,14 @@ function RatingPage(props: RatingPageProps) {
         var params = new FormData();
         params.append("disp_image", "Alpine.jpg");
          
-        axios
-        .post("http://192.168.10.127:3100/mers-image", params)
-        .then((response) => {
-            console.log(response.data)
-        })
-        .catch((error) => {
-            alert("データを送信できませんでした．");
-        });
+        // axios
+        // .post("http://192.168.10.127:3100/mers-image", params)
+        // .then((response) => {
+        //     console.log(response.data)
+        // })
+        // .catch((error) => {
+        //     alert("データを送信できませんでした．");
+        // });
     }, []);
     
     return (

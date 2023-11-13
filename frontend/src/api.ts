@@ -5,8 +5,8 @@ const api = axios.create({
   baseURL: 'http://localhost:3000'
 });
 
-const trialsApi = new TrialsApi(undefined, 'http://localhost:3000', api)
-const imagesApi = new ImagesApi(undefined, 'http://localhost:3000', api)
+const trialsApi = new TrialsApi(undefined, 'http://192.168.10.127:3000', api)
+const imagesApi = new ImagesApi(undefined, 'http://192.168.10.127:3000', api)
 
 export {
   trialsApi,
