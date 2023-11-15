@@ -22,7 +22,6 @@ const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
 const ratingSecondByMedia = 5;
-const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 3;
 
@@ -32,6 +31,7 @@ function RatingPage(props: RatingPageProps) {
     const mediaIndexRef = useRef<number>(0);
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
+    const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
     const navigate = useNavigate();
     const location = useLocation();
     const subjectMetadata = location.state.subject;
