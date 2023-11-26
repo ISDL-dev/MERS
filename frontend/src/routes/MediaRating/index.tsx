@@ -22,7 +22,6 @@ const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
 const ratingSecondByMedia = 5;
-const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 3;
 
@@ -32,6 +31,7 @@ function RatingPage(props: RatingPageProps) {
     const mediaIndexRef = useRef<number>(0);
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
+    const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
     const navigate = useNavigate();
     const location = useLocation();
     const subjectMetadata = location.state.subject;
@@ -51,7 +51,7 @@ function RatingPage(props: RatingPageProps) {
         return time;
     }
 
-    const forward = () => {
+    const forward = async () => {
         if (MediaList !== undefined) { 
             const mediaIndex = mediaIndexRef.current;
             const evaliationMediaFileName = MediaList[mediaIndex];           
@@ -90,9 +90,17 @@ function RatingPage(props: RatingPageProps) {
                     subject_metadata: subjectMetadata,
                     rating_set: ratingSet
                 }
-                console.log(requestBody)
-                trialsApi.postTrials(requestBody);
-                navigate('/completion');
+                console.log(requestBody);
+                try {
+                    const response = await trialsApi.postTrials(requestBody);
+                    if (response.status !== 200) {
+                        console.log(response);
+                    }
+                    navigate('/completion'); 
+                }
+                catch (error) {
+                    console.log(error);
+                }
                 return;
             }
             setSliderValueTop(50);
