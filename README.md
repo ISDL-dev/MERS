@@ -2,13 +2,9 @@
 本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
 
 # 使用技術
-### バックエンド：<img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic">
-
-### フロントエンド：<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
-
-### データベース：<img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
-
-### コンテナ：<img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
+backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
 # システム構成図
 システム構成を以下の図に示す。
@@ -101,7 +97,9 @@ erDiagram
 ```
 
 # 環境構築
-## カスタムしたopenapi-generatorを生成するための準備
+## コード生成
+1.コード生成のツールをインストールしていない場合
+
 カスタムしたopenapi-generatorとなるjarファイルを生成するため、以下の方法でmavenをインストールする。
 - MacOS：`brew install maven`  
 - その他のOS：https://maven.apache.org/install.html
@@ -109,30 +107,47 @@ erDiagram
 また、生成したjarファイルを実行してスキーマを生成するため、Javaの実行環境を用意する。  
 - Java Download: https://www.java.com/ja/download/
 
-## カスタムしたopenapi-generatorによるスキーマの生成
+
+2.コード生成のツールをインストールが完了している場合
+
 以下のコードを実行することで、jarファイルを生成する。
-オプションは、テストコードのコンパイルやテストの実行をスキップするように指定している。  
-`make create-jar`
+テストコードのコンパイルやテストの実行をスキップするように指定している。  
+```bash
+make create-jar
+```
 
 以下のコードを実行することで、openapi-generatorによりスキーマを生成する。
 現状は、モデル、リクエスト、レスポンスの構造体のみを生成する。  
-`make generate`
+```bash
+make generate
+```
+
+## 依存関係のインストール
+frontendのディレクトリで以下のコマンドを実行する。
+```bash
+npm install --frozen-lockfile
+```
+
+backendのディレクトリで以下のコマンドを実行する。
+```bash
+npm install --frozen-lockfile
+```
 
 # 開発
-## Dockerコンテナの起動方法
-MERSディレクトリ直下で以下のコマンドを実行する。
+## アプリケーションの起動
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
 ```bash
 docker-compose up -d --build
 ```
 
-## Dockerコンテナの停止方法
-MERSディレクトリ直下で以下のコマンドを実行する。
+## アプリケーションの停止
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナを停止する。
 ```bash
 docker-compose stop
 ```
 
 ## Dockerコンテナの停止および削除方法
-MERSディレクトリ直下で以下のコマンドを実行する。
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナの削除と停止をする。
 ```bash
 docker-compose down
 ```
