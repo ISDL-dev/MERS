@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const imageFolder = './public/images/OASIS'; // 画像ファイルが保存されているフォルダへのパス
+const imageFolder = './public/static/images/OASIS'; // 画像ファイルが保存されているフォルダへのパス
 const outputFilePath = './src/imageFileNames.json'; // リストを保存する場所のパス
 
 function saveImageFileNames() {
