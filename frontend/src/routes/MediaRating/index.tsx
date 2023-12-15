@@ -51,7 +51,7 @@ function RatingPage(props: RatingPageProps) {
         return time;
     }
 
-    const forward = () => {
+    const forward = async () => {
         if (MediaList !== undefined) { 
             const mediaIndex = mediaIndexRef.current;
             const evaliationMediaFileName = MediaList[mediaIndex];           
@@ -90,9 +90,17 @@ function RatingPage(props: RatingPageProps) {
                     subject_metadata: subjectMetadata,
                     rating_set: ratingSet
                 }
-                console.log(requestBody)
-                trialsApi.postTrials(requestBody);
-                navigate('/completion');
+                console.log(requestBody);
+                try {
+                    const response = await trialsApi.postTrials(requestBody);
+                    if (response.status !== 200) {
+                        console.log(response);
+                    }
+                    navigate('/completion'); 
+                }
+                catch (error) {
+                    console.log(error);
+                }
                 return;
             }
             setSliderValueTop(50);

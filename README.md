@@ -1,16 +1,66 @@
 # MERS　-Media Emotion Rating System-
+backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
+
 本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
 
-# 使用技術
-### バックエンド：<img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic">
+# 使用にあたって
+## 環境構築
+### コード生成
+1.コード生成のツールをインストールしていない場合
 
-### フロントエンド：<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+カスタムしたopenapi-generatorとなるjarファイルを生成するため、以下の方法でmavenをインストールする。
+- MacOS：`brew install maven`  
+- その他のOS：https://maven.apache.org/install.html
 
-### データベース：<img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+また、生成したjarファイルを実行してスキーマを生成するため、Javaの実行環境を用意する。  
+- Java Download: https://www.java.com/ja/download/
 
-### コンテナ：<img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
-# システム構成
+2.コード生成のツールをインストールが完了している場合
+
+以下のコードを実行することで、jarファイルを生成する。
+テストコードのコンパイルやテストの実行をスキップするように指定している。  
+```bash
+make create-jar
+```
+
+以下のコードを実行することで、openapi-generatorによりスキーマを生成する。
+現状は、モデル、リクエスト、レスポンスの構造体のみを生成する。  
+```bash
+make generate
+```
+
+### 依存関係のインストール
+frontendのディレクトリで以下のコマンドを実行する。
+```bash
+npm install --frozen-lockfile
+```
+
+backendのディレクトリで以下のコマンドを実行する。
+```bash
+npm install --frozen-lockfile
+```
+
+## 操作方法
+### アプリケーションの起動
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
+```bash
+docker-compose up -d
+```
+
+起動後に`192.168.10.127:4000` にアクセスして実験を行う。  
+frontendアプリケーションのbuildに時間がかかるため、上記の起動コマンド実行後に2~3分ほど待つ。
+
+### アプリケーションの停止
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナの削除と停止をする。
+```bash
+docker-compose down
+```
+
+# 開発者向け
+## システム構成図
 システム構成を以下の図に示す。
 ```mermaid
 flowchart LR
@@ -21,39 +71,81 @@ flowchart LR
   APIserver-->|insert emotion record| DB[(Database)]
   APIserver-->|insert signal record| DB[(Database)]
 ```
-# 環境構築
-## カスタムしたopenapi-generatorを生成するための準備
-カスタムしたopenapi-generatorとなるjarファイルを生成するため、以下の方法でmavenをインストールする。
-- MacOS：`brew install maven`  
-- その他のOS：https://maven.apache.org/install.html
 
-また、生成したjarファイルを実行してスキーマを生成するため、Javaの実行環境を用意する。  
-- Java Download: https://www.java.com/ja/download/
+## データベース構成図
+データベース構成を以下の図に示す。
+```mermaid
+erDiagram
+    trials ||--|| subjects:"1:1"
+    trials ||--|| signals:"1:1"
+    rating ||--|| images:"1:1"
+    rating ||--|| movies:"1:1"
+    trials ||--o{ rating:"1:N"
 
-## カスタムしたopenapi-generatorによるスキーマの生成
-以下のコードを実行することで、jarファイルを生成する。
-オプションは、テストコードのコンパイルやテストの実行をスキップするように指定している。  
-`make create-jar`
+    trials {
+        INT id PK
+        VARCHAR location
+        VARCHAR platform
+        DATETIME pre_started_at
+        DATETIME started_at
+        DATETIME ended_at
+        INT rating_second_by_media
+        INT number_of_medias
+    }
 
-以下のコードを実行することで、openapi-generatorによりスキーマを生成する。
-現状は、モデル、リクエスト、レスポンスの構造体のみを生成する。  
-`make generate`
+    subjects {
+        INT trial_id PK
+        INT age
+        VARCHAR gender
+        VARCHAR handedness
+        VARCHAR vision
+        VARCHAR vision_aid
+        VARCHAR education
+        VARCHAR alcohol_consumption
+        VARCHAR coffee_consumption
+        VARCHAR tea_consumption
+        VARCHAR tobacco_consumption
+        VARCHAR drug_consumption
+        VARCHAR syndroms
+        FLOAT hours_of_sleep_last_night
+        FLOAT normal_hours_of_sleep
+        VARCHAR level_of_alertness
+        BOOLEAN distribute_physiological_recordings
+        FLOAT head_circumference
+        FLOAT distance_nasion_inion
+        FLOAT distance_left_right_jaw_hinge
+    }
 
-# 開発
-## Dockerコンテナの起動方法
-MERSディレクトリ直下で以下のコマンドを実行する。
-```bash
-docker-compose up -d --build
-```
+    signals {
+        INT trial_id PK
+        TEXT trend_range
+        VARCHAR channel_types
+        VARCHAR calibration
+        VARCHAR analyzed_signal_filename
+        VARCHAR raw_signal_filename
+    }
 
-## Dockerコンテナの停止方法
-MERSディレクトリ直下で以下のコマンドを実行する。
-```bash
-docker-compose stop
-```
+    images {
+        INT id PK
+        VARCHAR dataset
+        VARCHAR filename
+    }
 
-## Dockerコンテナの停止および削除方法
-MERSディレクトリ直下で以下のコマンドを実行する。
-```bash
-docker-compose down
+    movies {
+        INT id PK
+        VARCHAR dataset
+        VARCHAR filename
+    }
+
+    rating {
+        INT id PK
+        FLOAT valence
+        FLOAT arousal
+        FLOAT liking
+        FLOAT dominance
+        FLOAT famility
+        INT trial_id PK
+        INT image_id FK
+        INT movie_id FK
+    }
 ```
