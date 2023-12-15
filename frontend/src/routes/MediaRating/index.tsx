@@ -21,9 +21,10 @@ interface RatingPageProps {
 const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
-const ratingSecondByMedia = 5;
+const ratingSecondByMedia = 15;
+const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
-const mediaNum = 3;
+const mediaNum = 120;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
@@ -31,14 +32,13 @@ function RatingPage(props: RatingPageProps) {
     const mediaIndexRef = useRef<number>(0);
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
-    const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
     const navigate = useNavigate();
     const location = useLocation();
     const subjectMetadata = location.state.subject;
     const preStartedAt = location.state.pre_started_at;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
-    const mediaBaseSrc = "./images/oasis/";
+    const mediaBaseSrc = "./static/images/OASIS/";
     let startedAt = "";
 
     const date_to_time = (date: Date) => {
