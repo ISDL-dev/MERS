@@ -2,3 +2,4 @@
 .env
 /database/devdata
 /database/proddata
+.DS_Store
