@@ -12,7 +12,6 @@ import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
 import "./MediaRating.css"
 import { useLocation, useNavigate } from 'react-router-dom'
-import MediaList from "../../../src/imageFileNames.json"
 
 interface RatingPageProps {
     mediaType: string
@@ -22,28 +21,30 @@ const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
 const ratingSecondByMedia = 15;
-const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
+
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 120;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
     const [mediaSrc, setMediaSrc] = useState('');
-    const mediaIndexRef = useRef<number>(0);
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
     const navigate = useNavigate();
     const location = useLocation();
     const subjectMetadata = location.state.subject;
     const preStartedAt = location.state.pre_started_at;
+    const MediaList = location.state.MediaList;
+    const mediaIndex = location.state.mediaIndex;
     const [sliderValueTop, setSliderValueTop] = useState(50);
     const [sliderValueBottom, setSliderValueBottom] = useState(50);
     const mediaBaseSrc = "./static/images/OASIS/";
-    let startedAt = "";
+    let startedAt = location.state.startedAt;
+    const ratingResult = location.state.ratingResult;
 
     const date_to_time = (date: Date) => {
         const time = date.getFullYear().toString() + "-" + 
-        date.getMonth().toString().padStart( 2, '0') + "-" + 
+        (date.getMonth() + 1).toString().padStart( 2, '0') + "-" + 
         date.getDate().toString().padStart( 2, '0') + " " +
         date.getHours().toString().padStart( 2, '0') + ":" + 
         date.getMinutes().toString().padStart( 2, '0') + ":" +
@@ -53,7 +54,6 @@ function RatingPage(props: RatingPageProps) {
 
     const forward = async () => {
         if (MediaList !== undefined) { 
-            const mediaIndex = mediaIndexRef.current;
             const evaliationMediaFileName = MediaList[mediaIndex];           
             if (evaliationMediaFileName !== undefined) {
                 const valence = valenceRef.current;
@@ -91,6 +91,9 @@ function RatingPage(props: RatingPageProps) {
                     rating_set: ratingSet
                 }
                 console.log(requestBody);
+                
+            
+
                 try {
                     const response = await trialsApi.postTrials(requestBody);
                     if (response.status !== 200) {
@@ -103,14 +106,14 @@ function RatingPage(props: RatingPageProps) {
                 }
                 return;
             }
+            
             setSliderValueTop(50);
             setSliderValueBottom(50);
-            const mediaFileName = MediaList[mediaIndex+1];   
-            const mediaSrc = mediaBaseSrc+mediaFileName;
-            setMediaSrc(mediaSrc);
-            mediaIndexRef.current = mediaIndex + 1;
+
             valenceRef.current = rateDefault;
             arousalRef.current = rateDefault;
+            console.log("location.state", location.state);
+            navigate("/viewing", {state: {"MediaList": MediaList,"mediaIndex": mediaIndex+1,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
         }
     }
 
@@ -125,9 +128,6 @@ function RatingPage(props: RatingPageProps) {
     }, []);
 
     useEffect(() => {
-        startedAt = date_to_time(new Date());
-        MediaList.sort((a, b) => 0.5 - Math.random());
-        const mediaIndex = mediaIndexRef.current;
         const mediaFileName = MediaList[mediaIndex];
         const mediaSrc = mediaBaseSrc+mediaFileName;
         setMediaSrc(mediaSrc);
