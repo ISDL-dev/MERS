@@ -554,6 +554,202 @@ export class MoviesApi extends BaseAPI {
 
 
 /**
+ * RecordingPauseApi - axios parameter creator
+ * @export
+ */
+export const RecordingPauseApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Pause recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecordingPause: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/recording-pauset`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RecordingPauseApi - functional programming interface
+ * @export
+ */
+export const RecordingPauseApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RecordingPauseApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Pause recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRecordingPause(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRecordingPause(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RecordingPauseApi - factory interface
+ * @export
+ */
+export const RecordingPauseApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RecordingPauseApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Pause recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecordingPause(options?: any): AxiosPromise<void> {
+            return localVarFp.getRecordingPause(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RecordingPauseApi - object-oriented interface
+ * @export
+ * @class RecordingPauseApi
+ * @extends {BaseAPI}
+ */
+export class RecordingPauseApi extends BaseAPI {
+    /**
+     * 
+     * @summary Pause recording Map1058
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RecordingPauseApi
+     */
+    public getRecordingPause(options?: AxiosRequestConfig) {
+        return RecordingPauseApiFp(this.configuration).getRecordingPause(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RecordingStartApi - axios parameter creator
+ * @export
+ */
+export const RecordingStartApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Start recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecordingStart: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/recording-start`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RecordingStartApi - functional programming interface
+ * @export
+ */
+export const RecordingStartApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RecordingStartApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Start recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRecordingStart(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRecordingStart(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RecordingStartApi - factory interface
+ * @export
+ */
+export const RecordingStartApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RecordingStartApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Start recording Map1058
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecordingStart(options?: any): AxiosPromise<void> {
+            return localVarFp.getRecordingStart(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RecordingStartApi - object-oriented interface
+ * @export
+ * @class RecordingStartApi
+ * @extends {BaseAPI}
+ */
+export class RecordingStartApi extends BaseAPI {
+    /**
+     * 
+     * @summary Start recording Map1058
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RecordingStartApi
+     */
+    public getRecordingStart(options?: AxiosRequestConfig) {
+        return RecordingStartApiFp(this.configuration).getRecordingStart(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * TrialsApi - axios parameter creator
  * @export
  */

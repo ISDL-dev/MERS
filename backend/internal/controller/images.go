@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/ISDL-dev/MERS/backend/internal/repository"
 	"github.com/gin-gonic/gin"
-	"github.com/hoka-isdl/MERS/backend/internal/repository"
 )
 
 func GetImagesHandlerFunc(ctx *gin.Context) {

@@ -3,8 +3,8 @@ package repository
 import (
 	"fmt"
 
-	"github.com/hoka-isdl/MERS/backend/internal/model"
-	"github.com/hoka-isdl/MERS/backend/internal/schema"
+	"github.com/ISDL-dev/MERS/backend/internal/model"
+	"github.com/ISDL-dev/MERS/backend/internal/schema"
 )
 
 func CreateTrial(trials schema.PostTrialsRequest) (id uint, err error) {

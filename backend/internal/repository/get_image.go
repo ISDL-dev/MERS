@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/hoka-isdl/MERS/backend/internal/schema"
+	"github.com/ISDL-dev/MERS/backend/internal/schema"
 )
 
 func RandGetImages(numImages int) ([]schema.ListImagesInner, error) {

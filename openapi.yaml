@@ -7,6 +7,36 @@ info:
 servers:
 - url: http://localhost:3000/v1
 paths:
+  /recording-start:
+    get:
+      summary: Start recording Map1058
+      operationId: get-recording-start
+      tags:
+        - recording-start
+      responses:
+          '200':
+            description: successful to start recording Map1058
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  /recording-pauset:
+    get:
+      summary: Pause recording Map1058
+      operationId: get-recording-pause
+      tags:
+        - recording-pause
+      responses:
+          '200':
+            description: successful to pause recording Map1058
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
   /images:
     get:
       summary: Randomly get Google Drive IDs for images
