@@ -91,8 +91,6 @@ function RatingPage(props: RatingPageProps) {
                 }
                 console.log(requestBody);
                 
-            
-
                 try {
                     const response = await trialsApi.postTrials(requestBody);
                     if (response.status !== 200) {
@@ -151,6 +149,7 @@ function RatingPage(props: RatingPageProps) {
                     maxLabel='ポジティブ'
                 />
             </GridItem>
+
             <GridItem rowSpan={1} colSpan={1} >
                 <RatingSlider 
                     rateValueRef={arousalRef}
@@ -163,6 +162,7 @@ function RatingPage(props: RatingPageProps) {
                     maxLabel='激しい'
                 />
             </GridItem>
+
             <GridItem rowSpan={1} colSpan={1} >
                 <Button 
                 onClick={onClickAnswer} 
@@ -173,7 +173,6 @@ function RatingPage(props: RatingPageProps) {
                     Submit
                 </Button>
             </GridItem>
-
         </Grid>
     );
 }
