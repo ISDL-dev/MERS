@@ -1,12 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import MediaDisplay from "../../features/MediaDisplay"
-import "./MediaRating.css"
+import "./MediaViewing.css"
 import { useLocation, useNavigate } from 'react-router-dom'
 interface RatingPageProps {
     mediaType: string
 }
-const ratingSecondByMedia = 15;
+export const ratingSecondByMedia = 3;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
@@ -60,15 +60,14 @@ function RatingPage(props: RatingPageProps) {
     
     return (
     <Grid
+        className='viewing_box'
         height="100vh" 
         placeItems="center" 
       >
-        <GridItem rowSpan={10} colSpan={2}>
-            <MediaDisplay
-                type={props.mediaType}
-                src={mediaSrc}
-            />
-        </GridItem>
+     <GridItem rowSpan={1} colSpan={1} >
+        <MediaDisplay type={props.mediaType} src={mediaSrc} />
+     </GridItem>
+        
     </Grid>
     );
 }

@@ -4,3 +4,9 @@
     margin: 0 auto;
     margin-top: 70px;
 }
+
+.rating_box button {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 20px;
+}

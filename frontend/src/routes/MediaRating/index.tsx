@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, Button } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { trialsApi } from '../../api';
 import { 
@@ -12,7 +12,7 @@ import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
 import "./MediaRating.css"
 import { useLocation, useNavigate } from 'react-router-dom'
-
+import { ratingSecondByMedia } from '../MediaViewing'
 interface RatingPageProps {
     mediaType: string
 }
@@ -20,7 +20,6 @@ interface RatingPageProps {
 const detasetName = "OASIS";
 const experimentLocation = "KC111";
 const platform = "";
-const ratingSecondByMedia = 15;
 
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
 const mediaNum = 120;
@@ -116,17 +115,10 @@ function RatingPage(props: RatingPageProps) {
             navigate("/viewing", {state: {"MediaList": MediaList,"mediaIndex": mediaIndex+1,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
         }
     }
-
-    // TODO: dependenciesにvalence, arousalがあることでバー操作時に更新が止まらない（=カウントのリセットがおこる）
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            forward();
-        }, ratingSecondByMedia * 1000);
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
-
+    function onClickAnswer() {
+        forward();
+    }
+    
     useEffect(() => {
         const mediaFileName = MediaList[mediaIndex];
         const mediaSrc = mediaBaseSrc+mediaFileName;
@@ -136,18 +128,18 @@ function RatingPage(props: RatingPageProps) {
     return (
         <Grid
             className='rating_box'
-            templateRows='repeat(1, 1fr)'
-            templateColumns='repeat(2, 1fr)'
+            templateRows='repeat(4, 1fr)'
+            templateColumns='repeat(1, 1fr)'
             gap={6}
         >
-            <GridItem rowSpan={10} colSpan={2}>
+            <GridItem rowSpan={1} colSpan={1}>
                 <MediaDisplay
                     type={props.mediaType}
                     src={mediaSrc}
                 />
             </GridItem>
 
-            <GridItem rowSpan={1} colSpan={2} >
+            <GridItem rowSpan={1} colSpan={1} >
                 <RatingSlider
                     rateValueRef={valenceRef}
                     sliderValue={sliderValueTop}
@@ -159,7 +151,7 @@ function RatingPage(props: RatingPageProps) {
                     maxLabel='ポジティブ'
                 />
             </GridItem>
-            <GridItem rowSpan={1} colSpan={2} >
+            <GridItem rowSpan={1} colSpan={1} >
                 <RatingSlider 
                     rateValueRef={arousalRef}
                     sliderValue={sliderValueBottom}
@@ -171,6 +163,17 @@ function RatingPage(props: RatingPageProps) {
                     maxLabel='激しい'
                 />
             </GridItem>
+            <GridItem rowSpan={1} colSpan={1} >
+                <Button 
+                onClick={onClickAnswer} 
+                variant={'outline'} 
+                colorScheme='green' 
+                size='lg'
+                >
+                    Submit
+                </Button>
+            </GridItem>
+
         </Grid>
     );
 }
