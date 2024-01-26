@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 interface RatingPageProps {
     mediaType: string
 }
-export const ratingSecondByMedia = 3;
+export const ratingSecondByMedia = 15;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
