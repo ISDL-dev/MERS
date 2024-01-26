@@ -61,8 +61,9 @@ function RatingPage(props: RatingPageProps) {
     return (
     <Grid
         className='viewing_box'
-        height="100vh" 
         placeItems="center" 
+        templateRows="repeat(1, 1fr)"
+        templateColumns="repeat(1, 1fr)"
       >
      <GridItem rowSpan={1} colSpan={1} >
         <MediaDisplay type={props.mediaType} src={mediaSrc} />
