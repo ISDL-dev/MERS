@@ -15,12 +15,11 @@ func init() {
 }
 
 func openDB() {
-	db_name, err := sql.Open("mysql", "root:root@tcp(mers-db:3306)/mers-db?")
+	var err error
+	db, err = sql.Open("mysql", "root:root@tcp(mers-db:3306)/mers-db?")
 	if err != nil {
 		log.Fatalf("main sql.Open error err:%v", err)
 	}
-
-	db = db_name
 }
 
 func CloseDB() {

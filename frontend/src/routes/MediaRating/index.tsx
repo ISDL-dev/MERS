@@ -24,7 +24,7 @@ const platform = "";
 const ratingSecondByMedia = 15;
 const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 const [rateMin, rateDefault, rateMax] = [1, 5, 9];
-const mediaNum = 120;
+const mediaNum = 3;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {

@@ -55,6 +55,7 @@ function QuestionnarePage() {
             if (response.status !== 200) {
                 console.log(response);
             }
+            console.log(response);
             navigate('/prerating', {state: subject})
         }
         catch (error) {
