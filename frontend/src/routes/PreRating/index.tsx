@@ -37,7 +37,7 @@ function PreRating() {
 
             setTime(sec)
             if (sec===0){
-                navigate("/viewing", {state: { "MediaList": MediaList,"mediaIndex": mediaIndex,"subject": location.state.subject, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
+                navigate("/viewing", {state: { "MediaList": MediaList,"mediaIndex": mediaIndex,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
             }
         },1000);
     });
