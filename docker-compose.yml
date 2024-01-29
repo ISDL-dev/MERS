@@ -33,7 +33,7 @@ services:
     tty: true
     stdin_open: true
     volumes:
-        - ./database/${ENV}data:/var/lib/mysql
+        - ./database/${ENV_TYPE}-data:/var/lib/mysql
         - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
         - ./database/sqls:/docker-entrypoint-initdb.d
     ports:

@@ -1,5 +1,5 @@
 .vscode/
 .env
-/database/devdata
-/database/proddata
+/database/dev-data
+/database/prod-data
 .DS_Store
