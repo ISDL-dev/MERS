@@ -1,5 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MediaDisplay from "../../features/MediaDisplay"
 import "./MediaViewing.css"
 import { useLocation, useNavigate } from 'react-router-dom'
