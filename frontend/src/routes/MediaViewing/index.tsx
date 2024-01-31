@@ -2,7 +2,8 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import MediaDisplay from "../../features/MediaDisplay"
 import "./MediaViewing.css"
-import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { Form, useLocation, useNavigate } from 'react-router-dom'
 interface RatingPageProps {
     mediaType: string
 }
@@ -56,6 +57,18 @@ function RatingPage(props: RatingPageProps) {
         const mediaFileName = MediaList[mediaIndex];
             const mediaSrc = mediaBaseSrc+mediaFileName;
             setMediaSrc(mediaSrc);
+
+        var params = new FormData();
+        params.append('disp_image', mediaFileName);
+
+        axios
+        .post("http://192.168.10.127.3100/mers-image",params)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log("データを送信できませんでした");
+        });
     }, []);
     
     return (
