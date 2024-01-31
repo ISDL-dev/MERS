@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { TrialsApi, ImagesApi, RecordingStartApi, RecordingPauseApi } from './schema';
 
-const baseURL = 'http://localhost:3000'
+const baseURL = process.env.BACKEND_ENDPOINT
 
 const api = axios.create({
   baseURL: baseURL
