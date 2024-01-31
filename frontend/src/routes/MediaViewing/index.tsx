@@ -1,5 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MediaDisplay from "../../features/MediaDisplay"
 import "./MediaViewing.css"
 import axios from 'axios'
@@ -32,7 +32,7 @@ function RatingPage(props: RatingPageProps) {
 
     const forward = async () => {
         if (MediaList !== undefined) { 
-            navigate('/rating', { state: { "MediaList": MediaList,"mediaIndex": mediaIndex,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult} }); 
+            navigate('/rating', { state: { "MediaList": MediaList,"mediaIndex": mediaIndex,"subject": location.state.subject, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult} }); 
 
             const mediaFileName = MediaList[mediaIndex];   
             const mediaSrc = mediaBaseSrc+mediaFileName;

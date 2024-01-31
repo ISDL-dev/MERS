@@ -110,7 +110,7 @@ function RatingPage(props: RatingPageProps) {
             valenceRef.current = rateDefault;
             arousalRef.current = rateDefault;
             console.log("location.state", location.state);
-            navigate("/viewing", {state: {"MediaList": MediaList,"mediaIndex": mediaIndex+1,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
+            navigate("/viewing", {state: {"MediaList": MediaList,"mediaIndex": mediaIndex+1,"subject": location.state.subject, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
         }
     }
     function onClickAnswer() {
