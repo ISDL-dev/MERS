@@ -1,7 +1,7 @@
 # MERS　-Media Emotion Rating System-
-backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
-database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
-container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
+Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+Database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+Container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
 本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
 
@@ -46,8 +46,14 @@ npm install --frozen-lockfile
 ## 操作方法
 ### アプリケーションの起動
 MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
+#### 本番環境
 ```bash
-docker-compose up -d
+docker-compose --env-file .env.prod up -d --build
+```
+
+#### 開発環境
+```bash
+docker-compose --env-file .env.dev up -d --build
 ```
 
 起動後に`192.168.10.127:4000` にアクセスして実験を行う。  

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/public/static/images/OASIS
 
 # testing
 /coverage
