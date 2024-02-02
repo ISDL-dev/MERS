@@ -1,6 +1,10 @@
 # MERS　-Media Emotion Rating System-
-Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> 
+
+Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+
 Database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+
 Container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
 本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
@@ -48,12 +52,12 @@ npm install --frozen-lockfile
 MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
 #### 本番環境
 ```bash
-docker-compose --env-file .env.prod up -d --build
+make build-up prod
 ```
 
 #### 開発環境
 ```bash
-docker-compose --env-file .env.dev up -d --build
+make build-up dev
 ```
 
 起動後に`192.168.10.127:4000` にアクセスして実験を行う。  
@@ -61,8 +65,14 @@ frontendアプリケーションのbuildに時間がかかるため、上記の�
 
 ### アプリケーションの停止
 MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナの削除と停止をする。
+#### 本番環境
 ```bash
-docker-compose down
+make stop prod
+```
+
+#### 開発環境
+```bash
+make stop dev
 ```
 
 # 開発者向け
