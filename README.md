@@ -1,4 +1,8 @@
 # MERS　-Media Emotion Rating System-
+本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
+
+![MERS](https://github.com/ISDL-dev/MERS/assets/119837395/c7d5824b-37b0-4a81-a48d-f272b476bb4e)
+
 Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> 
 
 Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
@@ -6,8 +10,6 @@ Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&st
 Database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
 
 Container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
-
-本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
 
 # 使用にあたって
 ## 環境構築
