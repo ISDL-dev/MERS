@@ -1,8 +1,10 @@
 # MERS　-Media Emotion Rating System-
+## 概要
 本アプリケーションは、被験者がメディアを視聴した時の感情を評価し、メディアと感情の関係性を分析するためのデータセットを作成する。
 
 ![MERS](https://github.com/ISDL-dev/MERS/assets/119837395/c7d5824b-37b0-4a81-a48d-f272b476bb4e)
 
+## 使用技術
 Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic"> 
 
 Frontend: <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
@@ -12,6 +14,35 @@ Database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&st
 Container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
 # 使用にあたって
+## 操作方法
+### アプリケーションの起動
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
+#### 本番環境
+```bash
+make build-up prod
+```
+
+#### 開発環境
+```bash
+make build-up dev
+```
+
+起動後に`192.168.10.127:4000` にアクセスして実験を行う。  
+frontendアプリケーションのbuildに時間がかかるため、上記の起動コマンド実行後に2~3分ほど待つ。
+
+### アプリケーションの停止
+MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナの削除と停止をする。
+#### 本番環境
+```bash
+make stop prod
+```
+
+#### 開発環境
+```bash
+make stop dev
+```
+
+# 開発者向け
 ## 環境構築
 ### コード生成
 1.コード生成のツールをインストールしていない場合
@@ -49,35 +80,6 @@ backendのディレクトリで以下のコマンドを実行する。
 npm install --frozen-lockfile
 ```
 
-## 操作方法
-### アプリケーションの起動
-MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナのビルドと起動をする。
-#### 本番環境
-```bash
-make build-up prod
-```
-
-#### 開発環境
-```bash
-make build-up dev
-```
-
-起動後に`192.168.10.127:4000` にアクセスして実験を行う。  
-frontendアプリケーションのbuildに時間がかかるため、上記の起動コマンド実行後に2~3分ほど待つ。
-
-### アプリケーションの停止
-MERSディレクトリ直下で、以下のコマンドを実行してDockerコンテナの削除と停止をする。
-#### 本番環境
-```bash
-make stop prod
-```
-
-#### 開発環境
-```bash
-make stop dev
-```
-
-# 開発者向け
 ## システム構成図
 システム構成を以下の図に示す。
 ```mermaid
