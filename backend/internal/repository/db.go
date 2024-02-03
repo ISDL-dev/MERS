@@ -20,10 +20,10 @@ func openDB() {
 	var err error
 	user := os.Getenv("MYSQL_USER")
 	password := os.Getenv("MYSQL_PASSWORD")
-	containerName := os.Getenv("CONTAINER_NAME")
+	hostName := os.Getenv("MYSQL_HOSTNAME")
 	dbName := os.Getenv("MYSQL_DATABASE")
 
-	db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?", user, password, containerName, dbName))
+	db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?", user, password, hostName, dbName))
 	if err != nil {
 		log.Fatalf("main sql.Open error err:%v", err)
 	}
