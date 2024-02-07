@@ -3,8 +3,8 @@ services:
   frontend:
     container_name: mers-frontend
     build: ./frontend
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - .env.${ENV_TYPE}
     tty: true
     stdin_open: true
     ports:
@@ -15,16 +15,17 @@ services:
   backend:
     container_name: api-server
     build: ./backend
+    env_file:
+      - .env.${ENV_TYPE}
+    tty: true
+    stdin_open: true
     ports:
       - 3000:3000
     volumes:
       - ./backend/internal:/go/src/backend/internal
-    tty: true
   database:
     image: mysql:8.0
-    container_name: mers-db
-    env_file:
-        - ./.env
+    container_name: ${MYSQL_DATABASE}
     environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -35,8 +36,9 @@ services:
     tty: true
     stdin_open: true
     volumes:
-        - ./database/data:/var/lib/mysql
+        - ./database/${ENV_TYPE}-data:/var/lib/mysql
         - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
         - ./database/sqls:/docker-entrypoint-initdb.d
     ports:
         - 3306:3306
+
