@@ -2,7 +2,9 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -16,7 +18,12 @@ func init() {
 
 func openDB() {
 	var err error
-	db, err = sql.Open("mysql", "root:root@tcp(mers-db:3306)/mers-db?")
+	user := os.Getenv("MYSQL_USER")
+	password := os.Getenv("MYSQL_PASSWORD")
+	hostName := os.Getenv("MYSQL_HOSTNAME")
+	dbName := os.Getenv("MYSQL_DATABASE")
+
+	db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?", user, password, hostName, dbName))
 	if err != nil {
 		log.Fatalf("main sql.Open error err:%v", err)
 	}
