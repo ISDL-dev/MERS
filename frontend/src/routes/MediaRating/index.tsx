@@ -129,6 +129,7 @@ function RatingPage(props: RatingPageProps) {
     }
     useEffect(() => {
         setstartedAt(date_to_time(new Date()));
+        MediaList.sort((a, b) => 0.5 - Math.random());
         showViewingPage();
     }, []);
     
