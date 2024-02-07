@@ -10,37 +10,36 @@ import {
 } from "../../schema";
 import MediaDisplay from "../../features/MediaDisplay"
 import RatingSlider from "../../features/RatingSlider"
+import MediaList from "../../../src/imageFileNames.json"
 import "./MediaRating.css"
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ratingSecondByMedia } from '../MediaViewing'
 interface RatingPageProps {
     mediaType: string
 }
 
-const detasetName = "OASIS";
-const experimentLocation = "KC111";
-const platform = "";
-
-const [rateMin, rateDefault, rateMax] = [1, 5, 9];
-const mediaNum = 120;
+const detasetName: string= "OASIS";
+const experimentLocation: string = "KC111";
+const platform: string = "";
+const [rateMin, rateDefault, rateMax]: number[] = [1, 5, 9];
+const mediaNum: number = 120;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
-    const [mediaSrc, setMediaSrc] = useState('');
+    const ratingSecondByMedia: number = 15;
+    const mediaIndexRef = useRef<number>(0);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [mediaSrc, setMediaSrc] = useState<string>('');
     const valenceRef = useRef<number>(rateDefault);
     const arousalRef = useRef<number>(rateDefault);
     const navigate = useNavigate();
     const location = useLocation();
     const subjectMetadata = location.state.subject;
-    const preStartedAt = location.state.pre_started_at;
-    const MediaList = location.state.MediaList;
-    const mediaIndex = location.state.mediaIndex;
-    const [sliderValueTop, setSliderValueTop] = useState(50);
-    const [sliderValueBottom, setSliderValueBottom] = useState(50);
-    const mediaBaseSrc = "./static/images/OASIS/";
-    let startedAt = location.state.startedAt;
-    const ratingResult = location.state.ratingResult;
-
+    const preStartedAt = location.state.preStartedAt;
+    const [sliderValueTop, setSliderValueTop] = useState<number>(50);
+    const [sliderValueBottom, setSliderValueBottom] = useState<number>(50);
+    const mediaBaseSrc: string = "./static/images/OASIS/";
+    const [startedAt, setstartedAt] = useState<string>("");
+    const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
     const date_to_time = (date: Date) => {
         const time = date.getFullYear().toString() + "-" + 
         (date.getMonth() + 1).toString().padStart( 2, '0') + "-" + 
@@ -52,11 +51,12 @@ function RatingPage(props: RatingPageProps) {
     }
 
     const forward = async () => {
+        const mediaIndex: number = mediaIndexRef.current;
         if (MediaList !== undefined) { 
-            const evaliationMediaFileName = MediaList[mediaIndex];           
+            const evaliationMediaFileName: string = MediaList[mediaIndex];           
             if (evaliationMediaFileName !== undefined) {
-                const valence = valenceRef.current;
-                const arousal = arousalRef.current;
+                const valence: number = valenceRef.current;
+                const arousal: number = arousalRef.current;
                 const ratingSetRatingInnerEmotion: PostTrialsRequestRatingSetRatingInnerEmotion = {
                     valence: valence,
                     arousal: arousal
@@ -68,9 +68,9 @@ function RatingPage(props: RatingPageProps) {
                 };
                 ratingResult.push(ratingSetRatingInner);
             }
-            const doneToRateAllTargets = mediaIndex+1 === mediaNum;
+            const doneToRateAllTargets: boolean = mediaIndex+1 === mediaNum;
             if (doneToRateAllTargets) {
-                const endedAt = date_to_time(new Date());
+                const endedAt: string= date_to_time(new Date());
                 const trialMetadata: PostTrialsRequestTrialMetadata = {
                     location: experimentLocation,
                     platform: platform,
@@ -90,7 +90,6 @@ function RatingPage(props: RatingPageProps) {
                     rating_set: ratingSet
                 }
                 console.log(requestBody);
-                
                 try {
                     const response = await trialsApi.postTrials(requestBody);
                     if (response.status !== 200) {
@@ -103,24 +102,34 @@ function RatingPage(props: RatingPageProps) {
                 }
                 return;
             }
-            
             setSliderValueTop(50);
             setSliderValueBottom(50);
-
             valenceRef.current = rateDefault;
             arousalRef.current = rateDefault;
+            mediaIndexRef.current = mediaIndex + 1;
+            showViewingPage();
             console.log("location.state", location.state);
-            navigate("/viewing", {state: {"MediaList": MediaList,"mediaIndex": mediaIndex+1,"subject": location.state.subject, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
         }
     }
+
     function onClickAnswer() {
         forward();
     }
-    
-    useEffect(() => {
-        const mediaFileName = MediaList[mediaIndex];
-        const mediaSrc = mediaBaseSrc+mediaFileName;
+
+    function showViewingPage() {
+        setIsVisible(false);
+        const mediaIndex: number = mediaIndexRef.current;
+        const mediaFileName: string = MediaList[mediaIndex];
+        const mediaSrc: string = mediaBaseSrc+mediaFileName;
         setMediaSrc(mediaSrc);
+        setTimeout(() =>{
+            setIsVisible(true);
+        }
+        , ratingSecondByMedia*1000);
+    }
+    useEffect(() => {
+        setstartedAt(date_to_time(new Date()));
+        showViewingPage();
     }, []);
     
     return (
@@ -137,7 +146,7 @@ function RatingPage(props: RatingPageProps) {
                 />
             </GridItem>
 
-            <GridItem rowSpan={1} colSpan={1} >
+            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                 <RatingSlider
                     rateValueRef={valenceRef}
                     sliderValue={sliderValueTop}
@@ -148,9 +157,9 @@ function RatingPage(props: RatingPageProps) {
                     minLabel='ネガティブ'
                     maxLabel='ポジティブ'
                 />
-            </GridItem>
+            </GridItem>}
 
-            <GridItem rowSpan={1} colSpan={1} >
+            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                 <RatingSlider 
                     rateValueRef={arousalRef}
                     sliderValue={sliderValueBottom}
@@ -161,9 +170,9 @@ function RatingPage(props: RatingPageProps) {
                     minLabel='落ち着いている'
                     maxLabel='激しい'
                 />
-            </GridItem>
+            </GridItem>}
 
-            <GridItem rowSpan={1} colSpan={1} >
+            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                 <Button 
                 onClick={onClickAnswer} 
                 variant={'outline'} 
@@ -172,7 +181,8 @@ function RatingPage(props: RatingPageProps) {
                 >
                     Submit
                 </Button>
-            </GridItem>
+            </GridItem>}
+
         </Grid>
     );
 }

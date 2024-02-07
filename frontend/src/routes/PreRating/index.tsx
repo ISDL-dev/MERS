@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Text, Box, Center } from "@chakra-ui/react";
 import { useLocation, useNavigate } from 'react-router-dom'
-import MediaList from "../../../src/imageFileNames.json"
-import { 
-    PostTrialsRequestRatingSetRatingInner, 
-} from "../../schema";
 // import "./Completion.css"
 
 function PreRating() {
@@ -30,14 +26,9 @@ function PreRating() {
     useEffect(() => {
         setTimeout(() => {
             const sec = time - 1;
-            const mediaIndex = 0;
-            const startedAt = ""
-            const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
-            MediaList.sort((a, b) => 0.5 - Math.random());
-
             setTime(sec)
             if (sec===0){
-                navigate("/viewing", {state: { "MediaList": MediaList,"mediaIndex": mediaIndex,"subject": location.state, "pre_started_at": preStartedAt,"startedAt":startedAt,"ratingResult":ratingResult}});
+                navigate("/rating", {state: { "subject": location.state , "preStartedAt": preStartedAt}});
             }
         },1000);
     });

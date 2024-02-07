@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
-
 import Header from "./features/Header";
 import Footer from "./features/Footer";
 import QuestionnarePage from "./routes/Questionnare";
-import ViewingPage from "./routes/MediaViewing";
 import RatingPage from "./routes/MediaRating";
 import Home from "./routes/Home";
 import PreRating from "./routes/PreRating";
@@ -20,7 +18,6 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/questionnare' element={<QuestionnarePage />}/>
             <Route path='/prerating' element={<PreRating />}/>
-            <Route path='/viewing' element={<ViewingPage mediaType="image"/>}/>
             <Route path='/rating' element={<RatingPage mediaType="image"/>}/>
             <Route path='/completion' element={<Completion />}/>
           </Routes>
