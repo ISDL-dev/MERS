@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { TrialsApi, ImagesApi } from './schema';
+import { TrialsApi } from './schema';
 
+const BASEURL = process.env.BACKEND_ENDPOINT
 const api = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: BASEURL
 });
 
-const trialsApi = new TrialsApi(undefined, 'http://localhost:3000', api)
-const imagesApi = new ImagesApi(undefined, 'http://localhost:3000', api)
+const trialsApi = new TrialsApi(undefined, BASEURL, api)
 
 export {
-  trialsApi,
-  imagesApi
+  trialsApi
 }
