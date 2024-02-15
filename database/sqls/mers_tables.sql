@@ -1,12 +1,28 @@
-CREATE TABLE IF NOT EXISTS trials(
+CREATE TABLE IF NOT EXISTS conditions (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     location VARCHAR(64),
+    mediatype VARCHAR(64),
+    number_of_media INT UNSIGNED, 
+    rating_second_by_media INT UNSIGNED,    
+    dataset VARCHAR(64),
     platform VARCHAR(64),
+)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS channels(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    condition_id INT UNSIGNED,
+    channel_num INT UNSIGNED,
+    channel_name VARCHAR(64),
+    FOREIGN KEY (condition_id) REFERENCES conditions(id) ON DELETE RESTRICT ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS trials(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    condition_id INT UNSIGNED,
     pre_started_at DATETIME NOT NULL,
     started_at DATETIME NOT NULL,
     ended_at DATETIME NOT NULL,
-    rating_second_by_media INT UNSIGNED,
-    number_of_medias INT UNSIGNED
+    FOREIGN KEY (condition_id) REFERENCES conditions(id) ON DELETE RESTRICT ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- trialsとsubjectsの関係は1対1
@@ -36,25 +52,34 @@ CREATE TABLE IF NOT EXISTS subjects(
 -- trialsとsignalsの関係は1対1
 CREATE TABLE IF NOT EXISTS signals(
     trial_id INT UNSIGNED PRIMARY KEY,
-    trend_range TEXT NOT NULL,
-    channel_types VARCHAR(128) NOT NULL,
-    calibration VARCHAR(128) NOT NULL,
     analyzed_signal_filename VARCHAR(128) NOT NULL,
     raw_signal_filename VARCHAR(64) NOT NULL,
+    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS calibrations(
+    id INT UNSIGNED PRIMARY KEY,
+    trial_id INT UNSIGNED,
+    calibration VARCHAR(128) NOT NULL,  
+    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS trend_ranges(
+    id INT UNSIGNED PRIMARY KEY,
+    trial_id INT UNSIGNED,
+    trend_range TEXT NOT NULL, 
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ratingとimagesの関係は1対1
 CREATE TABLE IF NOT EXISTS images(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    dataset VARCHAR(64),
     filename VARCHAR(64) NOT NULL
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ratingとimagesの関係は1対1
 CREATE TABLE IF NOT EXISTS movies(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    dataset VARCHAR(64),
     filename VARCHAR(64) NOT NULL
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

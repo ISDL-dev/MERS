@@ -82,21 +82,38 @@ flowchart LR
 データベース構成を以下の図に示す。
 ```mermaid
 erDiagram
+    conditions ||--o{ trials:"1:N"
+    conditions ||--|| channels:"1:N"
     trials ||--|| subjects:"1:1"
-    trials ||--|| signals:"1:1"
     rating ||--|| images:"1:1"
     rating ||--|| movies:"1:1"
     trials ||--o{ rating:"1:N"
+    trials ||--|| signals:"1:1"
+    signals ||--o{ calibrations:"1:N"
+    signals ||--o{ trend_ranges:"1:N"
+    channels{
+        INT id PK
+        INT condition_id FK
+        INT channel_num
+        VARCHAR channel_name
+    }
+
+    conditions {
+        INT id PK           
+        VARCHAR location
+        VARCHAR mediatype
+        INT number_of_media    
+        INT rating_second_by_media
+        VARCHAR dataset
+        VARCHAR platform
+    }
 
     trials {
         INT id PK
-        VARCHAR location
-        VARCHAR platform
+        INT condition_id FK
         DATETIME pre_started_at
         DATETIME started_at
         DATETIME ended_at
-        INT rating_second_by_media
-        INT number_of_medias
     }
 
     subjects {
@@ -116,7 +133,6 @@ erDiagram
         FLOAT hours_of_sleep_last_night
         FLOAT normal_hours_of_sleep
         VARCHAR level_of_alertness
-        BOOLEAN distribute_physiological_recordings
         FLOAT head_circumference
         FLOAT distance_nasion_inion
         FLOAT distance_left_right_jaw_hinge
@@ -124,22 +140,29 @@ erDiagram
 
     signals {
         INT trial_id PK
-        TEXT trend_range
-        VARCHAR channel_types
-        VARCHAR calibration
         VARCHAR analyzed_signal_filename
         VARCHAR raw_signal_filename
     }
 
+    calibrations{
+        INT id PK
+        INT trial_id FK
+        VARCHAR calibration
+    }
+
+    trend_ranges{
+        INT id PK
+        INT trial_id FK
+        TEXT trend_range
+    }
+
     images {
         INT id PK
-        VARCHAR dataset
         VARCHAR filename
     }
 
     movies {
         INT id PK
-        VARCHAR dataset
         VARCHAR filename
     }
 
@@ -150,7 +173,7 @@ erDiagram
         FLOAT liking
         FLOAT dominance
         FLOAT famility
-        INT trial_id PK
+        INT trial_id FK
         INT image_id FK
         INT movie_id FK
     }
