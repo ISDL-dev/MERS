@@ -50,7 +50,6 @@ function RatingPage(props: RatingPageProps) {
        return time;
    }
 
-
    function recordRating(mediaIndex: number) {
        const evaliationMediaFileName: string = MediaList[mediaIndex];          
        if (evaliationMediaFileName !== undefined) {
@@ -131,6 +130,7 @@ function RatingPage(props: RatingPageProps) {
            setIsVisible(true);
        }, ratingSecondByMedia*1000);
    }
+   
    useEffect(() => {
        startedAt.current = date_to_time(new Date());
        MediaList.sort((a, b) => 0.5 - Math.random());
@@ -150,8 +150,6 @@ function RatingPage(props: RatingPageProps) {
                    src={mediaSrc}
                />
            </GridItem>
-
-
            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                <RatingSlider
                    rateValueRef={valenceRef}
@@ -164,8 +162,6 @@ function RatingPage(props: RatingPageProps) {
                    maxLabel='ポジティブ'
                />
            </GridItem>}
-
-
            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                <RatingSlider
                    rateValueRef={arousalRef}
@@ -178,8 +174,6 @@ function RatingPage(props: RatingPageProps) {
                    maxLabel='激しい'
                />
            </GridItem>}
-
-
            {isVisible && <GridItem rowSpan={1} colSpan={1} >
                <Button
                onClick={onClickAnswer}
@@ -190,12 +184,9 @@ function RatingPage(props: RatingPageProps) {
                    Submit
                </Button>
            </GridItem>}
-
-
        </Grid>
    );
 }
-
 
 export default RatingPage
 
