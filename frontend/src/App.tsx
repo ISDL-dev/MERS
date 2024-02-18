@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
-
 import Header from "./features/Header";
 import Footer from "./features/Footer";
 import QuestionnarePage from "./routes/Questionnare";
