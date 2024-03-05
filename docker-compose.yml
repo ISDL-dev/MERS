@@ -22,7 +22,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./backend/internal:/go/src/backend/internal
+      - ./backend:/go/src/backend
   database:
     image: mysql:8.0
     container_name: ${MYSQL_DATABASE}
