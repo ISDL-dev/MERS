@@ -1,11 +1,12 @@
 CREATE TABLE IF NOT EXISTS conditions (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    location VARCHAR(64),
-    mediatype VARCHAR(64),
-    number_of_media INT UNSIGNED, 
-    rating_second_by_media INT UNSIGNED,    
-    dataset VARCHAR(64),
-    platform VARCHAR(64),
+    condition_name VARCHAR(64) NOT NULL,
+    location VARCHAR(64) NOT NULL,
+    mediatype VARCHAR(64) NOT NULL,
+    number_of_media INT UNSIGNED NOT NULL, 
+    rating_second_by_media INT UNSIGNED NOT NULL,    
+    dataset VARCHAR(64) NOT NULL,
+    platform VARCHAR(64) NOT NULL,
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS channels(
@@ -77,7 +78,7 @@ CREATE TABLE IF NOT EXISTS images(
     filename VARCHAR(64) NOT NULL
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ratingとimagesの関係は1対1
+-- ratingとmoviesの関係は1対1
 CREATE TABLE IF NOT EXISTS movies(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     filename VARCHAR(64) NOT NULL
@@ -86,15 +87,16 @@ CREATE TABLE IF NOT EXISTS movies(
 -- trialsとratingの関係は1対多
 CREATE TABLE IF NOT EXISTS rating(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    trial_id INT UNSIGNED,
+    image_id INT UNSIGNED,
+    movie_id INT UNSIGNED,
     valence FLOAT NOT NULL,
     arousal FLOAT NOT NULL,
     liking FLOAT,
     dominance FLOAT,
     famility FLOAT,
-    trial_id INT UNSIGNED NOT NULL,
-    image_id INT UNSIGNED,
-    movie_id INT UNSIGNED,
-    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE RESTRICT
+     ON UPDATE CASCADE,
     FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE RESTRICT ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

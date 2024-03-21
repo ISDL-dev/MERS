@@ -83,7 +83,7 @@ flowchart LR
 ```mermaid
 erDiagram
     conditions ||--o{ trials:"1:N"
-    conditions ||--|| channels:"1:N"
+    conditions ||--o{ channels:"1:N"
     trials ||--|| subjects:"1:1"
     rating ||--|| images:"1:1"
     rating ||--|| movies:"1:1"
@@ -99,7 +99,8 @@ erDiagram
     }
 
     conditions {
-        INT id PK           
+        INT id PK  
+        VARCHAR condition_name         
         VARCHAR location
         VARCHAR mediatype
         INT number_of_media    
@@ -168,13 +169,13 @@ erDiagram
 
     rating {
         INT id PK
+        INT trial_id FK
+        INT image_id FK
+        INT movie_id FK
         FLOAT valence
         FLOAT arousal
         FLOAT liking
         FLOAT dominance
         FLOAT famility
-        INT trial_id FK
-        INT image_id FK
-        INT movie_id FK
     }
 ```
