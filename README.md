@@ -123,18 +123,18 @@ flowchart LR
 ```mermaid
 erDiagram
     conditions ||--o{ trials:"1:N"
-    channeal_types ||--o{ channel_relations:"1:N"
+    channel_types ||--o{ channel_relations:"1:N"
     channel_relations }o--|| channels:"N:1"
-    trials }|--|| channeal_types:"N:1"
+    trials }|--|| channel_types:"N:1"
     trials ||--|| subjects:"1:1"
-    rating }|--|| images:"N:1"
-    rating }|--|| movies:"N:1"
-    trials ||--|{ rating:"1:N"
+    rating }o--|| images:"N:1"
+    rating }o--|| movies:"N:1"
+    trials ||--o{ rating:"1:N"
     trials ||--|| signals:"1:1"
     signals ||--|{ calibrations:"1:N"
     signals ||--|{ trend_ranges:"1:N"
 
-    channeal_types {
+    channel_types {
         INT id PK
         VARCHAR channel_type_name
     }
@@ -198,13 +198,13 @@ erDiagram
         VARCHAR raw_signal_filename
     }
 
-    calibrations{
+    calibrations {
         INT id PK
         INT trial_id FK
         VARCHAR calibration
     }
 
-    trend_ranges{
+    trend_ranges {
         INT id PK
         INT trial_id FK
         TEXT trend_range
