@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /public/static/images/OASIS
+/src/imageFileNames.json
 
 # testing
 /coverage

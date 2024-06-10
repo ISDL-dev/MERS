@@ -5,46 +5,8 @@ info:
   license:
     name: MIT
 servers:
-- url: http://localhost:3000/v1
+- url: http://localhost:3000
 paths:
-  /images:
-    get:
-      summary: Randomly get Google Drive IDs for images
-      operationId: get-image-ids
-      tags:
-        - images
-      responses:
-        '200':
-          description: Successful to get image IDs
-          content:
-              application/json:    
-                schema:
-                  $ref: "#/components/schemas/ListImages"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /movies:
-    get:
-      summary: Randomly get Google Drive IDs for movies
-      tags:
-        - movies
-      operationId: get-movie-ids
-      responses:
-        "200":
-          description: Successful to get movie IDs
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListMovies"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
   /trials:
     post:
       summary: create a trial result

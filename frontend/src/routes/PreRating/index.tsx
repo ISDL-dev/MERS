@@ -11,7 +11,7 @@ function PreRating() {
 
     const date_to_time = (date: Date) => {
         const time = date.getFullYear().toString() + "-" + 
-        date.getMonth().toString().padStart( 2, '0') + "-" + 
+        (date.getMonth() + 1).toString().padStart( 2, '0') + "-" + 
         date.getDate().toString().padStart( 2, '0') + " " +
         date.getHours().toString().padStart( 2, '0') + ":" + 
         date.getMinutes().toString().padStart( 2, '0') + ":" +
@@ -28,7 +28,7 @@ function PreRating() {
             const sec = time - 1;
             setTime(sec)
             if (sec===0){
-                navigate("/rating", {state: {"subject": location.state, "pre_started_at": preStartedAt}})
+                navigate("/rating", {state: { "subject": location.state , "preStartedAt": preStartedAt}});
             }
         },1000);
     });

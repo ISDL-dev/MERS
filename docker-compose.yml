@@ -3,8 +3,8 @@ services:
   frontend:
     container_name: mers-frontend
     build: ./frontend
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - .env.${ENV_TYPE}
     tty: true
     stdin_open: true
     ports:
@@ -15,11 +15,14 @@ services:
   backend:
     container_name: api-server
     build: ./backend
+    env_file:
+      - .env.${ENV_TYPE}
+    tty: true
+    stdin_open: true
     ports:
       - 3000:3000
     volumes:
       - ./backend/internal:/go/src/backend/internal
-    tty: true
   database:
     image: mysql:8.0
     container_name: ${MYSQL_DATABASE}
