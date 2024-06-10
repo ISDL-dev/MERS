@@ -6,32 +6,42 @@ CREATE TABLE IF NOT EXISTS conditions (
     number_of_media INT UNSIGNED NOT NULL, 
     rating_second_by_media INT UNSIGNED NOT NULL,    
     dataset VARCHAR(64) NOT NULL,
-    platform VARCHAR(64) NOT NULL,
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-CREATE TABLE IF NOT EXISTS channels(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    condition_id INT UNSIGNED,
-    channel_num INT UNSIGNED,
-    channel_name VARCHAR(64),
-    FOREIGN KEY (condition_id) REFERENCES conditions(id) ON DELETE RESTRICT ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+    platform VARCHAR(64) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS trials(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     condition_id INT UNSIGNED,
+    channel_type_id INT UNSIGNED,
     pre_started_at DATETIME NOT NULL,
     started_at DATETIME NOT NULL,
     ended_at DATETIME NOT NULL,
     FOREIGN KEY (condition_id) REFERENCES conditions(id) ON DELETE RESTRICT ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- trialsとsubjectsの関係は1対1
+CREATE TABLE IF NOT EXISTS channels(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_name VARCHAR(64) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS channel_types(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_type_name VARCHAR(64) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS channel_relations(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_type_id INT UNSIGNED,
+    channel_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (channel_type_id) REFERENCES channel_types(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE CASCADE ON UPDATE CASCADE
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 CREATE TABLE IF NOT EXISTS subjects(
     trial_id INT UNSIGNED PRIMARY KEY,
     age INT UNSIGNED,
     gender VARCHAR(64),
-    handedness VARCHAR(64) ,
+    handedness VARCHAR(64),
     vision VARCHAR(64),
     vision_aid VARCHAR(64),
     education VARCHAR(64),
@@ -48,45 +58,41 @@ CREATE TABLE IF NOT EXISTS subjects(
     distance_nasion_inion FLOAT,
     distance_left_right_jaw_hinge FLOAT,
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- trialsとsignalsの関係は1対1
 CREATE TABLE IF NOT EXISTS signals(
     trial_id INT UNSIGNED PRIMARY KEY,
     analyzed_signal_filename VARCHAR(128) NOT NULL,
     raw_signal_filename VARCHAR(64) NOT NULL,
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS calibrations(
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     trial_id INT UNSIGNED,
     calibration VARCHAR(128) NOT NULL,  
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS trend_ranges(
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     trial_id INT UNSIGNED,
     trend_range TEXT NOT NULL, 
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ratingとimagesの関係は1対1
 CREATE TABLE IF NOT EXISTS images(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     filename VARCHAR(64) NOT NULL
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ratingとmoviesの関係は1対1
 CREATE TABLE IF NOT EXISTS movies(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     filename VARCHAR(64) NOT NULL
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- trialsとratingの関係は1対多
 CREATE TABLE IF NOT EXISTS rating(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     trial_id INT UNSIGNED,
     image_id INT UNSIGNED,
     movie_id INT UNSIGNED,
@@ -95,11 +101,45 @@ CREATE TABLE IF NOT EXISTS rating(
     liking FLOAT,
     dominance FLOAT,
     famility FLOAT,
-    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE RESTRICT
-     ON UPDATE CASCADE,
+    FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE RESTRICT ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+INSERT INTO channels (channel_name) VALUES ('Fp1');
+INSERT INTO channels (channel_name) VALUES ('AF3');
+INSERT INTO channels (channel_name) VALUES ('F3');
+INSERT INTO channels (channel_name) VALUES ('F7');
+INSERT INTO channels (channel_name) VALUES ('FC5');
+INSERT INTO channels (channel_name) VALUES ('FC1');
+INSERT INTO channels (channel_name) VALUES ('C3');
+INSERT INTO channels (channel_name) VALUES ('T7');
+INSERT INTO channels (channel_name) VALUES ('CP5');
+INSERT INTO channels (channel_name) VALUES ('CP1');
+INSERT INTO channels (channel_name) VALUES ('P3');
+INSERT INTO channels (channel_name) VALUES ('P7');
+INSERT INTO channels (channel_name) VALUES ('PO3');
+INSERT INTO channels (channel_name) VALUES ('O1');
+INSERT INTO channels (channel_name) VALUES ('Oz');
+INSERT INTO channels (channel_name) VALUES ('Pz');
+INSERT INTO channels (channel_name) VALUES ('Fp2');
+INSERT INTO channels (channel_name) VALUES ('AF4');
+INSERT INTO channels (channel_name) VALUES ('Fz');
+INSERT INTO channels (channel_name) VALUES ('F4');
+INSERT INTO channels (channel_name) VALUES ('F8');
+INSERT INTO channels (channel_name) VALUES ('FC6');
+INSERT INTO channels (channel_name) VALUES ('FC2');
+INSERT INTO channels (channel_name) VALUES ('Cz');
+INSERT INTO channels (channel_name) VALUES ('C4');
+INSERT INTO channels (channel_name) VALUES ('T8');
+INSERT INTO channels (channel_name) VALUES ('CP6');
+INSERT INTO channels (channel_name) VALUES ('CP2');
+INSERT INTO channels (channel_name) VALUES ('P4');
+INSERT INTO channels (channel_name) VALUES ('P8');
+INSERT INTO channels (channel_name) VALUES ('PO4');
+INSERT INTO channels (channel_name) VALUES ('O2');
+
 
 INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Acorns_1.jpg');
 INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Astronaut_1.jpg');
