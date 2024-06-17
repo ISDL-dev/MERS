@@ -1,13 +1,18 @@
 import axios from 'axios';
-import { TrialsApi } from './schema';
+import { TrialsApi, RecordingStartApi, RecordingPauseApi } from './schema';
 
-const BASEURL = process.env.BACKEND_ENDPOINT
+const baseURL = process.env.BACKEND_ENDPOINT
+
 const api = axios.create({
-  baseURL: BASEURL
+  baseURL: baseURL
 });
 
-const trialsApi = new TrialsApi(undefined, BASEURL, api)
+const trialsApi = new TrialsApi(undefined, baseURL, api)
+const recordingStartApi = new RecordingStartApi(undefined, baseURL, api)
+const recordingPauseApi = new RecordingPauseApi(undefined, baseURL, api)
 
 export {
-  trialsApi
+  trialsApi,
+  recordingStartApi,
+  recordingPauseApi
 }
