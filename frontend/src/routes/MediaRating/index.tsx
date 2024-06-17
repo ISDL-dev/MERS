@@ -26,7 +26,7 @@ const mediaNum: number = 120;
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
-  const ratingSecondByMedia: number = 2;
+  const ratingSecondByMedia: number = 15;
   const mediaIndexRef = useRef<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [mediaSrc, setMediaSrc] = useState<string>("");
