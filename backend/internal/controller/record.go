@@ -25,7 +25,7 @@ func GetRecordingStartHandlerFunc(ctx *gin.Context) {
 	absSaveDir := filepath.Join(wd, "output")
 
 	conf := client.Config{
-		ServerIP: "192.168.10.129",
+		ServerIP: "192.168.10.101",
 		SaveDir:  absSaveDir,
 	}
 	c, err := client.NewClient(conf)
@@ -36,15 +36,17 @@ func GetRecordingStartHandlerFunc(ctx *gin.Context) {
 		return
 	}
 
-	err = c.Start(time.Minute * totalExperimentTime)
-	if err != nil {
-		ctx.JSON(500, gin.H{
-			"message": err.Error(),
-		})
-		return
-	}
+	go func() {
+		err = c.Start(time.Second * totalExperimentTime)
+		if err != nil {
+			ctx.JSON(500, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+	}()
 
 	ctx.JSON(200, gin.H{
-		"message": "Map1058 was successfully recorded",
+		"message": "recording started",
 	})
 }
