@@ -4,20 +4,20 @@
 </div>
 
 ## 目次
-1. [プロジェクトについて](#プロジェクトについて)
-2. [使用技術](#使用技術)
-3. [開発環境構築](#開発環境構築)
-4. [使用方法](#使用方法)
-5. [ER図](#ER図)
+1. [Overview](#Overview)
+2. [Technologies](#Technologies)
+3. [Environments](#Environments)
+4. [Usage](#Usage)
+5. [ER Diagram](#ER)
 
 
-## プロジェクトについて
+## Overview
 
-本アプリケーションは，被験者がメディアを視聴した時の感情を評価し，メディアと感情の関係性を分析するためのデータセットを作成する．
+This application is designed to evaluate the emotions of participants when they view media and to create a dataset for analyzing the relationship between media and emotions.
 
 ![MERS](https://github.com/ISDL-dev/MERS/assets/119837395/c7d5824b-37b0-4a81-a48d-f272b476bb4e)
 
-## 使用技術
+## Technologies
 
 Backend: <img src="https://img.shields.io/badge/-Go-76E1FE.svg?logo=go&style=plastic">
 
@@ -27,93 +27,88 @@ Database: <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&st
 
 Container: <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=plastic">
 
-## 開発環境構築
+## Environments
 
-### コード生成
+### Code Generation
 
-1.コード生成のツールをインストールしていない場合
+1.If you haven't installed the code generation tools
 
-カスタムした openapi-generator となる jar ファイルを生成するため，以下の方法で maven をインストールする．
+To generate a customized openapi-generator jar file, install Maven as follows:
 
 - MacOS：`brew install maven`
-- その他の OS：https://maven.apache.org/install.html
+- Other OS: https://maven.apache.org/install.html
 
-また，生成した jar ファイルを実行してスキーマを生成するため，Java の実行環境を用意する．
+Additionally, to run the generated jar file and create the schema, set up a Java runtime environment.
 
 - Java Download: https://www.java.com/ja/download/
 
-2.コード生成のツールをインストールが完了している場合
+2.If the code generation tools are already installed
 
-以下のコードを実行することで，jar ファイルを生成する．
-テストコードのコンパイルやテストの実行をスキップするように指定している．
+Execute the following code to generate the jar file. This command skips the compilation of test code and the execution of tests.
 
 ```bash
 make create-jar
 ```
 
-以下のコードを実行することで，openapi-generator によりスキーマを生成する．
-現状は，モデル，リクエスト，レスポンスの構造体のみを生成する．
+Execute the following code to generate the schema using openapi-generator. Currently, it generates only the structure of models, requests, and responses.
 
 ```bash
 make generate
 ```
 
-### 依存関係のインストール
+### Dependency Installation
 
-frontend のディレクトリで以下のコマンドを実行する．
-
-```bash
-npm install --frozen-lockfile
-```
-
-backend のディレクトリで以下のコマンドを実行する．
+Run the following command in the frontend directory:
 
 ```bash
 npm install --frozen-lockfile
 ```
 
-## 使用方法
-### アプリケーションの起動
+Run the following command in the backend directory:
 
-MERS ディレクトリ直下で，以下のコマンドを実行して Docker コンテナのビルドと起動をする．
+```bash
+npm install --frozen-lockfile
+```
+## Usage
+### How to activate the application
 
-#### 本番環境
+Run the following command in the root directory of MERS to build and start the Docker containers.
+
+#### Production Environment
 
 ```bash
 make build-up prod
 ```
 
-起動後に`192.168.10.127:4000` にアクセスして実験を行う． 
-本番環境の詳細な環境設定に関して，MERS Documentsを参考にすること．
+After startup, access 192.168.10.127:4000 to conduct experiments. For detailed settings of the production environment, refer to MERS Documents.
 
-#### 開発環境
+#### Development Environment
 
 ```bash
 make build-up dev
 ```
 
-起動後に`http://localhost:4000` にアクセスして動作確認を行う．  
+After startup, access http://localhost:4000 to check the operation.
 
+### How to deactivate the application
 
-### アプリケーションの停止
+Run the following command in the root directory of MERS to delete and stop the Docker containers.
 
-MERS ディレクトリ直下で，以下のコマンドを実行して Docker コンテナの削除と停止をする．
-
-#### 本番環境
+#### Production Environment
 
 ```bash
 make stop prod
 ```
 
-#### 開発環境
+#### Development Environment
 
 ```bash
 make stop dev
 ```
 
-## ER図
+## ER Diagram
 
-データベース構成を以下の図に示す．
+The database schema is illustrated in the following diagram.
 
 ```mermaid
 erDiagram
