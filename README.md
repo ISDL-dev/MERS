@@ -102,20 +102,6 @@ backend のディレクトリで以下のコマンドを実行する。
 npm install --frozen-lockfile
 ```
 
-## システム構成図
-
-システム構成を以下の図に示す。
-
-```mermaid
-flowchart LR
-  frontend-->|HTTP POST trial| APIserver[APIServer]
-  SignalServer-->|send signal| APIserver[APIServer]
-  APIserver-->|insert trial record| DB[(Database)]
-  APIserver-->|insert subjct record| DB[(Database)]
-  APIserver-->|insert emotion record| DB[(Database)]
-  APIserver-->|insert signal record| DB[(Database)]
-```
-
 ## データベース構成図
 
 データベース構成を以下の図に示す。
