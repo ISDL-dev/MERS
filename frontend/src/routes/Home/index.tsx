@@ -2,7 +2,7 @@ import { Text, Box, Center, Button } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 import "./Home.css"
 
-function Home1() {
+function Home() {
     const navigate = useNavigate()
     function onClickHome() {
         navigate('/questionnare')
