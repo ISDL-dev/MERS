@@ -22,11 +22,11 @@ const detasetName: string = "OASIS";
 const experimentLocation: string = "KC111";
 const platform: string = "";
 const [rateMin, rateDefault, rateMax]: number[] = [1, 5, 9];
-const mediaNum: number = 120;
+const mediaNum: number = Number(process.env.REACT_APP_MEDIANUM);
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
-  const ratingSecondByMedia: number = 15;
+  const ratingSecondByMedia: number = Number(process.env.REACT_APP_RATING_SECOND);
   const mediaIndexRef = useRef<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [mediaSrc, setMediaSrc] = useState<string>("");
@@ -136,7 +136,8 @@ function RatingPage(props: RatingPageProps) {
     var params = new FormData();
     params.append("disp_image", mediaFileName);
 
-    axios
+    if (process.env.REACT_APP_ENV_TYPE === "prod"){
+      axios
       .post("http://192.168.10.127:3100/mers-image", params)
       .then((response) => {
         console.log(response.data);
@@ -144,6 +145,7 @@ function RatingPage(props: RatingPageProps) {
       .catch((error) => {
         console.log(error);
       });
+    }
     setTimeout(() => {
       setIsVisible(true);
     }, ratingSecondByMedia * 1000);

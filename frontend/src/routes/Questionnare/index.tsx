@@ -51,11 +51,12 @@ function QuestionnarePage() {
             distance_left_right_jaw_hinge: distanceLeftRightJawHinge
         }
         try {
-            const response = await recordingStartApi.getRecordingStart();
-            if (response.status !== 200) {
-                console.log(response);
+            if (process.env.REACT_APP_ENV_TYPE === "prod"){
+                const response = await recordingStartApi.getRecordingStart();
+                if (response.status !== 200) {
+                    console.log(response);
+                }
             }
-            console.log(response);
             navigate('/prerating', {state: subject})
         }
         catch (error) {
