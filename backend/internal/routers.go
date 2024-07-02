@@ -1,9 +1,9 @@
 package internal
 
 import (
+	"github.com/ISDL-dev/MERS/backend/internal/controller"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/hoka-isdl/MERS/backend/internal/controller"
 )
 
 func SetRoutes(router *gin.Engine) {
@@ -21,4 +21,5 @@ func SetRoutes(router *gin.Engine) {
 	router.GET("/ping", controller.PingHandlerFunc)
 	router.POST("/trials", controller.PostTrialsHandlerFunc)
 	router.GET("/images/:num_images", controller.GetImagesHandlerFunc)
+	router.GET("/recording-start", controller.GetRecordingStartHandlerFunc)
 }

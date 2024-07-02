@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/ISDL-dev/MERS/backend/internal"
+	"github.com/ISDL-dev/MERS/backend/internal/repository"
 	"github.com/gin-gonic/gin"
-	"github.com/hoka-isdl/MERS/backend/internal"
-	"github.com/hoka-isdl/MERS/backend/internal/repository"
 )
 
 const (
@@ -37,7 +37,7 @@ func main() {
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("server shutdown...")
-	repository.CloseDB()//DBの切断
+	repository.CloseDB() //DBの切断
 
 	// 5秒間のタイムアウト制限を設けてサーバーの停止処理を開始
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)

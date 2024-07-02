@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@chakra-ui/react";
-
+import { recordingStartApi } from '../../api';
 import { PostTrialsRequestSubjectMetadata } from "../../schema";
 import FormDescription from "../../features/FormDescription";
 import SubjectForm from "../../features/SubjectForm"
@@ -29,7 +29,7 @@ function QuestionnarePage() {
     const [distanceNasionInion, setDistanceNasionInion] = useState(15)
     const [distanceLeftRightJawHinge, setDistanceLeftRightJawHinge] = useState(15)
     
-    function onClickAnswer() {
+    async function onClickAnswer() {
         var subject: PostTrialsRequestSubjectMetadata = {
             age: age,
             handedness: handedness,
@@ -50,8 +50,17 @@ function QuestionnarePage() {
             distance_nasion_inion: distanceNasionInion,
             distance_left_right_jaw_hinge: distanceLeftRightJawHinge
         }
-        console.log(subject)
-        navigate('/prerating', {state: subject})
+        try {
+            const response = await recordingStartApi.getRecordingStart();
+            if (response.status !== 200) {
+                console.log(response);
+            }
+            console.log(response);
+            navigate('/prerating', {state: subject})
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     return(

@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/ISDL-dev/MERS/backend/internal/model"
+	"github.com/ISDL-dev/MERS/backend/internal/repository"
+	"github.com/ISDL-dev/MERS/backend/internal/schema"
 	"github.com/gin-gonic/gin"
-	"github.com/hoka-isdl/MERS/backend/internal/model"
-	"github.com/hoka-isdl/MERS/backend/internal/repository"
-	"github.com/hoka-isdl/MERS/backend/internal/schema"
 )
 
 func PostTrialsHandlerFunc(ctx *gin.Context) {
