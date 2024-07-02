@@ -2,7 +2,13 @@ version: '3'
 services: 
   frontend:
     container_name: mers-frontend
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - "REACT_APP_ENV_TYPE=${ENV_TYPE}"
+        - "REACT_APP_RATING_SECOND=${RATING_SECOND}"
+        - "REACT_APP_MEDIANUM=${MEDIANUM}"
     env_file:
       - .env.${ENV_TYPE}
     tty: true
