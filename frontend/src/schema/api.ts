@@ -26,6 +26,147 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
+ * @interface ExprimentSettings
+ */
+export interface ExprimentSettings {
+    /**
+     * 
+     * @type {Array<ExprimentSettingsExprimentConditionsInner>}
+     * @memberof ExprimentSettings
+     */
+    'expriment-conditions'?: Array<ExprimentSettingsExprimentConditionsInner>;
+    /**
+     * 
+     * @type {Array<ExprimentSettingsChannelTypesInner>}
+     * @memberof ExprimentSettings
+     */
+    'channel-types'?: Array<ExprimentSettingsChannelTypesInner>;
+}
+/**
+ * 
+ * @export
+ * @interface ExprimentSettingsChannelTypesInner
+ */
+export interface ExprimentSettingsChannelTypesInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel_type_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel_type_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel1'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel2'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel3'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel4'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel5'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel6'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel7'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsChannelTypesInner
+     */
+    'channel8'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ExprimentSettingsExprimentConditionsInner
+ */
+export interface ExprimentSettingsExprimentConditionsInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'condition_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'condition_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'location'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'media_type'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'number_of_medias'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'rating_second_by_media'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'dataset'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExprimentSettingsExprimentConditionsInner
+     */
+    'platform'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ListImagesInner
  */
 export interface ListImagesInner {
@@ -79,6 +220,116 @@ export interface ModelError {
      * @memberof ModelError
      */
     'message': string;
+}
+/**
+ * 
+ * @export
+ * @interface PostChannelTypesRequest
+ */
+export interface PostChannelTypesRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel_type_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel1'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel2'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel3'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel4'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel5'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel6'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel7'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostChannelTypesRequest
+     */
+    'channel8'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostExprimentConditionsRequest
+ */
+export interface PostExprimentConditionsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'condition_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'location'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'media_type'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'number_of_medias'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'rating_second_by_media'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'dataset'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostExprimentConditionsRequest
+     */
+    'platform'?: string;
 }
 /**
  * 
@@ -194,10 +445,10 @@ export interface PostTrialsRequestRatingSetRatingInnerEmotion {
 export interface PostTrialsRequestSubjectMetadata {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PostTrialsRequestSubjectMetadata
      */
-    'id'?: number;
+    'name'?: string;
     /**
      * 
      * @type {number}
@@ -315,16 +566,16 @@ export interface PostTrialsRequestSubjectMetadata {
 export interface PostTrialsRequestTrialMetadata {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof PostTrialsRequestTrialMetadata
      */
-    'location'?: string;
+    'condition_id'?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof PostTrialsRequestTrialMetadata
      */
-    'platform'?: string;
+    'channel_type_id'?: number;
     /**
      * 
      * @type {string}
@@ -343,19 +594,315 @@ export interface PostTrialsRequestTrialMetadata {
      * @memberof PostTrialsRequestTrialMetadata
      */
     'ended_at'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PostTrialsRequestTrialMetadata
-     */
-    'rating_second_by_media'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PostTrialsRequestTrialMetadata
-     */
-    'number_of_medias'?: number;
 }
+
+/**
+ * ChannelTypesApi - axios parameter creator
+ * @export
+ */
+export const ChannelTypesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Add channel types
+         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postChannelTypes: async (postChannelTypesRequest?: PostChannelTypesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/channel-types`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postChannelTypesRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ChannelTypesApi - functional programming interface
+ * @export
+ */
+export const ChannelTypesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ChannelTypesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Add channel types
+         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postChannelTypes(postChannelTypesRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ChannelTypesApi - factory interface
+ * @export
+ */
+export const ChannelTypesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ChannelTypesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Add channel types
+         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.postChannelTypes(postChannelTypesRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ChannelTypesApi - object-oriented interface
+ * @export
+ * @class ChannelTypesApi
+ * @extends {BaseAPI}
+ */
+export class ChannelTypesApi extends BaseAPI {
+    /**
+     * 
+     * @summary Add channel types
+     * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelTypesApi
+     */
+    public postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: AxiosRequestConfig) {
+        return ChannelTypesApiFp(this.configuration).postChannelTypes(postChannelTypesRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ExprimentConditionsApi - axios parameter creator
+ * @export
+ */
+export const ExprimentConditionsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Add experimental conditions
+         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postExprimentConditions: async (postExprimentConditionsRequest?: PostExprimentConditionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/expriment-conditions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postExprimentConditionsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ExprimentConditionsApi - functional programming interface
+ * @export
+ */
+export const ExprimentConditionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ExprimentConditionsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Add experimental conditions
+         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postExprimentConditions(postExprimentConditionsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ExprimentConditionsApi - factory interface
+ * @export
+ */
+export const ExprimentConditionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ExprimentConditionsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Add experimental conditions
+         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.postExprimentConditions(postExprimentConditionsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ExprimentConditionsApi - object-oriented interface
+ * @export
+ * @class ExprimentConditionsApi
+ * @extends {BaseAPI}
+ */
+export class ExprimentConditionsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Add experimental conditions
+     * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExprimentConditionsApi
+     */
+    public postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: AxiosRequestConfig) {
+        return ExprimentConditionsApiFp(this.configuration).postExprimentConditions(postExprimentConditionsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ExprimentSettingsApi - axios parameter creator
+ * @export
+ */
+export const ExprimentSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Get all experimental settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getExprimentSettings: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/expriment-settings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ExprimentSettingsApi - functional programming interface
+ * @export
+ */
+export const ExprimentSettingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ExprimentSettingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Get all experimental settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getExprimentSettings(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExprimentSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getExprimentSettings(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ExprimentSettingsApi - factory interface
+ * @export
+ */
+export const ExprimentSettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ExprimentSettingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Get all experimental settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getExprimentSettings(options?: any): AxiosPromise<ExprimentSettings> {
+            return localVarFp.getExprimentSettings(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ExprimentSettingsApi - object-oriented interface
+ * @export
+ * @class ExprimentSettingsApi
+ * @extends {BaseAPI}
+ */
+export class ExprimentSettingsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get all experimental settings
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExprimentSettingsApi
+     */
+    public getExprimentSettings(options?: AxiosRequestConfig) {
+        return ExprimentSettingsApiFp(this.configuration).getExprimentSettings(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * ImagesApi - axios parameter creator
