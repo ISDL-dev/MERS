@@ -20,7 +20,7 @@ services:
       - ./frontend:/usr/src/app
     command: sh -c 'yarn install && yarn start'
   backend:
-    container_name: api-server
+    container_name: mers-backend
     build: ./backend
     env_file:
       - .env.${ENV_TYPE}
