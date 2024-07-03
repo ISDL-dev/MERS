@@ -11,18 +11,14 @@ package schema
 
 type PostTrialsRequestTrialMetadata struct {
 
-	Location string `json:"location,omitempty"`
+	ConditionId int32 `json:"condition_id,omitempty"`
 
-	Platform string `json:"platform,omitempty"`
+	ChannelTypeId int32 `json:"channel_type_id,omitempty"`
 
 	PreStartedAt string `json:"pre_started_at,omitempty"`
 
 	StartedAt string `json:"started_at,omitempty"`
 
 	EndedAt string `json:"ended_at,omitempty"`
-
-	RatingSecondByMedia int32 `json:"rating_second_by_media,omitempty"`
-
-	NumberOfMedias int32 `json:"number_of_medias,omitempty"`
 }
 
