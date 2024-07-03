@@ -9,6 +9,7 @@ services:
         - "REACT_APP_ENV_TYPE=${ENV_TYPE}"
         - "REACT_APP_RATING_SECOND=${RATING_SECOND}"
         - "REACT_APP_MEDIANUM=${MEDIANUM}"
+        - "BACKEND_ENDPOINT=${BACKEND_ENDPOINT}"
     env_file:
       - .env.${ENV_TYPE}
     tty: true
@@ -19,7 +20,7 @@ services:
       - ./frontend:/usr/src/app
     command: sh -c 'yarn install && yarn start'
   backend:
-    container_name: api-server
+    container_name: mers-backend
     build: ./backend
     env_file:
       - .env.${ENV_TYPE}

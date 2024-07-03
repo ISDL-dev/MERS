@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { TrialsApi, RecordingStartApi, RecordingPauseApi } from './schema';
 
-const baseURL = process.env.BACKEND_ENDPOINT
+const baseURL = process.env.REACT_APP_BACKEND_ENDPOINT
 
 const api = axios.create({
   baseURL: baseURL
