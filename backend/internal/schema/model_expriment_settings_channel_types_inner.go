@@ -15,20 +15,6 @@ type ExprimentSettingsChannelTypesInner struct {
 
 	ChannelTypeName string `json:"channel_type_name,omitempty"`
 
-	Channel1 string `json:"channel1,omitempty"`
-
-	Channel2 string `json:"channel2,omitempty"`
-
-	Channel3 string `json:"channel3,omitempty"`
-
-	Channel4 string `json:"channel4,omitempty"`
-
-	Channel5 string `json:"channel5,omitempty"`
-
-	Channel6 string `json:"channel6,omitempty"`
-
-	Channel7 string `json:"channel7,omitempty"`
-
-	Channel8 string `json:"channel8,omitempty"`
+	Channels []string `json:"channels,omitempty"`
 }
 
