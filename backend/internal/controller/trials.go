@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ISDL-dev/MERS/backend/internal/model"
 	"github.com/ISDL-dev/MERS/backend/internal/repository"
 	"github.com/ISDL-dev/MERS/backend/internal/schema"
 	"github.com/gin-gonic/gin"
@@ -37,12 +36,12 @@ func PostTrialsHandlerFunc(ctx *gin.Context) {
 
 	// TODO: MaP1058と通信をしてsignalを作成する
 	// TODO: signal型はMaP1058のクライアントライブラリで定義されたものを使う
-	signal := model.Signal{}
-	if err := repository.CreateSignal(trialId, signal); err != nil {
-		log.Printf("Internal Server Error: failed to create a signal record: %v\n", err)
-		ctx.Status(http.StatusInternalServerError)
-		return
-	}
+	// signal := model.Signal{}
+	// if err := repository.CreateSignal(trialId, signal); err != nil {
+	// 	log.Printf("Internal Server Error: failed to create a signal record: %v\n", err)
+	// 	ctx.Status(http.StatusInternalServerError)
+	// 	return
+	// }
 
 	switch trials.RatingSet.MediaType {
 	case "image":

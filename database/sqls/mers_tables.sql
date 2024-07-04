@@ -1,4 +1,8 @@
-CREATE TABLE IF NOT EXISTS conditions (
+-- --------------------------------------
+-- Master tables
+-- --------------------------------------
+
+CREATE TABLE IF NOT EXISTS conditions(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     condition_name VARCHAR(64) NOT NULL,
     location VARCHAR(64) NOT NULL,
@@ -19,18 +23,26 @@ CREATE TABLE IF NOT EXISTS channel_types(
     channel_type_name VARCHAR(64) NOT NULL
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS channel_relations(
+CREATE TABLE IF NOT EXISTS images(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    channel_type_id INT UNSIGNED,
-    channel_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (channel_type_id) REFERENCES channel_types(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE RESTRICT ON UPDATE CASCADE
+    dataset VARCHAR(64) NOT NULL,
+    filename VARCHAR(64) NOT NULL
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS movies(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    dataset VARCHAR(64) NOT NULL,
+    filename VARCHAR(64) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------
+-- Transaction tables
+-- --------------------------------------
 
 CREATE TABLE IF NOT EXISTS trials(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    condition_id INT UNSIGNED,
-    channel_type_id INT UNSIGNED,
+    condition_id INT UNSIGNED NOT NULL,
+    channel_type_id INT UNSIGNED NOT NULL,
     pre_started_at DATETIME NOT NULL,
     started_at DATETIME NOT NULL,
     ended_at DATETIME NOT NULL,
@@ -40,6 +52,7 @@ CREATE TABLE IF NOT EXISTS trials(
 
 CREATE TABLE IF NOT EXISTS subjects(
     trial_id INT UNSIGNED PRIMARY KEY,
+    name VARCHAR(64),
     age INT UNSIGNED,
     gender VARCHAR(64),
     handedness VARCHAR(64),
@@ -82,18 +95,6 @@ CREATE TABLE IF NOT EXISTS trend_ranges(
     FOREIGN KEY (trial_id) REFERENCES trials(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS images(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    dataset VARCHAR(64) NOT NULL,
-    filename VARCHAR(64) NOT NULL
-) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-CREATE TABLE IF NOT EXISTS movies(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    dataset VARCHAR(64) NOT NULL,
-    filename VARCHAR(64) NOT NULL
-) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
 CREATE TABLE IF NOT EXISTS rating(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     trial_id INT UNSIGNED,
@@ -109,6 +110,36 @@ CREATE TABLE IF NOT EXISTS rating(
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------
+-- Association tables
+-- --------------------------------------
+
+CREATE TABLE IF NOT EXISTS channel_relations(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_type_id INT UNSIGNED NOT NULL,
+    channel_number INT UNSIGNED NOT NULL,
+    channel_id INT UNSIGNED,
+    FOREIGN KEY (channel_type_id) REFERENCES channel_types(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+-- --------------------------------------
+-- Insert data
+-- --------------------------------------
+
+-- Insert experimental conditions
+INSERT INTO conditions(
+    condition_name,
+    location,
+    mediatype,
+    number_of_media, 
+    rating_second_by_media,
+    dataset,
+    platform
+) VALUES ('ExprimentalCondition1','KC111','image',120,15,'OASIS','KC111-BrightSign-Web');
+
+-- Insert channel
 INSERT INTO channels (channel_name) VALUES ('Fp1');
 INSERT INTO channels (channel_name) VALUES ('AF3');
 INSERT INTO channels (channel_name) VALUES ('F3');
@@ -141,7 +172,24 @@ INSERT INTO channels (channel_name) VALUES ('P4');
 INSERT INTO channels (channel_name) VALUES ('P8');
 INSERT INTO channels (channel_name) VALUES ('PO4');
 INSERT INTO channels (channel_name) VALUES ('O2');
+INSERT INTO channels (channel_name) VALUES ('A1');
+INSERT INTO channels (channel_name) VALUES ('A2');
+INSERT INTO channels (channel_name) VALUES ('flank');
 
+-- Insert channel type
+INSERT INTO channel_types(channel_type_name) VALUES ('ChannelType1');
+
+-- Insert relationship between channels and channel types
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,1,15);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,2,24);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,3,3);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,4,20);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,5,35);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,6,NULL);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,7,33);
+INSERT INTO channel_relations(channel_type_id,channel_number,channel_id) VALUES (1,8,34);
+
+-- Insert image
 INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Acorns_1.jpg');
 INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Astronaut_1.jpg');
 INSERT INTO images (dataset, filename) VALUES ('OASIS', 'Bark_3.jpg');
