@@ -185,22 +185,10 @@ components:
             properties:
               channel_type_name:
                 type: string
-              channel1:
-                 type: string
-              channel2:
-                 type: string
-              channel3:
-                 type: string
-              channel4:
-                 type: string
-              channel5:
-                 type: string
-              channel6:
-                 type: string
-              channel7:
-                 type: string
-              channel8:
-                 type: string
+              channels:
+                type: array
+                items:
+                  type: string
     Trial:
       content:
         application/json:
