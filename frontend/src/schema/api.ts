@@ -235,52 +235,10 @@ export interface PostChannelTypesRequest {
     'channel_type_name'?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof PostChannelTypesRequest
      */
-    'channel1'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel2'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel3'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel4'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel5'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel6'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel7'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostChannelTypesRequest
-     */
-    'channel8'?: string;
+    'channels'?: Array<string>;
 }
 /**
  * 
