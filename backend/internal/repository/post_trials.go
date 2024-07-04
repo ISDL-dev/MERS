@@ -10,25 +10,21 @@ import (
 func CreateTrial(trials schema.PostTrialsRequest) (id uint, err error) {
 	insert, err := db.Prepare(
 		`INSERT INTO trials(
-			location,
-			platform,
+			condition_id,
+			channel_type_id,
 			pre_started_at, 
 			started_at, 
-			ended_at,
-			rating_second_by_media,
-			number_of_medias
-		) VALUES(?, ?, ?, ?, ?, ?, ?)`)
+			ended_at
+		) VALUES(?, ?, ?, ?, ?)`)
 	if err != nil {
 		return id, fmt.Errorf("failed to prepare for a query to insert trial: %v", err)
 	}
 	result, err := insert.Exec(
-		trials.TrialMetadata.Location,
-		trials.TrialMetadata.Platform,
+		trials.TrialMetadata.ConditionId,
+		trials.TrialMetadata.ChannelTypeId,
 		trials.TrialMetadata.PreStartedAt,
 		trials.TrialMetadata.StartedAt,
 		trials.TrialMetadata.EndedAt,
-		trials.TrialMetadata.RatingSecondByMedia,
-		trials.TrialMetadata.NumberOfMedias,
 	)
 	if err != nil {
 		return id, fmt.Errorf("failed to execute a query to insert trial: %v", err)
@@ -43,19 +39,52 @@ func CreateTrial(trials schema.PostTrialsRequest) (id uint, err error) {
 func CreateSubject(trialId uint, subject schema.PostTrialsRequestSubjectMetadata) error {
 	insert, err := db.Prepare(
 		`INSERT INTO subjects(
-			trial_id,age,gender,handedness,vision,vision_aid,education,
-			alcohol_consumption,coffee_consumption,tea_consumption,tobacco_consumption,drug_consumption,
-			syndroms,hours_of_sleep_last_night,normal_hours_of_sleep,level_of_alertness,
-			head_circumference,distance_nasion_inion,distance_left_right_jaw_hinge
-		)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+			trial_id,
+			name,
+			age,
+			gender,
+			handedness,
+			vision,
+			vision_aid,
+			education,
+			alcohol_consumption,
+			coffee_consumption,
+			tea_consumption,
+			tobacco_consumption,
+			drug_consumption,
+			syndroms,
+			hours_of_sleep_last_night,
+			normal_hours_of_sleep,
+			level_of_alertness,
+			head_circumference,
+			distance_nasion_inion,
+			distance_left_right_jaw_hinge
+		) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
 	if err != nil {
 		return fmt.Errorf("failed to prepare for a query to insert subject: %v", err)
 	}
 	_, err = insert.Exec(
-		trialId, subject.Age, subject.Gender, subject.Handedness, subject.Vision, subject.VisionAid, subject.Education,
-		subject.AlcoholConsumption, subject.CoffeeConsumption, subject.TeaConsumption, subject.TobaccoConsumption, subject.DrugConsumption,
-		subject.Syndroms, subject.HoursOfSleepLastNight, subject.NormalHoursOfSleep, subject.LevelOfAlertness,
-		subject.HeadCircumference, subject.DistanceNasionInion, subject.DistanceLeftRightJawHinge)
+		trialId,
+		subject.Name,
+		subject.Age,
+		subject.Gender,
+		subject.Handedness,
+		subject.Vision,
+		subject.VisionAid,
+		subject.Education,
+		subject.AlcoholConsumption,
+		subject.CoffeeConsumption,
+		subject.TeaConsumption,
+		subject.TobaccoConsumption,
+		subject.DrugConsumption,
+		subject.Syndroms,
+		subject.HoursOfSleepLastNight,
+		subject.NormalHoursOfSleep,
+		subject.LevelOfAlertness,
+		subject.HeadCircumference,
+		subject.DistanceNasionInion,
+		subject.DistanceLeftRightJawHinge,
+	)
 	if err != nil {
 		return fmt.Errorf("failed to execute a query to insert subject: %v", err)
 	}

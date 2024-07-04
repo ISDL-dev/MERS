@@ -9,7 +9,7 @@ import "./Questionnare.css"
 
 function QuestionnarePage() {
     const navigate = useNavigate()
-
+    const [name, setName] = useState("")
     const [age, setAge] = useState(20)
     const [gender, setGender] = useState("men")
     const [handedness, setHandedness] = useState("left_handed")
@@ -31,6 +31,7 @@ function QuestionnarePage() {
     
     async function onClickAnswer() {
         var subject: PostTrialsRequestSubjectMetadata = {
+            name: name,
             age: age,
             handedness: handedness,
             gender: gender,
@@ -68,6 +69,7 @@ function QuestionnarePage() {
         <div className="questionnare_box">
             <FormDescription/>
             <SubjectForm 
+                setName={setName}
                 setAge={setAge}
                 setHandedness={setHandedness}
                 setGender={setGender}
