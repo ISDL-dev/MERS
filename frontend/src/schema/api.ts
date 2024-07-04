@@ -62,52 +62,10 @@ export interface ExprimentSettingsChannelTypesInner {
     'channel_type_name'?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof ExprimentSettingsChannelTypesInner
      */
-    'channel1'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel2'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel3'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel4'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel5'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel6'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel7'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
-     */
-    'channel8'?: string;
+    'channels'?: Array<string>;
 }
 /**
  * 
