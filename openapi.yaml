@@ -7,6 +7,63 @@ info:
 servers:
 - url: http://localhost:3000
 paths:
+  /expriment-conditions:
+    post:
+      summary: Add experimental conditions
+      operationId: post-expriment-conditions
+      tags:
+        - expriment-conditions
+      requestBody:
+        description: request body of experimental conditions
+        required: true
+        $ref: '#/components/requestBodies/ExprimentConditions'
+      responses:
+        '201':
+          description: successful to add experimental conditions
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /channel-types:
+    post:
+      summary: Add channel types
+      operationId: post-channel-types
+      tags:
+        - channel-types
+      requestBody:
+        description: request body of channel types
+        required: true
+        $ref: '#/components/requestBodies/ChannelTypes'
+      responses:
+        '201':
+          description: successful to add channel types
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /expriment-settings:
+    get:
+      summary: Get all experimental settings
+      operationId: get-expriment-settings
+      tags:
+        - expriment-settings
+      responses:
+          '200':
+            description: successful to get all experimental settings
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/ExprimentSettings"
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
   /recording-start:
     get:
       summary: Start recording Map1058
@@ -98,6 +155,40 @@ paths:
 
 components:
   requestBodies:
+    ExprimentConditions:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              condition_name:
+                type: string
+              location:
+                type: string
+              media_type:
+                type: string
+              number_of_medias:
+                type: integer
+                format: uint64
+              rating_second_by_media:
+                type: integer
+                format: uint64
+              dataset:
+                type: string
+              platform:
+                type: string
+    ChannelTypes:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              channel_type_name:
+                type: string
+              channels:
+                type: array
+                items:
+                  type: string
     Trial:
       content:
         application/json:
@@ -107,28 +198,23 @@ components:
               trial_metadata:
                 type: object
                 properties:
-                  location:
-                    type: string
-                  platform:
-                    type: string
+                  condition_id:
+                    type: integer
+                    format: uint64
+                  channel_type_id:
+                    type: integer
+                    format: uint64
                   pre_started_at:
                     type: string
                   started_at:
                     type: string
                   ended_at:
                     type: string
-                  rating_second_by_media:
-                    type: integer
-                    format: uint64
-                  number_of_medias:
-                    type: integer
-                    format: uint64
               subject_metadata:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                    format: uint64
+                  name:
+                    type: string
                   age:
                     type: integer
                     format: uint64
@@ -208,6 +294,59 @@ components:
               - subject_metadata
               - rating_set
   schemas:
+    ExprimentSettings:
+      type: object
+      properties:
+        expriment-conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition_id:
+                type: integer
+                format: uint64
+              condition_name:
+                type: string
+              location:
+                type: string
+              media_type:
+                type: string
+              number_of_medias:
+                type: integer
+                format: uint64
+              rating_second_by_media:
+                type: integer
+                format: uint64
+              dataset:
+                type: string
+              platform:
+                type: string
+        channel-types:
+          type: array
+          items:
+            type: object
+            properties:
+              channel_type_id:
+                type: integer
+                format: uint64
+              channel_type_name:
+                type: string
+              channel1:
+                 type: string
+              channel2:
+                 type: string
+              channel3:
+                 type: string
+              channel4:
+                 type: string
+              channel5:
+                 type: string
+              channel6:
+                 type: string
+              channel7:
+                 type: string
+              channel8:
+                 type: string
     ListImages:
       type: array
       items:
@@ -239,4 +378,3 @@ components:
       required:
       - code
       - message
-

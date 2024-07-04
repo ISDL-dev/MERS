@@ -167,6 +167,7 @@ erDiagram
 
     subjects {
         INT trial_id PK
+        VARCHAR name
         INT age
         VARCHAR gender
         VARCHAR handedness

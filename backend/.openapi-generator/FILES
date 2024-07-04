@@ -1,6 +1,11 @@
 internal/schema/model_error.go
+internal/schema/model_expriment_settings.go
+internal/schema/model_expriment_settings_channel_types_inner.go
+internal/schema/model_expriment_settings_expriment_conditions_inner.go
 internal/schema/model_list_images_inner.go
 internal/schema/model_list_movies_inner.go
+internal/schema/model_post_channel_types_request.go
+internal/schema/model_post_expriment_conditions_request.go
 internal/schema/model_post_trials_request.go
 internal/schema/model_post_trials_request_rating_set.go
 internal/schema/model_post_trials_request_rating_set_rating_inner.go

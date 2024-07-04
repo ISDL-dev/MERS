@@ -11,7 +11,7 @@ package schema
 
 type PostTrialsRequestSubjectMetadata struct {
 
-	Id int32 `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 
 	Age int32 `json:"age,omitempty"`
 

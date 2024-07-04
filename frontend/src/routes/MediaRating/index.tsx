@@ -19,10 +19,9 @@ interface RatingPageProps {
 }
 
 const detasetName: string = "OASIS";
-const experimentLocation: string = "KC111";
-const platform: string = "";
 const [rateMin, rateDefault, rateMax]: number[] = [1, 5, 9];
 const mediaNum: number = Number(process.env.REACT_APP_MEDIANUM);
+const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
 
 // TODO: mediaTypeに応じて、利用するエンドポイントを切り替える
 function RatingPage(props: RatingPageProps) {
@@ -40,7 +39,6 @@ function RatingPage(props: RatingPageProps) {
   const [sliderValueBottom, setSliderValueBottom] = useState<number>(50);
   const mediaBaseSrc: string = "./static/images/OASIS/";
   const startedAt = useRef<string>("");
-  const ratingResult: PostTrialsRequestRatingSetRatingInner[] = [];
   const date_to_time = (date: Date) => {
     const time =
       date.getFullYear().toString() +
@@ -79,13 +77,11 @@ function RatingPage(props: RatingPageProps) {
   async function finishTrial() {
     const endedAt: string = date_to_time(new Date());
     const trialMetadata: PostTrialsRequestTrialMetadata = {
-      location: experimentLocation,
-      platform: platform,
+      condition_id: 1,
+      channel_type_id: 1,
       pre_started_at: preStartedAt,
       started_at: startedAt.current,
       ended_at: endedAt,
-      rating_second_by_media: ratingSecondByMedia,
-      number_of_medias: mediaNum,
     };
     const ratingSet: PostTrialsRequestRatingSet = {
       media_type: props.mediaType,
@@ -123,7 +119,6 @@ function RatingPage(props: RatingPageProps) {
       arousalRef.current = rateDefault;
       mediaIndexRef.current = mediaIndex + 1;
       showMedia();
-      console.log("location.state", location.state);
     }
   }
 
