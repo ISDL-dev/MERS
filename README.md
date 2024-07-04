@@ -137,6 +137,7 @@ erDiagram
     channel_relations {
         INT id PK
         INT channel_type_id FK
+        INT channel_number
         INT channel_id FK
     }
 
