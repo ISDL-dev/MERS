@@ -53,11 +53,7 @@ paths:
         - expriment-settings
       responses:
           '200':
-            description: successful to get all experimental settings
-            content:
-              application/json:    
-                schema:
-                  $ref: "#/components/schemas/ExprimentSettings"
+            $ref: "#/components/responses/ExprimentSettings"
           default:
             description: unexpected error
             content:
@@ -79,7 +75,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  /recording-pauset:
+  /recording-pause:
     get:
       summary: Pause recording Map1058
       operationId: get-recording-pause
@@ -255,48 +251,53 @@ components:
               - trial_metadata
               - subject_metadata
               - rating_set
-  schemas:
+  responses:
     ExprimentSettings:
-      type: object
-      properties:
-        expriment-conditions:
-          type: array
-          items:
+      description: successful to get all experimental settings
+      content:
+        application/json:    
+          schema:
             type: object
             properties:
-              condition_id:
-                type: integer
-                format: uint64
-              condition_name:
-                type: string
-              location:
-                type: string
-              media_type:
-                type: string
-              number_of_medias:
-                type: integer
-                format: uint64
-              rating_second_by_media:
-                type: integer
-                format: uint64
-              dataset:
-                type: string
-              platform:
-                type: string
-        channel-types:
-          type: array
-          items:
-            type: object
-            properties:
-              channel_type_id:
-                type: integer
-                format: uint64
-              channel_type_name:
-                type: string
-              channels:
+              expriment-conditions:
                 type: array
                 items:
-                  type: string
+                  type: object
+                  properties:
+                    condition_id:
+                      type: integer
+                      format: uint64
+                    condition_name:
+                      type: string
+                    location:
+                      type: string
+                    media_type:
+                      type: string
+                    number_of_medias:
+                      type: integer
+                      format: uint64
+                    rating_second_by_media:
+                      type: integer
+                      format: uint64
+                    dataset:
+                      type: string
+                    platform:
+                      type: string
+              channel-types:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    channel_type_id:
+                      type: integer
+                      format: uint64
+                    channel_type_name:
+                      type: string
+                    channels:
+                      type: array
+                      items:
+                        type: string
+  schemas:
     Error:
       type: object
       properties:
