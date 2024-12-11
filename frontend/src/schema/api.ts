@@ -26,139 +26,101 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
- * @interface ExprimentSettings
+ * @interface GetExprimentSettings200Response
  */
-export interface ExprimentSettings {
+export interface GetExprimentSettings200Response {
     /**
      * 
-     * @type {Array<ExprimentSettingsExprimentConditionsInner>}
-     * @memberof ExprimentSettings
+     * @type {Array<GetExprimentSettings200ResponseExprimentConditionsInner>}
+     * @memberof GetExprimentSettings200Response
      */
-    'expriment-conditions'?: Array<ExprimentSettingsExprimentConditionsInner>;
+    'expriment-conditions'?: Array<GetExprimentSettings200ResponseExprimentConditionsInner>;
     /**
      * 
-     * @type {Array<ExprimentSettingsChannelTypesInner>}
-     * @memberof ExprimentSettings
+     * @type {Array<GetExprimentSettings200ResponseChannelTypesInner>}
+     * @memberof GetExprimentSettings200Response
      */
-    'channel-types'?: Array<ExprimentSettingsChannelTypesInner>;
+    'channel-types'?: Array<GetExprimentSettings200ResponseChannelTypesInner>;
 }
 /**
  * 
  * @export
- * @interface ExprimentSettingsChannelTypesInner
+ * @interface GetExprimentSettings200ResponseChannelTypesInner
  */
-export interface ExprimentSettingsChannelTypesInner {
+export interface GetExprimentSettings200ResponseChannelTypesInner {
     /**
      * 
      * @type {number}
-     * @memberof ExprimentSettingsChannelTypesInner
+     * @memberof GetExprimentSettings200ResponseChannelTypesInner
      */
     'channel_type_id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsChannelTypesInner
+     * @memberof GetExprimentSettings200ResponseChannelTypesInner
      */
     'channel_type_name'?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ExprimentSettingsChannelTypesInner
+     * @memberof GetExprimentSettings200ResponseChannelTypesInner
      */
     'channels'?: Array<string>;
 }
 /**
  * 
  * @export
- * @interface ExprimentSettingsExprimentConditionsInner
+ * @interface GetExprimentSettings200ResponseExprimentConditionsInner
  */
-export interface ExprimentSettingsExprimentConditionsInner {
+export interface GetExprimentSettings200ResponseExprimentConditionsInner {
     /**
      * 
      * @type {number}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'condition_id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'condition_name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'location'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'media_type'?: string;
     /**
      * 
      * @type {number}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'number_of_medias'?: number;
     /**
      * 
      * @type {number}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'rating_second_by_media'?: number;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'dataset'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ExprimentSettingsExprimentConditionsInner
+     * @memberof GetExprimentSettings200ResponseExprimentConditionsInner
      */
     'platform'?: string;
-}
-/**
- * 
- * @export
- * @interface ListImagesInner
- */
-export interface ListImagesInner {
-    /**
-     * 
-     * @type {number}
-     * @memberof ListImagesInner
-     */
-    'image_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListImagesInner
-     */
-    'google_drive_id'?: string;
-}
-/**
- * 
- * @export
- * @interface ListMoviesInner
- */
-export interface ListMoviesInner {
-    /**
-     * 
-     * @type {number}
-     * @memberof ListMoviesInner
-     */
-    'movie_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListMoviesInner
-     */
-    'google_drive_id'?: string;
 }
 /**
  * 
@@ -521,11 +483,13 @@ export const ChannelTypesApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary Add channel types
-         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {PostChannelTypesRequest} postChannelTypesRequest request body of channel types
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postChannelTypes: async (postChannelTypesRequest?: PostChannelTypesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postChannelTypes: async (postChannelTypesRequest: PostChannelTypesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postChannelTypesRequest' is not null or undefined
+            assertParamExists('postChannelTypes', 'postChannelTypesRequest', postChannelTypesRequest)
             const localVarPath = `/channel-types`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -565,11 +529,11 @@ export const ChannelTypesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Add channel types
-         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {PostChannelTypesRequest} postChannelTypesRequest request body of channel types
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async postChannelTypes(postChannelTypesRequest: PostChannelTypesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postChannelTypes(postChannelTypesRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -586,11 +550,11 @@ export const ChannelTypesApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @summary Add channel types
-         * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+         * @param {PostChannelTypesRequest} postChannelTypesRequest request body of channel types
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: any): AxiosPromise<void> {
+        postChannelTypes(postChannelTypesRequest: PostChannelTypesRequest, options?: any): AxiosPromise<void> {
             return localVarFp.postChannelTypes(postChannelTypesRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -606,12 +570,12 @@ export class ChannelTypesApi extends BaseAPI {
     /**
      * 
      * @summary Add channel types
-     * @param {PostChannelTypesRequest} [postChannelTypesRequest] 
+     * @param {PostChannelTypesRequest} postChannelTypesRequest request body of channel types
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelTypesApi
      */
-    public postChannelTypes(postChannelTypesRequest?: PostChannelTypesRequest, options?: AxiosRequestConfig) {
+    public postChannelTypes(postChannelTypesRequest: PostChannelTypesRequest, options?: AxiosRequestConfig) {
         return ChannelTypesApiFp(this.configuration).postChannelTypes(postChannelTypesRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -626,11 +590,13 @@ export const ExprimentConditionsApiAxiosParamCreator = function (configuration?:
         /**
          * 
          * @summary Add experimental conditions
-         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {PostExprimentConditionsRequest} postExprimentConditionsRequest request body of experimental conditions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postExprimentConditions: async (postExprimentConditionsRequest?: PostExprimentConditionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postExprimentConditions: async (postExprimentConditionsRequest: PostExprimentConditionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postExprimentConditionsRequest' is not null or undefined
+            assertParamExists('postExprimentConditions', 'postExprimentConditionsRequest', postExprimentConditionsRequest)
             const localVarPath = `/expriment-conditions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -670,11 +636,11 @@ export const ExprimentConditionsApiFp = function(configuration?: Configuration) 
         /**
          * 
          * @summary Add experimental conditions
-         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {PostExprimentConditionsRequest} postExprimentConditionsRequest request body of experimental conditions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async postExprimentConditions(postExprimentConditionsRequest: PostExprimentConditionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postExprimentConditions(postExprimentConditionsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -691,11 +657,11 @@ export const ExprimentConditionsApiFactory = function (configuration?: Configura
         /**
          * 
          * @summary Add experimental conditions
-         * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+         * @param {PostExprimentConditionsRequest} postExprimentConditionsRequest request body of experimental conditions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: any): AxiosPromise<void> {
+        postExprimentConditions(postExprimentConditionsRequest: PostExprimentConditionsRequest, options?: any): AxiosPromise<void> {
             return localVarFp.postExprimentConditions(postExprimentConditionsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -711,12 +677,12 @@ export class ExprimentConditionsApi extends BaseAPI {
     /**
      * 
      * @summary Add experimental conditions
-     * @param {PostExprimentConditionsRequest} [postExprimentConditionsRequest] 
+     * @param {PostExprimentConditionsRequest} postExprimentConditionsRequest request body of experimental conditions
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExprimentConditionsApi
      */
-    public postExprimentConditions(postExprimentConditionsRequest?: PostExprimentConditionsRequest, options?: AxiosRequestConfig) {
+    public postExprimentConditions(postExprimentConditionsRequest: PostExprimentConditionsRequest, options?: AxiosRequestConfig) {
         return ExprimentConditionsApiFp(this.configuration).postExprimentConditions(postExprimentConditionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -774,7 +740,7 @@ export const ExprimentSettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getExprimentSettings(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExprimentSettings>> {
+        async getExprimentSettings(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetExprimentSettings200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getExprimentSettings(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -794,7 +760,7 @@ export const ExprimentSettingsApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getExprimentSettings(options?: any): AxiosPromise<ExprimentSettings> {
+        getExprimentSettings(options?: any): AxiosPromise<GetExprimentSettings200Response> {
             return localVarFp.getExprimentSettings(options).then((request) => request(axios, basePath));
         },
     };
@@ -821,202 +787,6 @@ export class ExprimentSettingsApi extends BaseAPI {
 
 
 /**
- * ImagesApi - axios parameter creator
- * @export
- */
-export const ImagesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for images
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getImageIds: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/images`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ImagesApi - functional programming interface
- * @export
- */
-export const ImagesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ImagesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for images
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getImageIds(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListImagesInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getImageIds(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * ImagesApi - factory interface
- * @export
- */
-export const ImagesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ImagesApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for images
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getImageIds(options?: any): AxiosPromise<Array<ListImagesInner>> {
-            return localVarFp.getImageIds(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * ImagesApi - object-oriented interface
- * @export
- * @class ImagesApi
- * @extends {BaseAPI}
- */
-export class ImagesApi extends BaseAPI {
-    /**
-     * 
-     * @summary Randomly get Google Drive IDs for images
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ImagesApi
-     */
-    public getImageIds(options?: AxiosRequestConfig) {
-        return ImagesApiFp(this.configuration).getImageIds(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * MoviesApi - axios parameter creator
- * @export
- */
-export const MoviesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for movies
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMovieIds: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/movies`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * MoviesApi - functional programming interface
- * @export
- */
-export const MoviesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MoviesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for movies
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getMovieIds(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListMoviesInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMovieIds(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * MoviesApi - factory interface
- * @export
- */
-export const MoviesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MoviesApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Randomly get Google Drive IDs for movies
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMovieIds(options?: any): AxiosPromise<Array<ListMoviesInner>> {
-            return localVarFp.getMovieIds(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * MoviesApi - object-oriented interface
- * @export
- * @class MoviesApi
- * @extends {BaseAPI}
- */
-export class MoviesApi extends BaseAPI {
-    /**
-     * 
-     * @summary Randomly get Google Drive IDs for movies
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MoviesApi
-     */
-    public getMovieIds(options?: AxiosRequestConfig) {
-        return MoviesApiFp(this.configuration).getMovieIds(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
  * RecordingPauseApi - axios parameter creator
  * @export
  */
@@ -1029,7 +799,7 @@ export const RecordingPauseApiAxiosParamCreator = function (configuration?: Conf
          * @throws {RequiredError}
          */
         getRecordingPause: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/recording-pauset`;
+            const localVarPath = `/recording-pause`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1221,11 +991,13 @@ export const TrialsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * create a trial result containing a set of a subject info and rating results
          * @summary create a trial result
-         * @param {PostTrialsRequest} [postTrialsRequest] 
+         * @param {PostTrialsRequest} postTrialsRequest trial result
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postTrials: async (postTrialsRequest?: PostTrialsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postTrials: async (postTrialsRequest: PostTrialsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postTrialsRequest' is not null or undefined
+            assertParamExists('postTrials', 'postTrialsRequest', postTrialsRequest)
             const localVarPath = `/trials`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1265,11 +1037,11 @@ export const TrialsApiFp = function(configuration?: Configuration) {
         /**
          * create a trial result containing a set of a subject info and rating results
          * @summary create a trial result
-         * @param {PostTrialsRequest} [postTrialsRequest] 
+         * @param {PostTrialsRequest} postTrialsRequest trial result
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postTrials(postTrialsRequest?: PostTrialsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async postTrials(postTrialsRequest: PostTrialsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postTrials(postTrialsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1286,11 +1058,11 @@ export const TrialsApiFactory = function (configuration?: Configuration, basePat
         /**
          * create a trial result containing a set of a subject info and rating results
          * @summary create a trial result
-         * @param {PostTrialsRequest} [postTrialsRequest] 
+         * @param {PostTrialsRequest} postTrialsRequest trial result
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postTrials(postTrialsRequest?: PostTrialsRequest, options?: any): AxiosPromise<void> {
+        postTrials(postTrialsRequest: PostTrialsRequest, options?: any): AxiosPromise<void> {
             return localVarFp.postTrials(postTrialsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -1306,12 +1078,12 @@ export class TrialsApi extends BaseAPI {
     /**
      * create a trial result containing a set of a subject info and rating results
      * @summary create a trial result
-     * @param {PostTrialsRequest} [postTrialsRequest] 
+     * @param {PostTrialsRequest} postTrialsRequest trial result
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TrialsApi
      */
-    public postTrials(postTrialsRequest?: PostTrialsRequest, options?: AxiosRequestConfig) {
+    public postTrials(postTrialsRequest: PostTrialsRequest, options?: AxiosRequestConfig) {
         return TrialsApiFp(this.configuration).postTrials(postTrialsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
