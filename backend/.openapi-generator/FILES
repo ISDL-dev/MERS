@@ -1,9 +1,7 @@
 internal/schema/model_error.go
-internal/schema/model_expriment_settings.go
-internal/schema/model_expriment_settings_channel_types_inner.go
-internal/schema/model_expriment_settings_expriment_conditions_inner.go
-internal/schema/model_list_images_inner.go
-internal/schema/model_list_movies_inner.go
+internal/schema/model_get_expriment_settings_200_response.go
+internal/schema/model_get_expriment_settings_200_response_channel_types_inner.go
+internal/schema/model_get_expriment_settings_200_response_expriment_conditions_inner.go
 internal/schema/model_post_channel_types_request.go
 internal/schema/model_post_expriment_conditions_request.go
 internal/schema/model_post_trials_request.go
